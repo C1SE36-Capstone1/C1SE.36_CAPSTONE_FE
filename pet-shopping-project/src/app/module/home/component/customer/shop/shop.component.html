@@ -1,0 +1,112 @@
+<div class="body-container">
+    <div class="banner-container">
+        <div class="banner">
+            <img src="assets/image/banner.jpg">
+        </div>
+        <div class="banner">
+            <img src="assets/image/banner.jpg">
+        </div>
+    </div>
+    <div class="breadcrumb">
+
+    </div>
+    <!-- <div class="product-container">
+        <div class="filter">
+            <div class="category-filter">
+                <h1>Product Categories</h1>
+            </div>
+        </div>
+        <div class="product-show">
+            <div class="sort-product"></div>
+        </div>
+    </div> -->
+    <div class="product-categories">
+        <h2>Product Categories</h2>
+        <ul id="category-list">
+            <li><i class="fas fa-paw"></i> <a href="#">Food</a></li>
+            <li><i class="fas fa-paw"></i> <a href="#">Beds</a></li>
+            <li><i class="fas fa-paw"></i> <a href="#">Clothing</a></li>
+            <li><i class="fas fa-paw"></i> <a href="#">Crates</a></li>
+            <li><i class="fas fa-paw"></i> <a href="#">Treats</a></li>
+            <li><i class="fas fa-paw"></i> <a href="#">Pharmacy</a></li>
+            <li><i class="fas fa-paw"></i> <a href="#">Toys</a></li>
+            <li><i class="fas fa-paw"></i> <a href="#">Uncategorized</a></li>
+        </ul>
+
+    </div>
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sắp xếp sản phẩm
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Giá từ thấp đến cao</a></li>
+            <li><a class="dropdown-item" href="#">Giá từ cao xuống thấp</a></li>
+        </ul>
+    </div>
+
+    <div class="product-list">
+        <!-- Sản phẩm  -->
+        <div class="product">
+            <img src="assets/image/c2.webp" alt="Sản phẩm 1">
+
+            <h3>Sản phẩm 1</h3>
+            <p>Giá: $50</p>
+            <p data-category="food">Thể Loại: Food</p>
+            <p data-brand="orijen">Mô tả: Orijen</p>
+            <button class="add-to-cart-button" [routerLink]="['carts']">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="product">
+            <img src="assets/image/c2.webp" alt="Sản phẩm 2">
+            <h3>Sản phẩm 2</h3>
+            <p>Giá: $65</p>
+            <p data-category="food">Thể Loại: Clothing</p>
+            <p data-brand="orijen">Mô tả: royal-canin</p>
+            <button class="add-to-cart-button" [routerLink]="['carts']">Thêm vào giỏ hàng</button>
+        </div>
+
+        <div class="product">
+            <img src="assets/image/c2.webp" alt="Sản phẩm 3">
+            <h3>Sản phẩm 3</h3>
+            <p>Giá: $70</p>
+            <p data-category="food">Thể Loại: Toys</p>
+            <p data-brand="orijen">Mô tả: Nutrience</p>
+            <button class="add-to-cart-button" [routerLink]="['carts']">Thêm vào giỏ hàng</button>
+        </div>
+
+        <div class="product">
+            <img src="assets/image/c2.webp" alt="Sản phẩm 3">
+            <h3>Sản phẩm 4</h3>
+            <p>Giá: $70</p>
+            <p data-category="food">Thể Loại: Toys</p>
+            <p data-brand="orijen">Mô tả: Nutrience</p>
+            <button class="add-to-cart-button" [routerLink]="['carts']">Thêm vào giỏ hàng</button>
+        </div>
+
+        <div class="product">
+            <img src="assets/image/c2.webp" alt="Sản phẩm 3">
+            <h3>Sản phẩm 4</h3>
+            <p>Giá: $70</p>
+            <p data-category="food">Thể Loại: Toys</p>
+            <p data-brand="orijen">Mô tả: Nutrience</p>
+            <button class="add-to-cart-button" [routerLink]="['carts']">Thêm vào giỏ hàng</button>
+        </div>
+
+        <div class="product">
+            <img src="assets/image/c2.webp" alt="Sản phẩm 3">
+            <h3>Sản phẩm 5</h3>
+            <p>Giá: $70</p>
+            <p data-category="food">Thể Loại: Toys</p>
+            <p data-brand="orijen">Mô tả: Nutrience</p>
+            <button class="add-to-cart-button" [routerLink]="['carts']">Thêm vào giỏ hàng</button>
+        </div>
+
+        <div class="product">
+            <img src="assets/image/c2.webp" alt="Sản phẩm 3">
+            <h3>Sản phẩm 6</h3>
+            <p>Giá: $70</p>
+            <p data-category="food">Thể Loại: Toys</p>
+            <p data-brand="orijen">Mô tả: Nutrience</p>
+            <button class="add-to-cart-button" [routerLink]="['carts']">Thêm vào giỏ hàng</button>
+        </div>
+    </div>

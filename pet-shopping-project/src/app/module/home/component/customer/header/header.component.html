@@ -1,18 +1,18 @@
 <link href='https://fonts.googleapis.com/css?family=Convergence' rel='stylesheet'>
 <div class="header-container">
     <div class="logo-container">
-        <a class="logo-clickable" [routerLink]="['home']">
+        <a class="logo-clickable" [routerLink]="['/home']">
             <img src="assets/image/logo.png">
         </a>
     </div>
     <div class="menu-title">
         <ul class="menu">
             <li>
-                <a [routerLink]="['home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <span class="text">Trang chủ</span>
                 </a>
             </li>
-            <li >
+            <li>
                 <a [routerLink]="['/shop']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <span class="text">Sản phẩm</span>
                 </a>
