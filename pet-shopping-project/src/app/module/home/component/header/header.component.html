@@ -1,0 +1,54 @@
+<link href='https://fonts.googleapis.com/css?family=Convergence' rel='stylesheet'>
+<div class="header-container">
+    <div class="logo-container">
+        <a class="logo-clickable" [routerLink]="['home']">
+            <img src="assets/image/logo.png">
+        </a>
+    </div>
+    <div class="menu-title">
+        <ul class="menu">
+            <li>
+                <a [routerLink]="['home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <span class="text">Trang chủ</span>
+                </a>
+            </li>
+            <li >
+                <a [routerLink]="['/shop']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <span class="text">Sản phẩm</span>
+                </a>
+            </li>
+            <li >
+                <a [routerLink]="['/page']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <span class="text">Thú y</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/contact-us']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <span class="text">Liên hệ</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="search-bar-container">
+        <form class="search-bar">
+            <input type="text" placeholder="Tìm kiếm">
+            <button type="button"><img src="assets/image/search-symbol.png"></button>
+        </form>
+    </div>
+    <div class="account-container">
+        <ul>
+            <li> <a [routerLink]="['login']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <i class="fa fa-user fa-lg"></i>
+                </a>
+            </li>
+            <li> <a [routerLink]="[]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <i class="fa fa-heart fa-lg"></i>
+                </a>
+            </li>
+            <li> <a [routerLink]="['/cart']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <i class="fa fa-shopping-cart fa-lg"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="signup-form">
+    <h2>Sign Up</h2>
+    <form>
+        <div class="form-group">
+            <label for="name"><strong>Full Name</strong></label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email"><strong>Email</strong></label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone"><strong>Phone</strong></label>
+            <input type="phone" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="otp"><b>OTP</b></label>
+            <div class="" style="display: flex; position: relative;">
+                <button type="button" class="sent-otp">Send OTP</button>
+                <input type="text" placeholder="Enter OTP" name="otp" (keypress)="OnlyNumerAllowed($event)">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="password"><strong>Password</strong></label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="password"><strong>Confirm Password</strong></label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button class="btn" type="submit">Sign up</button>
+    </form>
+    <div class="social-signup" style="margin-bottom: 10px;">
+        <a href="#"><img src="assets/image/fb1.png" alt="Facebook"> Sign up by Facebook</a><br>
+        <a href="#"><img src="assets/image/gg1.png" alt="Google"> Sign up by Gmail</a>
+    </div>
+    <p>Already have account, <a href="#" id="show-register-link" [routerLink]="['login']">Login</a>.</p>
+</div>
