@@ -14,6 +14,7 @@ import { SignupComponent } from './module/security/component/signup/signup.compo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,7 @@ import { SignupComponent } from './module/security/component/signup/signup.compo
     ShopComponent,
     HomeComponent,
     ContactUsComponent,
-    SignupComponent,  
+    SignupComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
