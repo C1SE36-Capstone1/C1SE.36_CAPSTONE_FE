@@ -5,6 +5,7 @@ import { SecurityRoutingModule } from './security-routing.module';
 import { LoginComponent } from './component/login/login.component';
 
 
+
 @NgModule({
   declarations: [LoginComponent],
   imports: [
