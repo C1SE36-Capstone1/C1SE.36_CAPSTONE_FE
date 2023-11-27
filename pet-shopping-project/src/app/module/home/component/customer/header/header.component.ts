@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  show = false;
+
   showOptions: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openpopup(){
+    this.show = !this.show;
+  }
+
+  closepopup(){
+    this.show = false;
   }
 }
