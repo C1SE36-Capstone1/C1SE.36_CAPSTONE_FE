@@ -47,10 +47,7 @@
   float: left;
   background-color: #AFEEEE 6FA;
   width: 100%;
-
-  border-right: 1px solid #ddd;
-  /* Đường kẻ phân chia danh mục sản
-  phẩm và danh sách sản phẩm */
+  padding: 0 15px 10px 0;
 }
 
 
@@ -58,7 +55,9 @@
 .product-categories h2 {
   color: #FF6347;
   font-size: 22px;
-  margin-bottom: 10px;
+  padding: 0 15px 10px 0;
+  border-bottom: 2px dashed #e5e5e5;
+  font-weight: bold;
 }
 
 .product-categories ul {
@@ -67,7 +66,7 @@
 }
 
 .product-categories ul li {
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .product-categories ul li a {
@@ -112,7 +111,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px dashed #ddd;
+  border: 1px dashed #ddd;
 }
 
 .product img {
@@ -144,6 +143,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all ease .3s;
 }
 
 .add-button {
@@ -151,16 +151,20 @@
   width: 40px;
   height: 40px;
   color: black;
-  border: 1px solid black;
+  border: 1px solid #e5e5e5;
   cursor: pointer;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center; 
   opacity: 0;
   margin-bottom: 6px;
+  transition: all ease .3s;
 }
 
 .image:hover {
-  border: 2px dashed #FFA500;
+  border: 1px dashed #FFA500;
   .add-button {
     opacity: 1; /* Hiển thị nút thêm vào giỏ hàng khi hover */
   }
@@ -168,6 +172,7 @@
 .add-button:hover {
   background-color: #FFA500;
   color: white;
+  border: none;
 }
 
 /*

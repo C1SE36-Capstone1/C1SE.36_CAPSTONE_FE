@@ -121,6 +121,7 @@
     border-radius: 5px;
     border: 2px solid #CECECE;
     background: #FFF;
+    overflow: hidden;
 }
 
 .table-head {

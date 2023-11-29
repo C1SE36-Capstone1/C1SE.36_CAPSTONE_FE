@@ -2,41 +2,47 @@
     <div class="card-head">
         <div class="heading-banner">
             <div class="text-heading">
-                <h1>Categories</h1> 
+                <h1>Categories</h1>
                 <div class="seach-bar-container">
                     <form class="search-bar">
                         <button type="submit"><img src="assets/image/search-symbol.png"></button>
-                        <input type="text" placeholder="Search by name">
+                        <input type="text" [(ngModel)]="categoryId" placeholder="Search by name">
                     </form>
                 </div>
-                <a [routerLink]="['create']" class="add-product">
+                <a [routerLink]="[]" class="add">
                     <span>+ Add Category</span>
                 </a>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <div class="body-container">
-            <div class="right">
-                <div class="table-container">
-                    <table> 
-                        <colgroup>
-                            <col style="width: 150px;">
-                            <col style="width: 690px;">
-                            <col style="width: 180px;">
-                        </colgroup>
-                        <thead class="table-head">
-                            <tr>
-                                <th class="table-cell" style="text-align: left;">ID</th>
-                                <th class="table-cell" style="text-align: left;">
-                                    <span title="sort by name">Name</span>
-                                </th>
-                                <th class="table-cell" style="text-align: center;">Action</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
+        <div class="table-container">
+            <table style="min-width: 100%; table-layout: fixed;">
+                <colgroup>
+                    <col style="width: 20%;">
+                    <col style="width: 60%">
+                    <col style="width: 20%;">
+                </colgroup>
+                <thead class="table-head">
+                    <tr>
+                        <th class="table-cell" style="text-align: center;">ID</th>
+                        <th class="table-cell" style="text-align: left;">
+                            <span title="sort by name">Name</span>
+                        </th>
+                        <th class="table-cell" style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr *ngFor="let item of categoryList">
+                        <td class="table-cell" style="text-align: center;">{{item.categoryId}}</td>
+                        <td class="table-cell" style="text-align: left;">{{item.categoryName}}</td>
+                        <td class="table-cell" style="text-align: center; gap: 10px">
+                            <i class="fa fa-pencil-square fa-lg"></i>
+                            <i class="fa fa-trash fa-lg"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
