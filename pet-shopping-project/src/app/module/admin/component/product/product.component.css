@@ -121,6 +121,7 @@
     border-radius: 5px;
     border: 2px solid #CECECE;
     background: #FFF;
+    overflow: hidden;
 }
 
 .table-head {
@@ -132,8 +133,8 @@
 }
 
 .table-body tr{
-    border-bottom: 1px solid #eef3f8;
-    height: fit-content;
+    border-bottom: 1px solid #f4f7fa;
+    height: 100px;
 }
 
 .table-body tr:hover {

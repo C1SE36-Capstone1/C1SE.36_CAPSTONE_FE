@@ -7,6 +7,8 @@ import { BodyComponent } from './component/body/body.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { CategoryComponent } from './component/category/category.component';
+import { FormsModule } from '@angular/forms';
+import { ProductComponent } from './component/product/product.component';
 
 
 @NgModule({
@@ -15,11 +17,13 @@ import { CategoryComponent } from './component/category/category.component';
     BodyComponent, 
     SidenavComponent, 
     DashboardComponent, 
-    CategoryComponent,
+    CategoryComponent, 
+    ProductComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-head">
+        <div class="heading-banner">
+            <div class="text-heading">
+                <h1>Products</h1>
+                <div class="seach-bar-container">
+                    <form class="search-bar">
+                        <button type="submit" (click)="refreshProductList()"><img src="assets/image/search-symbol.png"></button>
+                        <input type="text" [(ngModel)]="catId" placeholder="Search by name">
+                    </form>
+                </div>
+                <a [routerLink]="[]" class="add">
+                    <span>+ Add Category</span>
+                </a>
+            </div>
+            <div class="category-filter">
+                <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
+                    <option value = "" >Tất cả</option>
+                    <option *ngFor="let item of categoryList" [value]="item.categoryId">{{item.categoryName}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-container ">
+            <table style="min-width: 100%; table-layout: fixed; overflow: auto;">
+                <colgroup>
+                    <col style="width: 50px;">
+                    <col style="width: 90px">
+                    <col style="width: 200px;">
+                    <col style="width: 350px;">
+                    <col style="width: 90px;">
+                    <col style="width: 50px;">
+                    <col style="width: 100px;">
+                    <col style="width: 100px;">
+                </colgroup>
+                <thead class="table-head">
+                    <tr>
+                        <th class="table-cell" style="text-align: center;">ID</th>
+                        <th class="table-cell" style="text-align: left;">Hình ảnh</th>
+                        <th class="table-cell" style="text-align: center;">Tên</th>
+                        <th class="table-cell" style="text-align: center;">Mô tả</th>
+                        <th class="table-cell" style="text-align: center;">Giá</th>
+                        <th class="table-cell" style="text-align: center;">Số lượng</th>
+                        <th class="table-cell" style="text-align: center;">Tình trạng</th>
+                        <th class="table-cell" style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr *ngFor="let item of productList">
+                        <td class="table-cell" style="text-align: center;">{{item.productId}}</td>
+                        <td class="table-cell" style="text-align: left;"><img src ="assets/image/search-symbol.png" style="width: 80px;"></td>
+                        <td class="table-cell" style="text-align: left;">{{item.name}}</td>
+                        <td class="table-cell" style="text-align: left;">{{item.description}}</td>
+                        <td class="table-cell" style="text-align: center;">{{item.price}}</td>
+                        <td class="table-cell" style="text-align: center;">{{item.quantity}}</td>
+                        <td class="table-cell" style="text-align: center;">{{item.status}}</td>
+                        <td class="table-cell" style="text-align: center; gap: 10px">
+                            <i class="fa fa-pencil-square fa-lg"></i>
+                            <i class="fa fa-trash fa-lg"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

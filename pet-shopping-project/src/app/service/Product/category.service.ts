@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/model/Product/category';
-import { TokenStorageService } from '../Token/token-storage.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,9 @@ export class CategoryService {
 
   getAll() {
     return this.http.get<Category[]>(this._API_URL);
+  }
+
+  getCategoryById(id: number): Observable<Category> {
+    return this.http.get<Category>(this._API_URL + '/' + id);
   }
 }

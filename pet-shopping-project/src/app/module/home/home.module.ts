@@ -9,6 +9,7 @@ import { HomeComponent } from './component/home/home.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { CustomerComponent } from './component/customer/customer.component';
 import { SecurityModule } from '../security/security.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SecurityModule } from '../security/security.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SecurityModule
+    SecurityModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './component/admin/admin.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { CategoryComponent } from './component/category/category.component';
+import { ProductComponent } from './component/product/product.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       { path: 'dashboard', component: DashboardComponent},
       { path: 'category', component: CategoryComponent},
-      { path: 'dashboard', component: AdminComponent},
+      { path: 'product', component: ProductComponent},
       { path: 'dashboard', component: AdminComponent},
     ]
   }
