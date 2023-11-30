@@ -11,12 +11,16 @@ import { Product } from 'src/app/model/Product/product';
 })
 export class ShopComponent implements OnInit {
 
-  catId : number;
+  selectedCategoryId: number;
+
   productList: Product[];
   categoryList: Category[];
   showAll = false;
   show = true;
-  productId: number;
+  totalProducts: number = 0;
+  productsPerPage: number = 12;
+  currentPage: number = 1;
+
   constructor(private category : CategoryService,
               private product : ProductService) { }
 
@@ -29,29 +33,50 @@ export class ShopComponent implements OnInit {
     });
     this.product.getAll().subscribe((data)=> {
       this.productList = data
-    }
-    )
-    this.product.getByCategory(this.catId).subscribe((data)=>
-      this.productList = data
-    )
-
+    })
   }
+
   showAllCategories(): void {
-    // Set showAll to true to display all categories
     this.showAll =! this.showAll;
     this.show =! this.show;
   }
 
-  passCategoryId(categoryId: number) {
-    this.catId = categoryId;
-    console.log('Selected Category ID:', this.catId);
-    return this.catId
+  onCategoryClick(categoryId: number): void {
+    this.selectedCategoryId = categoryId;
+
+    // Gọi phương thức getByCategory và cập nhật danh sách sản phẩm
+    if(categoryId){
+      this.product.getByCategory(categoryId).subscribe(
+        (data) => {
+          this.productList = data;
+        },
+        (error) => {
+          console.error('Error fetching products by category:', error);
+        }
+      );
+    }else{
+      this.product.getAll().subscribe((data) =>{
+        this.productList = data
+      })
+    }
+    
   }
-  // findByCategory(categoryId : number) : void{
-  //   this.product.getByCategory(this.catId).subscribe((data) =>
-  //     this.productList = data
-  //   )
-  // }
+
+  getProductSlice(): Product[] {
+    const startIndex = (this.currentPage - 1) * this.productsPerPage;
+    const endIndex = startIndex + this.productsPerPage;
+    return this.productList.slice(startIndex, endIndex);
+  }
+
+  changePage(page: number): void {
+    this.currentPage = page;
+    this.productList = this.getProductSlice();
+  }
+
+  getPageArray(): number[] {
+    const pageCount = Math.ceil(this.totalProducts / this.productsPerPage);
+    return Array.from({ length: pageCount }, (_, i) => i + 1);
+  }
 }
 
 

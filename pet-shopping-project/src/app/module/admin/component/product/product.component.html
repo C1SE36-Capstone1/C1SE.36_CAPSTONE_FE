@@ -15,7 +15,7 @@
             </div>
             <div class="category-filter">
                 <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
-                    <option>Lọc theo danh mục</option>
+                    <option value = "" >Tất cả</option>
                     <option *ngFor="let item of categoryList" [value]="item.categoryId">{{item.categoryName}}</option>
                 </select>
             </div>

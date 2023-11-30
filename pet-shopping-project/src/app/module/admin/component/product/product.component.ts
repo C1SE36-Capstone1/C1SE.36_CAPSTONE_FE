@@ -44,5 +44,10 @@ export class ProductComponent implements OnInit {
         this.productList = data;
       });
     }
+    else {
+      this.product.getAll().subscribe((data) => {
+        this.productList = data
+      })
+    }
   }
 }

@@ -15,7 +15,7 @@
                 <ul id="category-list" >
                     <li *ngFor="let item of categoryList.slice(0,7)">
                         <i class="fa fa-paw fa-rotate-90"></i> 
-                        <a (click)="passCategoryId(item.categoryId)">{{item.categoryName}}</a>
+                        <a (click)="onCategoryClick(item.categoryId)">{{item.categoryName}}</a>
                         <!-- <span>({{item.product.length}})</span> -->
                     </li>
                 </ul>
@@ -23,7 +23,7 @@
                 <ul id="category-list" *ngIf="showAll">
                     <li *ngFor="let item of categoryList.slice(7)">
                         <i class="fa fa-paw fa-rotate-90"></i> 
-                        <a (click)="passCategoryId(item.categoryId)">{{item.categoryName}}</a>
+                        <a (click)="onCategoryClick(item.categoryId)">{{item.categoryName}}</a>
                     </li>
                 </ul>
                 <a *ngIf="!show" (click)="showAllCategories()">Thu gọn</a>
@@ -52,9 +52,15 @@
                     </div>
                     <p style="font-size: 14px;">{{item.price}}</p>
                     <h3><a>{{item.name}}</a></h3>
-                    
                 </div>
             </div>
-        </div>
+            <div *ngIf="totalProducts > productsPerPage">
+                <ul class="pagination">
+                  <li *ngFor="let page of getPageArray()" [class.active]="page === currentPage">
+                    <a (click)="changePage(page)">{{ page }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
     </div>
 </div>

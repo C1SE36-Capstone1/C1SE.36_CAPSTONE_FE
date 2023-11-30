@@ -132,8 +132,8 @@
 }
 
 .table-body tr{
-    border-bottom: 1px solid #f4f7fa;
-    height: 100px;
+    border-bottom: 1px solid #eef3f8;
+    height: fit-content;
 }
 
 .table-body tr:hover {
