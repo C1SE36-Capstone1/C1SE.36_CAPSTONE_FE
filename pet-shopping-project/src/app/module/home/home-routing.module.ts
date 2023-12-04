@@ -5,6 +5,9 @@ import { HomeComponent } from './component/home/home.component';
 import { ShopComponent } from './component/shop/shop.component'; 
 import { CustomerComponent } from './component/customer/customer.component';
 import { LoginComponent } from '../security/component/login/login.component';
+import { BreedComponent } from './component/breed/breed.component';
+import { ProductDetailComponent } from '../product/component/product-detail/product-detail.component';
+import { CartComponent } from '../cart/component/cart/cart.component';
 
 
 const routes: Routes = [
@@ -15,13 +18,13 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: 'shop', component: ShopComponent },
-      { path: 'contact-us', component: ContactUsComponent}
-      
+      { path: 'contact-us', component: ContactUsComponent},
+      { path: 'breed', component: BreedComponent },
     ]
   },
-  {
-    path: 'login', component: LoginComponent
-  }
+  { path: 'login', component: LoginComponent },
+  { path: 'shop/:productId', component: ProductDetailComponent },
+  { path: 'carts', component: CartComponent },
 ];
 
 @NgModule({

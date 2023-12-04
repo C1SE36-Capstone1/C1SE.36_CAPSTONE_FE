@@ -10,21 +10,28 @@ import { ShopComponent } from './component/shop/shop.component';
 import { CustomerComponent } from './component/customer/customer.component';
 import { SecurityModule } from '../security/security.module';
 import { FormsModule } from '@angular/forms';
+import { BreedComponent } from './component/breed/breed.component';
+
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
     ShopComponent,
     HomeComponent,
     ContactUsComponent,
     CustomerComponent,
+    BreedComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     SecurityModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
 })
 export class HomeModule { }

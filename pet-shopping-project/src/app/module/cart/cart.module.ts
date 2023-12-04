@@ -2,13 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CartRoutingModule } from './cart-routing.module';
+import { CartComponent } from './component/cart/cart.component';
+import { AppModule } from 'src/app/app.module';
+import { HeaderComponent } from '../home/component/header/header.component';
+import { FooterComponent } from '../home/component/footer/footer.component';
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CartComponent,
+  ],
   imports: [
     CommonModule,
-    CartRoutingModule
+    CartRoutingModule,
   ]
 })
 export class CartModule { }

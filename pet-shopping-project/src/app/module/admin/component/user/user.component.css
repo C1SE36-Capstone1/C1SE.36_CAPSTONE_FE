@@ -86,7 +86,6 @@
     width: 15px;
     background-image: none;
     border: none;
-    background-color: none;
 }
 
 .search-bar button {
@@ -122,7 +121,6 @@
     border-radius: 5px;
     border: 2px solid #CECECE;
     background: #FFF;
-    overflow: hidden;
 }
 
 .table-head {
@@ -130,12 +128,12 @@
 }
 
 .table-cell {
-    padding: 10px;
+    padding: 12px;
 }
 
 .table-body tr{
-    border-bottom: 1px solid #f4f7fa;
-    height: 90px;
+    border-bottom: 1px solid #eef3f8;
+    height: fit-content;
 }
 
 .table-body tr:hover {

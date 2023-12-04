@@ -1,0 +1,55 @@
+<div class="card">
+    <div class="card-head">
+        <div class="heading-banner">
+            <div class="text-heading">
+                <h1>User</h1>
+                <div class="seach-bar-container">
+                    <form class="search-bar">
+                        <button type="submit"><img src="assets/image/search-symbol.png"></button>
+                        <input type="text" [(ngModel)]="userName" placeholder="Search by name">
+                    </form>
+                </div>
+                <a [routerLink]="[]" class="add">
+                    <span>+ Add User</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-container">
+            <table style="min-width: 100%; table-layout: fixed;">
+                <colgroup>
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 20%">
+                    <col style="width: 40%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
+                <thead class="table-head">
+                    <tr>
+                        <th class="table-cell" style="text-align: center;">ID</th>
+                        <th class="table-cell" style="text-align: center;">Avatar</th>
+                        <th class="table-cell" style="text-align: left;">Name</th>
+                        <th class="table-cell" style="text-align: left;">Email</th>
+                        <th class="table-cell" style="text-align: center;">Status</th>
+                        <th class="table-cell" style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr *ngFor="let item of accountList">
+                        <td class="table-cell" style="text-align: center;">{{item.userId}}</td>
+                        <td class="table-cell" style="text-align: center;">{{item.image}}</td>
+                        <td class="table-cell" style="text-align: left;">{{item.name}}</td>
+                        <td class="table-cell" style="text-align: left;">{{item.email}}</td>
+                        <td class="table-cell" style="text-align: center;">{{item.status ? 'Active' : 'Disabled'}}</td>
+                        <td class="table-cell" style="text-align: center; gap: 10px">
+                            <i class="fa-solid fa-user-shield fa-lg"></i>
+                            <i class="fa-solid fa-ban fa-lg"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

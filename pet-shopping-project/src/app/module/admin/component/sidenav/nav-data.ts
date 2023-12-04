@@ -31,11 +31,6 @@ export const  navbarData=[
         label: 'Review'
     },
     {
-        routerLink: 'coupon',
-        icon : 'fa fa-gift fa-lg',
-        label: 'Coupon'
-    },
-    {
         routerLink: 'message',
         icon : 'fa fa-message fa-lg',
         label: 'Message'

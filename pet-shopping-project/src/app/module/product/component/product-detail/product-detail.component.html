@@ -1,0 +1,92 @@
+
+<div class="body-container" *ngIf="product">
+    <div class="left">
+        <div class="img-product">
+            <div class="img-viewpoint">
+                <img [src]="product.image">
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <h1 class="product-title">{{product.name}}</h1>
+        <p class="price">
+            <span class="price-currncy">đ</span>
+            {{product.price}}
+        </p>
+        <div class="product-rating">
+            <div class="star-rating"></div>
+            <a href="#">(
+                <span class="count">5</span>
+                Reviews )
+            </a>
+        </div>
+        <div class="buy-product-container">
+            <div class="input-quantity">
+                {{product.quantity}}
+            </div> 
+            <div class="button-action">
+                <button type="submit" class="add-to-cart"><img src="assets/image/shopping-bag.png"> Add to Card</button>
+                <button type="submit" class="buy-product">Buy product</button>
+            </div>               
+        </div>
+        <div class="catergory-container">
+            Catergories:
+            <a>{{product.category_id}}</a>
+        </div>
+    </div>
+</div>
+<div class="bottom">
+    <ul class="tabs"> 
+        <li class="description-tab">
+            <a href="#">Description</a>
+        </li>
+        <li class="additional-information-tab">
+            <a href="#">Additional Information</a>
+        </li>
+        <li class="Review-tab">
+            <a href="#">Review</a>
+        </li>
+    </ul>
+    <div class="description-tab-panel">
+        <h2>Description</h2>
+        <p>{{product.description}}</p>
+    </div>
+</div>
+<div class="Related-product-container">
+    <h2>Related Product</h2>
+    <div class="related-product">
+        <ul>
+            <li>
+                <div class="product-block">
+                    <div class="related-product-img"><img src="assets/image/product12.jpg"></div>
+                    <div class="product-caption">
+                        <span class="price">
+                            <span class="price-currncy">$</span>
+                            163.93
+                        </span>
+                        <h3 class="product-name">
+                            <a href="#">Fantastic Marble Shoes</a>
+                        </h3>
+                        <div class="count-review"></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="product-block">
+                    <div class="related-product-img"><img src="assets/image/product12.jpg"></div>
+                    <div class="product-caption">
+                        <span class="price">
+                            <span class="price-currency">$</span>
+                            163.93
+                        </span>
+                        <h3 class="product-name">
+                            <a href="#">Fantastic Marble Shoes</a>
+                        </h3>
+                        <div class="count-review"></div>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
