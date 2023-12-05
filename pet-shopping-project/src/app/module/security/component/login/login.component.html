@@ -2,11 +2,25 @@
     <input type="checkbox" id="check">
     <div class="login form">
         <header>Login</header>
-        <form action="#">
-            <input type="text" placeholder="Enter your email">
-            <input type="password" placeholder="Enter your password">
-            <a href="#">Forgot password?</a>
-            <input type="button" class="button" value="Login">
+        <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+            <div class="input-field">
+                <input type="text" placeholder="Enter your email" formControlName = "email">
+            </div>
+            <span class="text-danger"
+              *ngIf="formLogin.controls.email?.touched
+               && formLogin.controls.email?.errors?.required">Bạn cần nhập thông tin này
+            </span>
+            <span class="text-danger"
+              *ngIf="formLogin.controls.email?.errors?.pattern">Email không đúng định dạng
+            </span>
+
+            <div class="input-field">
+                <input type="password" placeholder="Enter your password">
+            </div>
+            <input class="form-check-input align-middle me-2" type="checkbox" id="disabledFieldsetCheck"
+                 formControlName="remember_me">
+            <a>Forgot password?</a>
+            <input type="submit" value="Đăng nhập" class="btn btn-customize"/>
         </form>
         <div class="signup">
             <span class="signup">Don't have an account?
@@ -14,9 +28,35 @@
             </span>
         </div>
     </div>
-    <div class="registration form">
+    <!-- <div class="registration form">
         <header>Signup</header>
-        <form action="#">
+        <form [formGroup]="formSignUp" (ngSubmit)="onSubmit()">
+            <div class="input-field">
+                <input type="text" placeholder="Enter your full name" formControlName = "fullName">
+            </div>
+            <span class="text-danger"
+                *ngIf="formSignUp.get('fullName').hasError('pattern') 
+                && formSignUp.get('fullName').touched">Bạn cần nhập thông tin này
+            </span>
+            <span class="text-danger"
+                *ngIf="formSignUp.get('fullName').hasError('pattern') 
+                && formSignUp.get('fullName').touched">Bạn cần nhập thông tin này
+            </span>
+            <span class="text-danger"
+              *ngIf="formSignUp.controls.fullName?.errors?.pattern">Tên không đúng định dạng
+            </span>
+
+            <div class="input-field">
+                <input type="text" placeholder="Enter your email" formControlName = "email">
+            </div>
+            <span class="text-danger"
+              *ngIf="formSignUp.controls.email?.touched
+               && formSignUp.controls.email?.errors?.required">Bạn cần nhập thông tin này
+            </span>
+            <span class="text-danger"
+              *ngIf="formSignUp.controls.email?.errors?.pattern">Email không đúng định dạng
+            </span>
+
             <input type="text" placeholder="Enter your email">
             <input type="password" placeholder="Create a password">
             <input type="password" placeholder="Confirm your password">
@@ -27,5 +67,5 @@
                 <label for="check">Login</label>
             </span>
         </div>
-    </div>
+    </div> -->
 </div>

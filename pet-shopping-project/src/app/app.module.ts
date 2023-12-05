@@ -24,7 +24,6 @@ import { HomeModule } from './module/home/home.module';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HomeModule
   ],
   exports:[],
   providers: [],

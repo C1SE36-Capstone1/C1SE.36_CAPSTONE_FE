@@ -2,7 +2,7 @@ import { Breed } from "./breed";
 import { PetInfo } from "./petInfo";
 
 export interface Pet {
-    petId?: number;
+    pet_id?: number;
     name?: string;
     petAge?: Date;
     price?: number;

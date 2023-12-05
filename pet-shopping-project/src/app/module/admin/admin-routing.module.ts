@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'category', component: CategoryComponent},
       { path: 'product', component: ProductComponent},
       { path: 'dashboard', component: AdminComponent},
-      { path: 'user', component: UserComponent},
+      { path: 'account', component: UserComponent},
     ]
   }
 ];
