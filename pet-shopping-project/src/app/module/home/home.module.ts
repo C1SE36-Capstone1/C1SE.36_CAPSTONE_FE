@@ -12,6 +12,7 @@ import { SecurityModule } from '../security/security.module';
 import { FormsModule } from '@angular/forms';
 import { BreedComponent } from './component/breed/breed.component';
 import { CartComponent } from './component/cart/cart.component';
+import { HealthComponent } from './component/health/health.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CartComponent } from './component/cart/cart.component';
     BreedComponent,
     HeaderComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    HealthComponent
   ],
   imports: [
     CommonModule,
