@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    white-space: nowrap;
 
     li {
         width: fit-content;

@@ -6,6 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+removeFromCart(_t20: any) {
+throw new Error('Method not implemented.');
+}
+cartItems: any;
+addToCart(_t8: any) {
+throw new Error('Method not implemented.');
+}
+products: any;
 
   constructor() { }
 

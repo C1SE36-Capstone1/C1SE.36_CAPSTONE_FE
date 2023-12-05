@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { log } from 'console';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class AuthService {
       email: obj.email,
       password: obj.password
     }, this.httpOptions);
-    console.log(this.httpClient);
+
   }
 
 }
