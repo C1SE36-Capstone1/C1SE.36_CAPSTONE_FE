@@ -10,9 +10,13 @@
     <div class="breadcrumb"></div>
     <div class="product-container" style="display: flex;">
         <div class="filter">
-            <div class="product-categories">
+            <div class="product-categories"> 
                 <h2>Product Categories</h2>
                 <ul id="category-list" >
+                    <li>
+                        <i class="fa fa-paw fa-rotate-90"></i> 
+                        <a (click)="onCategoryClick(0)">Tất cả</a>
+                    </li>
                     <li *ngFor="let item of categoryList.slice(0,7)">
                         <i class="fa fa-paw fa-rotate-90"></i> 
                         <a (click)="onCategoryClick(item.categoryId)">{{item.categoryName}}</a>
@@ -21,9 +25,11 @@
                 </ul>
                 <a *ngIf="categoryList.length > 7 && show" (click)="showAllCategories()">Hiện thêm</a>
                 <ul id="category-list" *ngIf="showAll">
+                    
                     <li *ngFor="let item of categoryList.slice(7)">
                         <i class="fa fa-paw fa-rotate-90"></i> 
                         <a (click)="onCategoryClick(item.categoryId)">{{item.categoryName}}</a>
+                        <span></span>
                     </li>
                 </ul>
                 <a *ngIf="!show" (click)="showAllCategories()">Thu gọn</a>
@@ -31,33 +37,34 @@
         </div>
         <div class="show-product">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sắp xếp sản phẩm
+                <button class="btn btn-secondary dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ getSortButtonText() }}
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Giá từ thấp đến cao</a></li>
-                    <li><a class="dropdown-item" href="#">Giá từ cao xuống thấp</a></li>
+                    <li><a class="dropdown-item" (click)="toggleSort('asc')"> từ thấp đến cao</a></li>
+                    <li><a class="dropdown-item" (click)="toggleSort('desc')">từ cao xuống thấp</a></li>
                 </ul>
             </div>
             <div class="product-list" >
                 <!-- Sản phẩm  -->
-                <div class="product" *ngFor="let item of productList" >
-                    <!-- <img [src] = "item.image"> -->
+                <div class="product" *ngFor="let item of displayedProducts">
                     <div class="image">
-                        <img src="assets/image/product12.jpg">
+                        <img [src] = "item.image">
                         <div class="action-btn">
-                            <button class="add-button" [routerLink]="['carts']"><i class="fa fa-bag-shopping"></i></button>
-                            <button class="add-button" [routerLink]="['']"><i class="fa fa-heart"></i></button>
+                            <button class="add-button" [routerLink]="['']"><i class="fa fa-bag-shopping fa-lg"></i></button>
+                            <button class="add-button" [routerLink]="['']"><i class="fa fa-heart fa-lg"></i></button>
                         </div>
+                        <a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
+                        
                     </div>
                     <p style="font-size: 14px;">{{item.price}}</p>
-                    <h3><a>{{item.name}}</a></h3>
+                    <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }">{{item.name}}</a></h3>
                 </div>
             </div>
             <div *ngIf="totalProducts > productsPerPage">
                 <ul class="pagination">
-                  <li *ngFor="let page of getPageArray()" [class.active]="page === currentPage">
-                    <a (click)="changePage(page)">{{ page }}</a>
+                  <li *ngFor="let page of getPageArray()" [class.active]="page === currentPage" style="margin-right: 10px;">
+                    <a (click)="changePage(page)" style="cursor: pointer;">{{page}}</a>
                   </li>
                 </ul>
               </div>

@@ -6,10 +6,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeModule } from './module/home/home.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -20,8 +23,9 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
+  exports:[],
   providers: [],
   bootstrap: [AppComponent]
 })

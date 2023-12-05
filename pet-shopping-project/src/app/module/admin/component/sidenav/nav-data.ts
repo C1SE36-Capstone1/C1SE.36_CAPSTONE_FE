@@ -11,6 +11,11 @@ export const  navbarData=[
         label: 'Product'
     },
     {
+        routerLink: 'breed',
+        icon: 'fa-solid fa-dog',
+        label: 'Breed'
+    },
+    {
         routerLink: 'category',
         icon: 'fa fa-list fa-lg',
         label: 'Category'
@@ -21,19 +26,14 @@ export const  navbarData=[
         label: 'Order'
     },
     {
-        routerLink: 'user',
+        routerLink: 'account',
         icon : 'fa fa-user fa-lg',
-        label: 'User'
+        label: 'Account'
     },
     {
         routerLink: 'review',
         icon : 'fa fa-star fa-lg',
         label: 'Review'
-    },
-    {
-        routerLink: 'coupon',
-        icon : 'fa fa-gift fa-lg',
-        label: 'Coupon'
     },
     {
         routerLink: 'message',

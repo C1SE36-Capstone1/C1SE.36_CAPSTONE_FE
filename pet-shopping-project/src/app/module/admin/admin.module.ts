@@ -9,6 +9,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { CategoryComponent } from './component/category/category.component';
 import { FormsModule } from '@angular/forms';
 import { ProductComponent } from './component/product/product.component';
+import { UserComponent } from './component/user/user.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { ProductComponent } from './component/product/product.component';
     SidenavComponent, 
     DashboardComponent, 
     CategoryComponent, 
-    ProductComponent,
+    ProductComponent, UserComponent,
   ],
   imports: [
     CommonModule,

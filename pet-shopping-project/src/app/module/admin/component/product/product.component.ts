@@ -11,10 +11,21 @@ import { ProductService } from 'src/app/service/Product/product.service';
 })
 export class ProductComponent implements OnInit {
 
+  selectedCategoryId: number;
+
+  productList: Product[];
+  categoryList: Category[];
+  displayedProducts: Product[];
+  showAll = false;
+  show = true;
+  totalProducts: number = 0;
+  productsPerPage: number = 10;
+  currentPage: number = 1;
+  sortType: string ='';
+  sortOrder: string = '';
   selectedCategory: number;
   catId : number;
-  productList : Product[];
-  categoryList : Category [];
+  
 
   constructor( private product : ProductService,
                private category : CategoryService) { }
@@ -27,9 +38,11 @@ export class ProductComponent implements OnInit {
     this.loadProduct();
   }
   loadProduct() :void{
-    this.product.getAll().subscribe((data) =>
+    this.product.getAll().subscribe((data) => {
       this.productList = data
-    )
+      this.totalProducts = this.productList.length;
+      this.displayedProducts = this.getProductSlice();
+    })
   }
 
   refreshProductList(): void {
@@ -49,5 +62,22 @@ export class ProductComponent implements OnInit {
         this.productList = data
       })
     }
+  }
+
+  getProductSlice(): Product[] {
+    const startIndex = (this.currentPage - 1 ) * this.productsPerPage;
+    const endIndex = startIndex + this.productsPerPage;
+    return this.productList.slice(startIndex, endIndex);
+  }
+
+  changePage(page: number): void {
+    console.log('Changing to page:', page);
+    this.currentPage = page;
+    this.displayedProducts = this.getProductSlice();
+  }
+
+  getPageArray(): number[] {
+    const pageCount = Math.ceil(this.totalProducts / this.productsPerPage);
+    return Array.from({ length: pageCount }, (_, i) => i + 1);
   }
 }

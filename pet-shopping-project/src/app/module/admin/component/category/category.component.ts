@@ -8,6 +8,7 @@ import { CategoryService } from "src/app/service/Product/category.service";
   styleUrls: ["./category.component.css"],
 })
 export class CategoryComponent implements OnInit {
+  
   categoryId: number = 0;
   categoryList: Category[];
   category: Category;
