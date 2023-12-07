@@ -18,7 +18,7 @@ export class BreedComponent implements OnInit {
   showAll = false;
   show = true;
   totalPet: number = 0;
-  petsPerPage: number = 9;
+  petsPerPage: number = 12;
   currentPage: number = 1;
   sortType: string ='';
   sortOrder: string = '';
@@ -30,9 +30,9 @@ export class BreedComponent implements OnInit {
               private petService : PetService) { }
 
   ngOnInit(): void {
-    this.breedService.getAllBreed().subscribe((data) => {
-      this.breedList = data
-    })
+    this.breedService.getAllBreed().subscribe((result) =>{
+      this.breedList = result;
+    });
 
     this.petService.getAllPet().subscribe((data)=> {
       this.petList = data
@@ -46,27 +46,35 @@ export class BreedComponent implements OnInit {
     this.show =! this.show;
   }
 
-  onBreedClick(breedId : number): void {
-    this.selectedBreedId = breedId;
-
-    // Gọi phương thức getByCategory và cập nhật danh sách sản phẩm
-    if(breedId){
-      this.petService.getByBreedId(breedId).subscribe(
-        (data) => {
-          this.petList = data;
-          this.totalPet = this.petList.length;
-          this.displayedPet = this.getPetSlice();
-        },
-        (error) => {
-          console.error('Error fetching products by category:', error);
-        }
-      );
-    }else{
-      this.petService.getAllPet().subscribe((data) =>{
+  onCategoryClick(breedName: string): void {
+    const breed = this.breedList.find(c => c.breedName === breedName);
+    if (breed) {
+      this.selectedBreedId = breed.breedId;
+  
+      // Gọi phương thức getByCategory và cập nhật danh sách sản phẩm
+      if (this.selectedBreedId) {
+        this.petService.getByBreedId(this.selectedBreedId).subscribe(
+          (data) => {
+            this.petList = data;
+            this.totalPet = this.petList.length;
+            this.displayedPet = this.getPetSlice();
+          },
+          (error) => {
+            console.error('Error fetching products by category:', error);
+          }
+        );
+      } 
+      // Thay đổi URL
+      this.router.navigate(['/breed', breedName]);
+      this.currentPage = 1;
+    } else{
+      this.petService.getAllPet().subscribe((data) => {
         this.petList = data
         this.totalPet = this.petList.length;
         this.displayedPet = this.getPetSlice();
-      })
+      });
+      this.router.navigate(['/breed', 'All']);
+      this.currentPage = 1;
     }
   }
 
@@ -87,7 +95,7 @@ export class BreedComponent implements OnInit {
     return Array.from({ length: pageCount }, (_, i) => i + 1);
   }
 
-  redirectToPetDetail(productId: number): void {
-    this.router.navigate(['shop/', productId]);
+  redirectToDetailPage( itemId: number) {
+    this.router.navigate(['shop/', itemId]);
   }
 }

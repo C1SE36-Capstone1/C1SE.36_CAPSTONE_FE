@@ -11,24 +11,34 @@
     <div class="product-container" style="display: flex;">
         <div class="filter">
             <div class="product-categories">
-                <h2>Product Categories</h2>
+                <h2>Pet Breeds</h2>
                 <ul id="category-list">
                     <li>
-                        <i class="fa fa-paw fa-rotate-90"></i>
-                        <a>Tất cả</a>
+                        <a [routerLink]="['/breed','All']" 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                            (click)="onCategoryClick('0')">
+                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <span class="text">Tất cả</span>
+                        </a>
                     </li>
                     <li *ngFor="let item of breedList.slice(0,7)">
-                        <i class="fa fa-paw fa-rotate-90"></i>
-                        <a>{{item.breedName}}</a>
-                        <!-- <span>({{item.product.length}})</span> -->
+                        <a [routerLink]="['/breed', item.breedName]" 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                            (click)="onCategoryClick(item.breedName)">
+                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <span class="text">{{item.breedName}}</span>
+                        </a>
                     </li>
                 </ul>
                 <a *ngIf="breedList.length > 7 && show" (click)="showAllBreeds()">Hiện thêm</a>
                 <ul id="category-list" *ngIf="showAll">
                     <li *ngFor="let item of breedList.slice(7)">
-                        <i class="fa fa-paw fa-rotate-90"></i>
-                        <a>{{item.breedName}}</a>
-                        <span></span>
+                        <a [routerLink]="['/breed', item.breedName]" 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                            (click)="onCategoryClick(item.breedName)">
+                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <span class="text">{{item.breedName}}</span>
+                        </a>
                     </li>
                 </ul>
                 <a *ngIf="!show" (click)="showAllBreeds()">Thu gọn</a>
@@ -45,11 +55,10 @@
                                     class="fa fa-bag-shopping fa-lg"></i></button>
                             <button class="add-button" [routerLink]="['']"><i class="fa fa-heart fa-lg"></i></button>
                         </div>
-                        <a routerLink="/detail" [queryParams]="{ type: 'pet', id: item.pet_id }" style="cursor: pointer;"></a>
+                        <a routerLink="/detail" [queryParams]="{ type: 'pet', id: item.petId }" style="cursor: pointer;"></a>
 
                     </div>
-                    <p style="font-size: 14px;">{{item.price}}</p>
-                    <h3><a routerLink="/detail" [queryParams]="{ type: 'pet', id: item.pet_id }">{{item.name}}</a></h3>
+                    <h3><a routerLink="/detail" [queryParams]="{ type: 'pet', id: item.petId }" style="text-decoration: none;">{{item.code}}</a></h3>
                 </div>
             </div>
             <div *ngIf="totalPet > petsPerPage">

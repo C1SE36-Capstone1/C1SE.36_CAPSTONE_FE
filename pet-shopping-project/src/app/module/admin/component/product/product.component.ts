@@ -34,9 +34,9 @@ export class ProductComponent implements OnInit {
     this.category.getAll().subscribe((data) => {
       this.categoryList = data
     })
-
     this.loadProduct();
   }
+
   loadProduct() :void{
     this.product.getAll().subscribe((data) => {
       this.productList = data
@@ -55,11 +55,15 @@ export class ProductComponent implements OnInit {
     if (this.selectedCategory) {
       this.product.getByCategory(this.selectedCategory).subscribe((data) => {
         this.productList = data;
+        this.totalProducts = this.productList.length;
+      this.displayedProducts = this.getProductSlice();
       });
     }
     else {
       this.product.getAll().subscribe((data) => {
         this.productList = data
+        this.totalProducts = this.productList.length;
+        this.displayedProducts = this.getProductSlice();
       })
     }
   }
@@ -79,5 +83,17 @@ export class ProductComponent implements OnInit {
   getPageArray(): number[] {
     const pageCount = Math.ceil(this.totalProducts / this.productsPerPage);
     return Array.from({ length: pageCount }, (_, i) => i + 1);
+  }
+
+  deleteProduct(id: number): void {
+    this.product.deleteProductAtId(id)
+      .subscribe(() => {
+        // Handle successful deletion
+        console.log('Product deleted successfully');
+        this.loadProduct();
+      }, error => {
+        // Handle errors
+        console.error('Error deleting product:', error);
+      });
   }
 }
