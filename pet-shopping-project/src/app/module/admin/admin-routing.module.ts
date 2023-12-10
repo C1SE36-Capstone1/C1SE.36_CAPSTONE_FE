@@ -6,7 +6,8 @@ import { CategoryComponent } from './component/category/category/category.compon
 import { ProductComponent } from './component/product/product/product.component';
 import { UserComponent } from './component/user/user.component';
 import { BreedComponent } from './component/breed/breed.component';
-import { CategoryCreateComponent } from './component/category/category-create/category-create.component';
+import { ProductCreateComponent } from './component/product/product-create/product-create.component';
+
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       { path: 'dashboard', component: DashboardComponent},
       { path: 'category', component: CategoryComponent},
-      // { path: 'category/create', component: CategoryCreateComponent,},
+      { path: 'product/create', component: ProductCreateComponent,},
       { path: 'product', component: ProductComponent},
       { path: 'dashboard', component: AdminComponent},
       { path: 'account', component: UserComponent},

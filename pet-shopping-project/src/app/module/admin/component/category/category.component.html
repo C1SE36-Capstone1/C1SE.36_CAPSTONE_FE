@@ -10,7 +10,7 @@
                     </form>
                 </div>
                 <button  class="add" (click)="toggleForm()">
-                    <span>+ Add Category</span>
+                    <span>Add Category</span>
                 </button>
             </div>
         </div>
@@ -33,19 +33,36 @@
                     </tr>
                 </thead>
                 <tbody class="table-body">
-                    <tr *ngFor="let item of categoryList">
+                    <tr *ngFor="let item of displayedCategories">
                         <td class="table-cell" style="text-align: center;">{{item.categoryId}}</td>
                         <td class="table-cell" style="text-align: left;">{{item.categoryName}}</td>
                         <td class="table-cell" style="text-align: center; gap: 10px">
                             <i class="fa fa-pencil-square fa-lg"></i>
-                            <i class="fa fa-trash fa-lg"></i>
+                            <i class="fa fa-trash fa-lg" (click)="deleteCategoryAtId(item.categoryId)"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div *ngIf="totalCategory > categoriesPerPage">
+            <ul class="pagination">
+              <li *ngFor="let page of getPageArray()" [class.active]="page === currentPage" style="margin-right: 10px;">
+                <a (click)="changePage(page)" style="cursor: pointer;">{{page}}</a>
+              </li>
+            </ul>
+        </div>
     </div>
 </div>
-<div *ngIf="show">
-    <app-category-create></app-category-create>
+<div class="create-form" *ngIf="show">
+    <div class="close" (click)="closepopup()">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <div class="form">
+        <h2>Add New Category</h2>
+        <form (submit)="addCategory()">
+          <label for="categoryName">Category Name</label>
+          <input type="text" name="categoryName" [(ngModel)]="newCategory.categoryName" required>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
 </div>

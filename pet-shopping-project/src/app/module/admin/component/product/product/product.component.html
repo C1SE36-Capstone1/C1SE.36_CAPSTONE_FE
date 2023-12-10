@@ -9,7 +9,7 @@
                         <input type="text" name="value" [(ngModel)]="searchTerm" (keyup.enter)="onEnter()">
                     </form>
                 </div>
-                <a class="add">
+                <a [routerLink]="['create']" class="add">
                     <span>+ Add Category</span>
                 </a>
             </div>

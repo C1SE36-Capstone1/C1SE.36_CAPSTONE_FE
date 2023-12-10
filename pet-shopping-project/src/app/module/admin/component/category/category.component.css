@@ -148,3 +148,91 @@ i{
 i:hover{
     color: #FF7A00
 }
+
+.create-form{
+    background-color: #eeeaea;
+    position: absolute;
+    top: 150px;
+    left: 35%;
+    border-radius: 30px;
+    border: 1px solid black;
+}
+
+.close{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    cursor: pointer;
+    top:20px;
+    right: 20px;
+}
+
+.form{
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: fit-content;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.form form{
+    width: 100%;
+    height: fit-content;
+    display: block;
+    gap: 10px;
+}
+
+.form form label{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.form form input{
+    width: 100%;
+    margin-bottom: 10px;
+    height: 40px;
+    padding: 10px;
+}
+
+.form form button{
+    width: 125px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFEEC5;
+}
+
+.pagination{
+    margin: 20px 0;
+    gap: 4px;
+  }
+  
+  .pagination li{
+    width: 38px;
+    height: 38px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+    
+  }
+  
+  .pagination li a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  
+  .pagination li.active, 
+  .pagination li:hover
+  {
+    background-color: #FF7A00;
+    border: none;
+    color: white;
+  }
