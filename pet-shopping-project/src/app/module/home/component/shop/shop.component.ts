@@ -3,7 +3,7 @@ import { CategoryService } from '../../../../service/Product/category.service';
 import { Category } from '../../../../model/Product/category';
 import { ProductService } from 'src/app/service/Product/product.service';
 import { Product } from 'src/app/model/Product/product';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CartService } from 'src/app/service/Cart/cart.service';
 import { CartDetail } from 'src/app/model/Cart/cart-detail';
 
@@ -22,7 +22,7 @@ export class ShopComponent implements OnInit {
   showAll = false;
   show = true;
   totalProducts: number = 0;
-  productsPerPage: number = 12;
+  productsPerPage: number = 16;
   currentPage: number = 1;
   sortType: string ='';
   sortOrder: string = '';
@@ -43,6 +43,7 @@ export class ShopComponent implements OnInit {
       this.totalProducts = this.productList.length;
       this.displayedProducts = this.getProductSlice();
     })
+
   }
 
   showAllCategories(): void {

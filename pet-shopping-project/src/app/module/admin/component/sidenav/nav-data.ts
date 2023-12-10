@@ -6,19 +6,24 @@ export const  navbarData=[
         label: 'DashBoard'
     },
     {
+        routerLink: 'category',
+        icon: 'fa fa-list fa-lg',
+        label: 'Category'
+    },
+    {
         routerLink: 'product',
         icon: 'fa fa-box fa-lg',
         label: 'Product'
     },
     {
         routerLink: 'breed',
-        icon: 'fa-solid fa-dog',
+        icon: 'fa-solid fa-paw',
         label: 'Breed'
     },
     {
-        routerLink: 'category',
-        icon: 'fa fa-list fa-lg',
-        label: 'Category'
+        routerLink: 'pet',
+        icon: 'fa fa-dog fa-lg',
+        label: 'Pet'
     },
     {
         routerLink: 'order',

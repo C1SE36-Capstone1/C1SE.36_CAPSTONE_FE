@@ -18,7 +18,7 @@ export class BreedComponent implements OnInit {
   showAll = false;
   show = true;
   totalPet: number = 0;
-  petsPerPage: number = 12;
+  petsPerPage: number = 16;
   currentPage: number = 1;
   sortType: string ='';
   sortOrder: string = '';

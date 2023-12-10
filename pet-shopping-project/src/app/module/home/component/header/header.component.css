@@ -46,13 +46,8 @@
     justify-content: center;
     align-items: center;
     white-space: nowrap;
-    li {
-        width: fit-content;
-        height: 100px;
-        justify-content: center;
-        text-align: center;
-    }
 }
+
 
 .menu-title a {
     height: 100px;

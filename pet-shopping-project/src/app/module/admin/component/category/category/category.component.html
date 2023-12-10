@@ -9,9 +9,9 @@
                         <input type="text" [(ngModel)]="categoryId" placeholder="Search by name">
                     </form>
                 </div>
-                <a [routerLink]="[]" class="add">
+                <button  class="add" (click)="toggleForm()">
                     <span>+ Add Category</span>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -45,4 +45,7 @@
             </table>
         </div>
     </div>
+</div>
+<div *ngIf="show">
+    <app-category-create></app-category-create>
 </div>

@@ -109,7 +109,7 @@
   width: auto;
   height: auto;
   background-color: #ffffff;
-  margin: 10px;
+  margin: 30px 10px;
   position: relative;
 }
 
@@ -127,8 +127,9 @@
 
 .image img {
   position: absolute;
+  width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .image a {
@@ -216,13 +217,14 @@
 
 .pagination{
   margin: 20px 0;
+  gap: 4px;
 }
 
 .pagination li{
-  width: 35px;
-  height: 35px;
+  width: 38px;
+  height: 38px;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 4px;
   background-color: white;
   
 }
@@ -233,8 +235,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 14px;
 }
 
-.pagination li.active{
+.pagination li.active, 
+.pagination li:hover
+{
   background-color: #FF7A00;
+  border: none;
+  color: white;
 }

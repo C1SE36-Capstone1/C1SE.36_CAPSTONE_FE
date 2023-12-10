@@ -1,0 +1,8 @@
+<div>
+  <h2>Add New Category</h2>
+  <form (submit)="addCategory()">
+    <label for="categoryName">Category Name:</label>
+    <input type="text" name="categoryName" [(ngModel)]="newCategory.categoryName" required>
+    <button type="submit">Add</button>
+  </form>
+</div>

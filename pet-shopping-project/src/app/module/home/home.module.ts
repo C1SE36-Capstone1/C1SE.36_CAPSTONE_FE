@@ -14,6 +14,7 @@ import { BreedComponent } from './component/breed/breed.component';
 import { CartComponent } from './component/cart/cart.component';
 import { RouterModule } from '@angular/router';
 import { DetailPageComponent } from './component/detail-page/detail-page.component';
+import { WishlistComponent } from './component/wishlist/wishlist.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { DetailPageComponent } from './component/detail-page/detail-page.compone
     HeaderComponent,
     FooterComponent,
     CartComponent,
-    DetailPageComponent
+    DetailPageComponent,
+    WishlistComponent
   ],
   imports: [
     CommonModule,

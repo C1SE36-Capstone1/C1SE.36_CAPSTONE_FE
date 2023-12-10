@@ -5,11 +5,11 @@
                 <h1>Products</h1>
                 <div class="seach-bar-container">
                     <form class="search-bar">
-                        <button type="submit" (click)="refreshProductList()"><img src="assets/image/search-symbol.png"></button>
-                        <input type="text" [(ngModel)]="catId" placeholder="Search by name">
+                        <button type="submit" (click)="search()"><img src="assets/image/search-symbol.png"></button>
+                        <input type="text" name="value" [(ngModel)]="searchTerm" (keyup.enter)="onEnter()">
                     </form>
                 </div>
-                <a [routerLink]="[]" class="add">
+                <a class="add">
                     <span>+ Add Category</span>
                 </a>
             </div>
