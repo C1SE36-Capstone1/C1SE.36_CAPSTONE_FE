@@ -1,0 +1,78 @@
+<body>
+  <div class="content-wrapper">
+    <header>
+      <section id="thong-tin-bac-si">
+        <h2>Bác sĩ</h2>
+        <div class="doctor-info">
+          <img src="assets/image/doctor.png" alt="Bác sĩ Lê Đức Quốc">
+          <div class="doctor-details">
+            <p>Họ tên: Lê Đức Quốc</p>
+            <p>Chức vụ: Bác sĩ điều trị thú cưng</p>
+            <p>Email: duclequoc@gmail.com</p>
+
+          </div>
+        </div>
+      </section>
+    </header>
+  </div>
+<section id="qua-trinh-dao-tao">
+  <h2>Quá trình Đào Tạo:</h2>
+  <ul class="danh-sach-qua-trinh">
+    <li>Bác sĩ thú y năm 2011-2015</li>
+    <li>Nhận bằng tiến sĩ ngành Đa khoa Thú y</li>
+    <li>Tốt nghiệp đại học bằng Xuất sắc</li>
+  </ul>
+</section>
+<section id="qua-trinh-dao-tao">
+  <h2>Quá Trình Công Tác:</h2>
+  <ul class="danh-sach-qua-trinh">
+     <li>Làm việc tại nước ngoài từ năm 2012-2014</li>
+  </ul>
+</section>
+<section id="dat-lich-kham">
+  <h1>Đặt lịch khám</h1>
+  <form action="#">
+    <input type="hidden" name="required" value="true">
+    <div class="form-group1">
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label"></label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Họ và tên">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label"></label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Số điện thoại">
+      </div>
+    </div>
+    <div class="form-group2">
+      <select class="form-select form-select-sm" aria-label="Small select example">
+        <option selected>Dịch vụ</option>
+        <option value="1">Khám bệnh cho chó</option>
+        <option value="2">Khám bệnh cho mèo</option>
+        <option value="3">Dịch vụ Spa cho thú cưng</option>
+        <option value="4">Tắm gội cho thú cưng</option>
+        <option value="5">Cắt tỉa lông cho thú cưng</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label"></label>
+      <textarea class="form-control" id="exampleFormControlTextarea1"placeholder="Mô tả triệu chứng" rows="3"></textarea>
+    </div>
+    <div class="form-group3">
+      <label for="date">Ngày khám</label>
+      <input type="date" name="date" class="form-control" id="date" >
+    </div>
+    <div class="form-group4">
+      <label for="time">Chọn giờ khám</label>
+      <select name="time" class="form-control" id="time">
+        <option value="9h00">9h00</option>
+        <option value="10h00">10h00</option>
+        <option value="11h00">11h00</option>
+        <option value="14h00">14h00</option>
+        <option value="15h00">15h00</option>
+        <option value="16h00">16h00</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Đặt lịch</button>
+  </form>
+</section>
+</body>

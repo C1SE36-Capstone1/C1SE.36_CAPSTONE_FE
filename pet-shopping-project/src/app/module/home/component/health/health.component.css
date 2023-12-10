@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+
+}
+#thong-tin-bac-si .doctor-details p {
+  margin: 0; /* Loại bỏ margin mặc định của các phần tử p */
+}
+
+#thong-tin-bac-si, #qua-trinh-dao-tao {
+  margin-bottom: 20px;
+}
+
+#dat-lich-kham, #qua-trinh-dao-tao {
+  width: 80%;
+  margin-left: 10%;
+}
+
+#qua-trinh-dao-tao h2{
+  color:#ffd700;
+  font-size: 25px;
+}
+
+.doctor-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+#dat-lich-kham form {
+  max-width: 70%; /* Chiếm 70% bề ngang của trang */
+  margin: 0 auto; /* Để nằm chính giữa */
+  text-align: center;
+}
+
+/* Thiết lập nút đặt lịch */
+#dat-lich-kham button {
+  background-color: #ffd700; /* Màu vàng */
+  padding: 10px 20px; /* Tăng padding để nút trở nên lớn hơn */
+  font-size: 16px; /* Điều chỉnh kích thước chữ */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: block;
+  margin: 10px auto;
+}
+
+#dat-lich-kham button:hover {
+  background-color: #ff6347;
+}
+/* Rest of your CSS */

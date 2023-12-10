@@ -15,6 +15,7 @@ import { CartComponent } from './component/cart/cart.component';
 import { RouterModule } from '@angular/router';
 import { DetailPageComponent } from './component/detail-page/detail-page.component';
 import { WishlistComponent } from './component/wishlist/wishlist.component';
+import { HealthComponent } from './component/health/health.component';
 
 
 @NgModule({
@@ -29,6 +30,8 @@ import { WishlistComponent } from './component/wishlist/wishlist.component';
     CartComponent,
     DetailPageComponent,
     WishlistComponent
+
+    HealthComponent
   ],
   imports: [
     CommonModule,
