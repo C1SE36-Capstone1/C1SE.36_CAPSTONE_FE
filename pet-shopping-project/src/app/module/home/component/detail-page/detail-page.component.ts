@@ -5,36 +5,29 @@ import { PetService } from 'src/app/service/Pet/pet.service';
 import { ProductService } from 'src/app/service/Product/product.service';
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  selector: 'app-detail-page',
+  templateUrl: './detail-page.component.html',
+  styleUrls: ['./detail-page.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class DetailPageComponent implements OnInit {
 
   type: string | null = null;
   id: number | null = null;
   details: any = {};
   productId: number;
-  product: Product;
+
+  selectedTab: string = 'tab1';
 
   constructor(private route: ActivatedRoute, 
               private petService : PetService,
               private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productId = +this.route.snapshot.paramMap.get('productId');
+    
     this.getProductDetail();
   }
 
   getProductDetail(): void {
-    // this.productService.getProductById(this.productId).subscribe(
-    //   (product: Product) => {
-    //     this.product = product;
-    //   },
-    //   (error) => {
-    //     console.error('Error fetching product details:', error);
-    //   }
-    // );
     this.route.queryParams.subscribe(params => {
       this.type = params['type'];
       this.id = +params['id'];
@@ -49,5 +42,26 @@ export class ProductDetailComponent implements OnInit {
           });
       }
     });
+  }
+
+  getFormattedPetAge(petAge : Date): string {
+    const birthdate = new Date(petAge);
+    const currentDate = new Date();
+
+    const diffInMonths = (currentDate.getFullYear() - birthdate.getFullYear()) * 12 + currentDate.getMonth() - birthdate.getMonth();
+    const years = Math.floor(diffInMonths / 12);
+    const remainingMonths = diffInMonths % 12;
+
+    if (years === 0) {
+      return `${remainingMonths} tháng tuổi`;
+    } else if (remainingMonths === 0) {
+      return `${years} năm tuổi`;
+    } else {
+      return `${years} năm ${remainingMonths} tháng tuổi`;
+    }
+  }
+
+  changeTab(tab: string) {
+    this.selectedTab = tab;
   }
 }

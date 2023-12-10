@@ -17,11 +17,11 @@ export class PetService {
   }
 
   getByBreedId(id : number): Observable<Pet[]>{
-    return this.http.get<Pet[]>(this._API_URL + 'category/' + id)
+    return this.http.get<Pet[]>(this._API_URL + '/category/' + id)
   }
 
   getDetailById(id : number): Observable<Pet>{
-    return this.http.get<Pet>(this._API_URL + id)
+    return this.http.get<Pet>(this._API_URL + '/' + id)
   }
 
 }

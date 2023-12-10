@@ -19,4 +19,12 @@ export class BreedService {
   getBreedById(id: number): Observable<Breed> {
     return this.http.get<Breed>(this._API_URL + '/' + id);
   }
+
+  addBreed(breed : Breed): Observable<Breed> {
+    return this.http.post<Breed>(this._API_URL, breed);
+  } 
+
+  deleteAtBreedId(id : number): Observable<Breed>{
+    return this.http.delete<Breed>(this._API_URL + id);
+  }
 }

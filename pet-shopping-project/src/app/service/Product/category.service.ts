@@ -21,4 +21,12 @@ export class CategoryService {
   getCategoryById(id: number): Observable<Category> {
     return this.http.get<Category>(this._API_URL + '/' + id);
   }
+
+  addCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(this._API_URL, category)
+  }
+
+  deleteCategoryAtId(id: number): Observable<Category> {
+    return this.http.delete<Category>(this._API_URL + id);
+  }
 }

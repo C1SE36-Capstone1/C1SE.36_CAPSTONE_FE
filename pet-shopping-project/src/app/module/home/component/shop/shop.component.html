@@ -14,22 +14,31 @@
                 <h2>Product Categories</h2>
                 <ul id="category-list" >
                     <li>
-                        <i class="fa fa-paw fa-rotate-90"></i> 
-                        <a (click)="onCategoryClick(0)">Tất cả</a>
+                        <a [routerLink]="['/shop','All']" 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                            (click)="onCategoryClick('0')">
+                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <span class="text">Tất cả</span>
+                        </a>
                     </li>
                     <li *ngFor="let item of categoryList.slice(0,7)">
-                        <i class="fa fa-paw fa-rotate-90"></i> 
-                        <a (click)="onCategoryClick(item.categoryId)">{{item.categoryName}}</a>
-                        <!-- <span>({{item.product.length}})</span> -->
+                        <a [routerLink]="['/shop', item.categoryName]" 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                            (click)="onCategoryClick(item.categoryName)">
+                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <span class="text">{{item.categoryName}}</span>
+                        </a>
                     </li>
                 </ul>
                 <a *ngIf="categoryList.length > 7 && show" (click)="showAllCategories()">Hiện thêm</a>
                 <ul id="category-list" *ngIf="showAll">
-                    
                     <li *ngFor="let item of categoryList.slice(7)">
-                        <i class="fa fa-paw fa-rotate-90"></i> 
-                        <a (click)="onCategoryClick(item.categoryId)">{{item.categoryName}}</a>
-                        <span></span>
+                        <a [routerLink]="['/shop', item.categoryName]" 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                            (click)="onCategoryClick(item.categoryName)">
+                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <span class="text">{{item.categoryName}}</span>
+                        </a>
                     </li>
                 </ul>
                 <a *ngIf="!show" (click)="showAllCategories()">Thu gọn</a>
@@ -51,14 +60,14 @@
                     <div class="image">
                         <img [src] = "item.image">
                         <div class="action-btn">
-                            <button class="add-button" [routerLink]="['']"><i class="fa fa-bag-shopping fa-lg"></i></button>
-                            <button class="add-button" [routerLink]="['']"><i class="fa fa-heart fa-lg"></i></button>
+                            <button class="add-button"(click)="addCartDetail()"><i class="fa fa-bag-shopping "></i></button>
+                            <button class="add-button" [routerLink]="['']"><i class="fa fa-heart "></i></button>
                         </div>
-                        <a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
+                        <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
                         
                     </div>
                     <p style="font-size: 14px;">{{item.price}}</p>
-                    <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }">{{item.name}}</a></h3>
+                    <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>
                 </div>
             </div>
             <div *ngIf="totalProducts > productsPerPage">

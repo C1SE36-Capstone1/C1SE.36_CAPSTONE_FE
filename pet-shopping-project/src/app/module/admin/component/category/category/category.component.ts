@@ -9,6 +9,7 @@ import { CategoryService } from "src/app/service/Product/category.service";
 })
 export class CategoryComponent implements OnInit {
   
+  show = false;
   categoryId: number = 0;
   categoryList: Category[];
   category: Category;
@@ -26,6 +27,10 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getAll().subscribe((categories) => {
       this.categoryList = categories;
     });
+  }
+
+  toggleForm(){
+    this.show = true;
   }
 
 }

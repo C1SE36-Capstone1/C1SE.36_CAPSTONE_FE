@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
   sortType: string ='';
   sortOrder: string = '';
   selectedCategory: number;
-  catId : number;
+  searchTerm : string ='';
   
 
   constructor( private product : ProductService,
@@ -34,9 +34,9 @@ export class ProductComponent implements OnInit {
     this.category.getAll().subscribe((data) => {
       this.categoryList = data
     })
-
     this.loadProduct();
   }
+
   loadProduct() :void{
     this.product.getAll().subscribe((data) => {
       this.productList = data
@@ -45,21 +45,22 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  refreshProductList(): void {
-    this.product.getByCategory(this.catId).subscribe((data) => {
-      this.productList = data;
-    });
-  }
 
   filterProducts() {
     if (this.selectedCategory) {
       this.product.getByCategory(this.selectedCategory).subscribe((data) => {
         this.productList = data;
+        this.totalProducts = this.productList.length;
+        this.displayedProducts = this.getProductSlice();
+        this.currentPage = 1;
       });
     }
     else {
       this.product.getAll().subscribe((data) => {
         this.productList = data
+        this.totalProducts = this.productList.length;
+        this.displayedProducts = this.getProductSlice();
+        this.currentPage = 1;
       })
     }
   }
@@ -79,5 +80,35 @@ export class ProductComponent implements OnInit {
   getPageArray(): number[] {
     const pageCount = Math.ceil(this.totalProducts / this.productsPerPage);
     return Array.from({ length: pageCount }, (_, i) => i + 1);
+  }
+
+  deleteProduct(id: number): void {
+    this.product.deleteProductAtId(id)
+      .subscribe(() => {
+        // Handle successful deletion
+        console.log('Product deleted successfully');
+        this.loadProduct();
+      }, error => {
+        // Handle errors
+        console.error('Error deleting product:', error);
+      });
+  }
+
+  search(): void {
+    this.product.getAll().subscribe((data) => {
+      this.productList = data
+    })
+    // Filter products based on the searchTerm
+    // You can customize the filter logic based on your requirements
+    // For example, you might want to make the search case-insensitive
+    this.productList = this.productList.filter(product => 
+      product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    this.totalProducts = this.productList.length;
+    this.displayedProducts = this.getProductSlice();
+  }
+
+  onEnter(){
+    this.search();
   }
 }

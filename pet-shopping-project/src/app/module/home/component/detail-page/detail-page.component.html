@@ -1,0 +1,135 @@
+<div class="body-container" *ngIf="type === 'product'">
+    <div class="top">
+        <div class="left">
+            <div class="img-product">
+                <div class="img-viewpoint">
+                    <img [src]="details.image">
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <h1 class="product-title">{{details.name}}</h1>
+            <p class="price">
+                <span class="price-currncy">đ</span>
+                {{details.price}}
+            </p>
+            <div class="product-rating">
+                <div class="star-rating"></div>
+                <a href="#">(
+                    <span class="count">5</span>
+                    Reviews )
+                </a>
+            </div>
+            <div class="buy-product-container">
+                <div class="input-quantity">
+                    Còn {{details.quantity}} hàng
+                </div>
+                <div class="button-action">
+                    <button type="submit" class="add-to-cart">Thêm vào giỏ</button>
+                    <button type="submit" class="buy-product">Mua ngay</button>
+                </div>
+            </div>
+            <div class="catergory-container">
+                Danh mục:
+                <a [routerLink]="['/shop', details.category?.categoryName]">{{details.category?.categoryName}}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <ul class="tabs">
+            <li class="description-tab">
+                <a [class.active]="selectedTab === 'tab1'" (click)="changeTab('tab1')">Mô tả</a>
+            </li>
+            <li class="Review-tab">
+                <a [class.active]="selectedTab === 'tab2'" (click)="changeTab('tab2')">Đánh giá</a>
+            </li>
+        </ul>
+        <div class="tab-change" [ngSwitch]="selectedTab">
+            <div class="description-tab-panel" *ngSwitchCase="'tab1'">
+                <h4>{{details.description}}</h4>
+            </div>
+            <div class="description-tab-panel" *ngSwitchCase="'tab2'">
+                <h4>5 sao</h4>
+                <div class="pet-info">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="body-container" *ngIf="type === 'pet'">
+    <div class="top">
+        <div class="left">
+            <div class="img-product">
+                <div class="img-viewpoint" >
+                    <img [src]="details.images">
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <h1 class="product-title">Mã: {{details.code}}</h1>
+            <h1 class="product-title">Tên: {{details.name}}</h1>
+            <p class="price">
+                <span>Giá: </span>
+                <span class="price-currncy"><i class="fa-solid fa-dong-sign"></i></span>
+                {{details.price}}
+            </p>
+            <p>Tuổi: {{getFormattedPetAge(details.petAge)}}</p>
+            <p>Giới tính: {{ details.gender === 'female' ? 'Cái' : 'Đực' }}</p>
+            <div class="catergory-container">
+                Giống:
+                <a [routerLink]="['/breed', details.breed?.breedName]" >{{details.breed?.breedName}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <ul class="tabs">
+            <li class="description-tab">
+                <a [class.active]="selectedTab === 'tab1'" (click)="changeTab('tab1')">Mô tả</a>
+            </li>
+            <li class="Review-tab">
+                <a [class.active]="selectedTab === 'tab2'" (click)="changeTab('tab2')">Đánh giá</a>
+            </li>
+        </ul>
+        <div class="tab-change" [ngSwitch]="selectedTab">
+            <div class="description-tab-panel" *ngSwitchCase="'tab1'">
+                <h4>{{details.description}}</h4>
+                <div class="pet-info">
+                    <table class="info-table">
+                        <colgroup>
+                            <col style="width: 50%;">
+                            <col style="width: 50%;">
+                        </colgroup>
+                        <tr>
+                            <th>Color</th>
+                            <th>{{details.petInfo?.color}}</th>
+                        </tr>
+                        <tr>
+                            <th>Size</th>
+                            <th>{{details.petInfo?.size}}</th>
+                        </tr>
+                        <tr>
+                            <th>Health</th>
+                            <th>{{details.petInfo?.health}}</th>
+                        </tr>
+                        <tr>
+                            <th>Personality</th>
+                            <th>{{details.petInfo?.personality}}</th>
+                        </tr>
+                        <tr>
+                            <th>Training</th>
+                            <th>{{details.petInfo?.training}}</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="description-tab-panel" *ngSwitchCase="'tab2'">
+                <h4>5 sao</h4>
+                <div class="pet-info">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

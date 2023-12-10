@@ -3,7 +3,9 @@ import { CategoryService } from '../../../../service/Product/category.service';
 import { Category } from '../../../../model/Product/category';
 import { ProductService } from 'src/app/service/Product/product.service';
 import { Product } from 'src/app/model/Product/product';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { CartService } from 'src/app/service/Cart/cart.service';
+import { CartDetail } from 'src/app/model/Cart/cart-detail';
 
 @Component({
   selector: 'app-shop',
@@ -20,13 +22,15 @@ export class ShopComponent implements OnInit {
   showAll = false;
   show = true;
   totalProducts: number = 0;
-  productsPerPage: number = 9;
+  productsPerPage: number = 16;
   currentPage: number = 1;
   sortType: string ='';
   sortOrder: string = '';
 
   constructor( private router: Router,
+               private activatedRoute : ActivatedRoute,
                private category : CategoryService,
+               private cartService : CartService,
                private product : ProductService) { }
 
   ngOnInit(): void {
@@ -39,6 +43,7 @@ export class ShopComponent implements OnInit {
       this.totalProducts = this.productList.length;
       this.displayedProducts = this.getProductSlice();
     })
+
   }
 
   showAllCategories(): void {
@@ -46,29 +51,38 @@ export class ShopComponent implements OnInit {
     this.show =! this.show;
   }
 
-  onCategoryClick(categoryId: number): void {
-    this.selectedCategoryId = categoryId;
-
-    // Gọi phương thức getByCategory và cập nhật danh sách sản phẩm
-    if(categoryId){
-      this.product.getByCategory(categoryId).subscribe(
-        (data) => {
-          this.productList = data;
-          this.totalProducts = this.productList.length;
-          this.displayedProducts = this.getProductSlice();
-        },
-        (error) => {
-          console.error('Error fetching products by category:', error);
-        }
-      );
-    }else{
-      this.product.getAll().subscribe((data) =>{
+  onCategoryClick(categoryName: string): void {
+    const category = this.categoryList.find(c => c.categoryName === categoryName);
+    if (category) {
+      this.selectedCategoryId = category.categoryId;
+  
+      // Gọi phương thức getByCategory và cập nhật danh sách sản phẩm
+      if (this.selectedCategoryId) {
+        this.product.getByCategory(this.selectedCategoryId).subscribe(
+          (data) => {
+            this.productList = data;
+            this.totalProducts = this.productList.length;
+            this.displayedProducts = this.getProductSlice();
+          },
+          (error) => {
+            console.error('Error fetching products by category:', error);
+          }
+        );
+      } 
+      // Thay đổi URL
+      this.router.navigate(['/shop', categoryName]);
+      this.currentPage = 1;
+    } else{
+      this.product.getAll().subscribe((data) => {
         this.productList = data
         this.totalProducts = this.productList.length;
         this.displayedProducts = this.getProductSlice();
-      })
+      });
+      this.router.navigate(['/shop', 'All']);
+      this.currentPage = 1;
     }
   }
+  
 
   getProductSlice(): Product[] {
     const startIndex = (this.currentPage - 1 ) * this.productsPerPage;
@@ -120,8 +134,34 @@ export class ShopComponent implements OnInit {
       return 'Sắp xếp sản phẩm'
   }
 
-  redirectToProductDetail(productId: number): void {
-    this.router.navigate(['shop/', productId]);
+  // addToCart(item: any): void {
+  //   this.cartService.addToCart(item).subscribe(
+  //     () => {
+  //       console.log('Item added to cart successfully.');
+  //       // Có thể thêm logic hiển thị thông báo thành công nếu cần
+  //     },
+  //     (error) => {
+  //       console.error('Error adding item to cart:', error);
+  //       // Có thể thêm logic hiển thị thông báo lỗi nếu cần
+  //     }
+  //   );
+  // }
+
+  addCartDetail(): void {
+    const cartDetail: CartDetail = {
+      // Khởi tạo đối tượng CartDetail theo cấu trúc của bạn
+    };
+
+    this.cartService.addToCart(cartDetail).subscribe(
+      (response) => {
+        // Xử lý khi request thành công
+        console.log('Cart Detail added successfully:', response);
+      },
+      (error) => {
+        // Xử lý khi request thất bại
+        console.error('Error adding Cart Detail:', error);
+      }
+    );
   }
 }
 

@@ -13,6 +13,14 @@
                 <i id="sidenav-link-icon" [class]="data.icon"></i>
                 <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
             </a>
+            <ul class="subNav" *ngIf="data.subNav && data.routerLink === 'product' && collapsed">
+                <li class="sidenav-nav-item" *ngFor="let subItem of data.subNav">
+                    <a class="sidenav-nav-link" [routerLink]="[subItem.routerLink]" routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact:true}">
+                        <span class="sidenav-link-text">{{subItem.label}}</span>
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </div>

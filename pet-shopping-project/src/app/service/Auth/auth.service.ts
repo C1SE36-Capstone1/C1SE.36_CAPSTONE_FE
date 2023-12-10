@@ -28,7 +28,6 @@ export class AuthService {
       email: obj.email,
       password: obj.password
     }, this.httpOptions);
-
   }
 
 }

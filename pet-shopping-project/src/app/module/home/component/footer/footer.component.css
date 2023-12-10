@@ -1,7 +1,7 @@
 /* footer.component.css */
 .footer {
-    width: 100%;
-    box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước thực sự của phần tử */
+  width: 100%;
+    
     background-color: #ffffcc;
     padding: 20px;
     display: flex;

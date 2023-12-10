@@ -2,7 +2,7 @@ import { Breed } from "./breed";
 import { PetInfo } from "./petInfo";
 
 export interface Pet {
-    pet_id?: number;
+    petId?: number;
     name?: string;
     petAge?: Date;
     price?: number;
@@ -11,7 +11,7 @@ export interface Pet {
     gender?: string;
     status?: boolean;
     images?: string;
-
+    code?: string;
     breed?: Breed;
     petInfo?: PetInfo;
 }

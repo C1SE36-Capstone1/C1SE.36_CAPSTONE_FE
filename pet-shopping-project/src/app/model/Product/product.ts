@@ -10,5 +10,5 @@ export interface Product {
     enteredDate?: Date;
     status?: boolean;
     sold?: number;
-    category_id?: number;
+    category?: Category;
 }
