@@ -1,0 +1,43 @@
+/* src/app/shopping-cart/shopping-cart.component.css */
+
+.container {
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-danger {
+  margin-left: 10px;
+}
+
+/* Style for the cart total */
+.cart-total {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Style for the checkout button */
+.checkout-btn {
+  background-color: #e44d26;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.checkout-btn:hover {
+  background-color: #ff6347; /* Lighter shade on hover */
+}
