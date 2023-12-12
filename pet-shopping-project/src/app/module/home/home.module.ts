@@ -11,11 +11,10 @@ import { CustomerComponent } from './component/customer/customer.component';
 import { SecurityModule } from '../security/security.module';
 import { FormsModule } from '@angular/forms';
 import { BreedComponent } from './component/breed/breed.component';
-import { CartComponent } from './component/cart/cart.component';
-import { RouterModule } from '@angular/router';
 import { DetailPageComponent } from './component/detail-page/detail-page.component';
 import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { HealthComponent } from './component/health/health.component';
+import { CartComponent } from './component/cart/cart.component';
 
 
 @NgModule({
@@ -29,8 +28,7 @@ import { HealthComponent } from './component/health/health.component';
     FooterComponent,
     CartComponent,
     DetailPageComponent,
-    WishlistComponent
-
+    WishlistComponent,
     HealthComponent
   ],
   imports: [
