@@ -24,4 +24,11 @@ export class PetService {
     return this.http.get<Pet>(this._API_URL + '/' + id)
   }
 
+  addPet(pet: Pet): Observable<Pet> {
+    return this.http.post<Pet>(this._API_URL + '/', pet);
+  }
+
+  deletePetAtId(id: number): Observable<void> {
+    return this.http.delete<void>(this._API_URL + '/' + id);
+  }
 }

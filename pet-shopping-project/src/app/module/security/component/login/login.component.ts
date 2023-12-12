@@ -27,8 +27,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern("^\\w{4,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
-      password: new FormControl('', [ Validators.required, Validators.maxLength(32)]),
+      // email: new FormControl('', [Validators.required, Validators.pattern("^\\w{4,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
+      // password: new FormControl('', [ Validators.required, Validators.maxLength(32)]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
       remember_me: new FormControl('')
     })
 
@@ -51,24 +53,28 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.authService.login(this.formLogin.value).subscribe(data => {
-      if (this.formLogin.value.remember_me) {
-        sessionStorage.clear();
-        this.tokenStorageService.saveTokenLocal(data.token);
-        this.tokenStorageService.saveUserLocal(data.email);
-        this.tokenStorageService.saveRoleLocal(data.roles[0]);
-      } else {
-        localStorage.clear();
-        this.tokenStorageService.saveTokenSession(data.token);
-        this.tokenStorageService.saveUserSession(data.email);
-        this.tokenStorageService.saveRoleSession(data.roles[0]);
-      }
-      this.authService.isLoggedIn = true;
-      this.formLogin.reset();
-    },
-    err => {
-      this.authService.isLoggedIn = false;
-    });
+          if (this.formLogin.value.remember_me) {
+            sessionStorage.clear();
+            this.tokenStorageService.saveTokenLocal(data.token);
+            this.tokenStorageService.saveUserLocal(data.username);
+            this.tokenStorageService.saveRoleLocal(data.roles[0]);
+          } else {
+            localStorage.clear();
+            this.tokenStorageService.saveTokenSession(data.token);
+            this.tokenStorageService.saveUserSession(data.username);
+            this.tokenStorageService.saveRoleSession(data.roles[0]);
+          }
+          this.authService.isLoggedIn = true;
+          this.formLogin.reset();
+          this.router.navigateByUrl(this.returnUrl);
+        },
+        err => {
+          console.error(err);
+          this.authService.isLoggedIn = false;
+          this.message = 'Invalid email or password';
+        });
+    
   }
-}
+  }
 
 

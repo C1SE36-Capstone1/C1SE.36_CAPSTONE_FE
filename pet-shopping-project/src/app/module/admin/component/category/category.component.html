@@ -6,7 +6,7 @@
                 <div class="seach-bar-container">
                     <form class="search-bar">
                         <button type="submit"><img src="assets/image/search-symbol.png"></button>
-                        <input type="text" [(ngModel)]="categoryId" placeholder="Search by name">
+                        <input type="text" name="value" [(ngModel)]="searchTerm" (keyup.enter)="onEnter()">
                     </form>
                 </div>
                 <button  class="add" (click)="toggleForm()">
@@ -38,7 +38,7 @@
                         <td class="table-cell" style="text-align: left;">{{item.categoryName}}</td>
                         <td class="table-cell" style="text-align: center; gap: 10px">
                             <i class="fa fa-pencil-square fa-lg"></i>
-                            <i class="fa fa-trash fa-lg" (click)="deleteCategoryAtId(item.categoryId)"></i>
+                            <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.categoryId)"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -53,7 +53,7 @@
         </div>
     </div>
 </div>
-<div class="create-form" *ngIf="show">
+<div class="action-form" *ngIf="show">
     <div class="close" (click)="closepopup()">
         <i class="fa-solid fa-xmark"></i>
     </div>
@@ -65,4 +65,16 @@
           <button type="submit">Submit</button>
         </form>
       </div>
+</div>
+<div class="action-form" *ngIf="showDeletePopup">
+    <div class="close" (click)="closeDeletePopup()">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <i class="fa fa-trash fa-4x" style="color: rgb(0, 159, 127) ;"></i>
+    <h4>Delete Category</h4>
+    <p>Are you sure, you want to delete?</p>
+    <div class="btn-action">
+        <button style="background-color:rgb(0, 159, 127)" (click)="closeDeletePopup()">Cancel</button>
+        <button style="background-color:rgb(220, 38, 38)" (click)="deleteCategoryAtId()">Delete</button>
+    </div>
 </div>

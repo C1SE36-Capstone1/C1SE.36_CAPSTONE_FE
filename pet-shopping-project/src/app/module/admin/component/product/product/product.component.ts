@@ -11,8 +11,11 @@ import { ProductService } from 'src/app/service/Product/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  selectedCategoryId: number;
+  showDeletePopup = false;
+  deleteProductId: number;
 
+  filterProduct: Product[];
+  originalProductList: Product[];
   productList: Product[];
   categoryList: Category[];
   displayedProducts: Product[];
@@ -26,7 +29,6 @@ export class ProductComponent implements OnInit {
   selectedCategory: number;
   searchTerm : string ='';
   
-
   constructor( private product : ProductService,
                private category : CategoryService) { }
 
@@ -37,31 +39,30 @@ export class ProductComponent implements OnInit {
     this.loadProduct();
   }
 
-  loadProduct() :void{
+  loadProduct(): void {
     this.product.getAll().subscribe((data) => {
-      this.productList = data
+      this.originalProductList = data; // Lưu trữ danh sách sản phẩm gốc
+      this.productList = [...this.originalProductList]; // Clone danh sách để không ảnh hưởng đến danh sách gốc
+      this.productList.sort((a, b) => b.productId - a.productId);
       this.totalProducts = this.productList.length;
       this.displayedProducts = this.getProductSlice();
-    })
+      this.currentPage = 1;
+    });
   }
-
 
   filterProducts() {
     if (this.selectedCategory) {
       this.product.getByCategory(this.selectedCategory).subscribe((data) => {
-        this.productList = data;
+        this.originalProductList = data; // Lưu trữ danh sách sản phẩm gốc
+      this.productList = [...this.originalProductList]; // Clone danh sách để không ảnh hưởng đến danh sách gốc
+      this.productList.sort((a, b) => b.productId - a.productId);
         this.totalProducts = this.productList.length;
         this.displayedProducts = this.getProductSlice();
         this.currentPage = 1;
       });
     }
     else {
-      this.product.getAll().subscribe((data) => {
-        this.productList = data
-        this.totalProducts = this.productList.length;
-        this.displayedProducts = this.getProductSlice();
-        this.currentPage = 1;
-      })
+      this.loadProduct();
     }
   }
 
@@ -82,30 +83,38 @@ export class ProductComponent implements OnInit {
     return Array.from({ length: pageCount }, (_, i) => i + 1);
   }
 
-  deleteProduct(id: number): void {
-    this.product.deleteProductAtId(id)
+  confirmDelete(id: number): void {
+    this.showDeletePopup = true;
+    this.deleteProductId = id;
+  }
+  
+  closeDeletePopup(): void {
+    this.showDeletePopup = false;
+    this.deleteProductId = null;
+  }
+
+  deleteProductAtId(): void {
+    this.product.deleteProductAtId(this.deleteProductId)
       .subscribe(() => {
         // Handle successful deletion
         console.log('Product deleted successfully');
         this.loadProduct();
+        this.closeDeletePopup();
       }, error => {
         // Handle errors
-        console.error('Error deleting product:', error);
+        console.error('Error deleting Product:', error);
       });
   }
 
   search(): void {
-    this.product.getAll().subscribe((data) => {
-      this.productList = data
-    })
-    // Filter products based on the searchTerm
-    // You can customize the filter logic based on your requirements
-    // For example, you might want to make the search case-insensitive
-    this.productList = this.productList.filter(product => 
+    this.productList = [...this.originalProductList]; // Khôi phục danh sách gốc trước khi tìm kiếm
+    this.productList.sort((a, b) => b.productId - a.productId);
+    this.productList = this.productList.filter((product) =>
       product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.totalProducts = this.productList.length;
     this.displayedProducts = this.getProductSlice();
+    this.currentPage = 1;
   }
 
   onEnter(){

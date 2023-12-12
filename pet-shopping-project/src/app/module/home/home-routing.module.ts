@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: 'detail', component: DetailPageComponent},
       { path: 'shop/:categoryName', component: ShopComponent },
       { path: 'breed/:breedName', component: BreedComponent},
-      { path: 'wishlist', component: WishlistComponent}
+      { path: 'wishlist', component: WishlistComponent},
       { path: 'health', component: HealthComponent},
     ]
   },

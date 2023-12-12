@@ -39,7 +39,7 @@
 }
 
 .filter {
-  width: 25%;
+  width: 20%;
   height: fit-content;
 }
 
@@ -93,8 +93,10 @@
 }
 
 .show-product {
-  width: 75%;
+  width: 80%;
   margin-left: 10px;
+  background-color: #dbdbdb;
+  border-radius: 10px;
 }
 
 .product-list {
@@ -109,12 +111,15 @@
   width: auto;
   height: auto;
   background-color: #ffffff;
-  margin: 30px 10px;
+  margin: 10px;
   position: relative;
+  border-radius: 20px;
+  border: 1px dashed #ddd;
+  overflow: hidden;
+  padding: 10px 5px;
 }
 
 .image {
-  border: 1px dashed #ddd;
   position: relative;
   width: 100%;
   height: 0;
@@ -122,7 +127,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
-
+  border-radius: 20px;
 }
 
 .image img {
@@ -165,7 +170,7 @@
   background-color: none;
   position: absolute;
   top: 10px;
-  right: 6px;
+  right: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -190,7 +195,7 @@
   transition: all ease .3s;
 }
 
-.image:hover {
+.product:hover {
   border: 1px dashed #FFA500;
 
   .add-button {

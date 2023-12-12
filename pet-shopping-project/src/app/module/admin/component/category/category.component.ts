@@ -9,6 +9,9 @@ import { CategoryService } from "src/app/service/Product/category.service";
 })
 export class CategoryComponent implements OnInit {
   
+  showDeletePopup = false;
+  deleteCategoryId: number;
+
   newCategory: Category = {categoryId : 0 , categoryName: ''};
   show = false;
   categoryId: number = 0;
@@ -20,21 +23,21 @@ export class CategoryComponent implements OnInit {
   currentPage: number = 1;
   displayedCategories : Category[];
 
+  searchTerm : string ='';
+
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.loadCategories();
-
-    // this.categoryService.getCategoryById(1).subscribe((data) => {
-    //   this.category = data
-    // })
   }
 
   loadCategories(): void {
     this.categoryService.getAll().subscribe((categories) => {
       this.categoryList = categories;
+      //Sắp xếp category theo id giảm dần
+      this.categoryList.sort((a, b) => b.categoryId - a.categoryId);
       this.totalCategory = this.categoryList.length;
-        this.displayedCategories = this.getProductSlice();
+      this.displayedCategories = this.getProductSlice();
     });
   }
 
@@ -61,12 +64,23 @@ export class CategoryComponent implements OnInit {
     );
   }
 
-  deleteCategoryAtId(id: number): void {
-    this.categoryService.deleteCategoryAtId(id)
+confirmDelete(id: number): void {
+  this.showDeletePopup = true;
+  this.deleteCategoryId = id;
+}
+
+closeDeletePopup(): void {
+  this.showDeletePopup = false;
+  this.deleteCategoryId = null;
+}
+
+  deleteCategoryAtId(): void {
+    this.categoryService.deleteCategoryAtId(this.deleteCategoryId)
       .subscribe(() => {
         // Handle successful deletion
         console.log('Category deleted successfully');
         this.loadCategories();
+        this.closeDeletePopup();
       }, error => {
         // Handle errors
         console.error('Error deleting Category:', error);
@@ -88,5 +102,24 @@ export class CategoryComponent implements OnInit {
   getPageArray(): number[] {
     const pageCount = Math.ceil(this.totalCategory / this.categoriesPerPage);
     return Array.from({ length: pageCount }, (_, i) => i + 1);
+  }
+
+  search(): void {
+    this.categoryService.getAll().subscribe((data) => {
+      this.categoryList = data
+      this.categoryList.sort((a, b) => b.categoryId - a.categoryId);
+    })
+    // Filter products based on the searchTerm
+    // You can customize the filter logic based on your requirements
+    // For example, you might want to make the search case-insensitive
+    this.categoryList = this.categoryList.filter(category => 
+      category.categoryName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    this.totalCategory = this.categoryList.length;
+    this.displayedCategories = this.getProductSlice();
+  }
+
+  onEnter(){
+    this.search();
   }
 }

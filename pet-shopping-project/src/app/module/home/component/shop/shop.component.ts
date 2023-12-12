@@ -109,6 +109,7 @@ export class ShopComponent implements OnInit {
         return b.price - a.price;
       }
     });
+    this.currentPage = 1
   }
 
   toggleSort(sort: string) {

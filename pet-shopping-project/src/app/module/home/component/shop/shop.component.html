@@ -46,7 +46,7 @@
         </div>
         <div class="show-product">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-secondary m-2 dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ getSortButtonText() }}
                 </button>
                 <ul class="dropdown-menu">
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div *ngIf="totalProducts > productsPerPage">
-                <ul class="pagination">
+                <ul class="pagination m-2">
                   <li *ngFor="let page of getPageArray()" [class.active]="page === currentPage" style="margin-right: 10px;">
                     <a (click)="changePage(page)" style="cursor: pointer;">{{page}}</a>
                   </li>

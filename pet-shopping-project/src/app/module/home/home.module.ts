@@ -29,8 +29,7 @@ import { HealthComponent } from './component/health/health.component';
     FooterComponent,
     CartComponent,
     DetailPageComponent,
-    WishlistComponent
-
+    WishlistComponent,
     HealthComponent
   ],
   imports: [

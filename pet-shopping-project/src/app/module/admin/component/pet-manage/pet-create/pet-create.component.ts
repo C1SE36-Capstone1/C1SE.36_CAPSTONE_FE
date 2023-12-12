@@ -1,32 +1,32 @@
-import { formatDate  } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Category } from "src/app/model/Product/category";
-import { CategoryService } from "src/app/service/Product/category.service";
-import { ProductService } from "src/app/service/Product/product.service";
+import { formatDate } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Breed } from 'src/app/model/Pet/breed';
+import { BreedService } from 'src/app/service/Pet/breed.service';
+import { PetService } from 'src/app/service/Pet/pet.service';
 
 @Component({
-  selector: "app-product-create",
-  templateUrl: "./product-create.component.html",
-  styleUrls: ["./product-create.component.css"],
+  selector: 'app-pet-create',
+  templateUrl: './pet-create.component.html',
+  styleUrls: ['./pet-create.component.css']
 })
-export class ProductCreateComponent implements OnInit {
+export class PetCreateComponent implements OnInit {
+  
+  selectedBreedId :number;
 
-  selectedCategoryId :number;
-
-  addProduct: FormGroup;
-  categoryList: Category[] = [];
-  category: Category;
+  addPet: FormGroup;
+  breedList: Breed[] = [];
+  breed: Breed;
   uploadedAvatar: any = null;
 
 
   constructor(
-    private productService: ProductService,
-    private categoryService: CategoryService,
+    private petService: PetService,
+    private breedService: BreedService,
     private formBuilder: FormBuilder
   ) {
-    this.categoryService.getAll().subscribe((data) => {
-      this.categoryList = data;
+    this.breedService.getAllBreed().subscribe((data) => {
+      this.breedList = data;
     });
   }
 
@@ -35,7 +35,7 @@ export class ProductCreateComponent implements OnInit {
   }
 
   buildForm() {
-    this.addProduct = this.formBuilder.group({
+    this.addPet = this.formBuilder.group({
       productId: [0],
       code: [''],
       name: ['', [Validators.required, Validators.maxLength(45)]],
@@ -63,18 +63,18 @@ export class ProductCreateComponent implements OnInit {
   }
 
   reset() {
-    this.addProduct.reset();
+    this.addPet.reset();
   }
 
-  submitProduct() {
+  submitPet() {
     // const currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
     // this.addProduct.patchValue({
     //   enterDate: currentDate,
     // });
     
-    console.log(this.addProduct.value)
-    this.productService.addProduct(this.addProduct.value).subscribe(
+    console.log(this.addPet.value)
+    this.petService.addPet(this.addPet.value).subscribe(
       () => {
         
         console.log("successful:");
@@ -88,17 +88,17 @@ export class ProductCreateComponent implements OnInit {
 
   onCategoryChange(event: any) {
     const currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
-    const selectedCategoryId = event.target.value;
-    console.log('Selected Category ID:', selectedCategoryId);
+    const selectedBreedId = event.target.value;
+    console.log('Selected Category ID:', selectedBreedId);
   
     // Cập nhật categoryId trong form
-    this.addProduct.patchValue({
+    this.addPet.patchValue({
       category: {
-        categoryId: selectedCategoryId
+        categoryId: selectedBreedId
       },
        enteredDate: currentDate
     });
   
-    console.log('Form Value After Update:', this.addProduct.value);
+    console.log('Form Value After Update:', this.addPet.value);
   }
 }
