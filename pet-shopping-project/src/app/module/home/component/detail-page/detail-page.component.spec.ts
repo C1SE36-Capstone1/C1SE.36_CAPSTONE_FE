@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CartComponent } from './cart.component';
 
-describe('CartComponent', () => {
-  let component: CartComponent;
-  let fixture: ComponentFixture<CartComponent>;
+import { DetailPageComponent } from './detail-page.component';
+
+describe('DetailPageComponent', () => {
+  let component: DetailPageComponent;
+  let fixture: ComponentFixture<DetailPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartComponent ]
+      declarations: [ DetailPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CartComponent);
+    fixture = TestBed.createComponent(DetailPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,20 @@
+<!-- wishlist.component.html -->
+
+<div class="wishlist-container">
+  <h2>Danh sách Sản phẩm Yêu thích</h2>
+
+  <div *ngIf="favoriteProducts.length > 0; else noItems">
+    <div class="wishlist-item" *ngFor="let product of favoriteProducts">
+      <img [src]="product.image" alt="{{ product.name }}">
+      <div class="product-details">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.price | currency }}</p>
+        <button (click)="removeFromFavorites(product.productId)">Xóa</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noItems>
+    <p class="no-items-message">Chưa có sản phẩm nào trong danh sách yêu thích của bạn.</p>
+  </ng-template>
+</div>

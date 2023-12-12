@@ -6,9 +6,11 @@ import { ShopComponent } from './component/shop/shop.component';
 import { CustomerComponent } from './component/customer/customer.component';
 import { LoginComponent } from '../security/component/login/login.component';
 import { BreedComponent } from './component/breed/breed.component';
-import { ProductDetailComponent } from '../product/component/product-detail/product-detail.component';
 import { CartComponent } from './component/cart/cart.component';
 import { HealthComponent } from './component/health/health.component';
+import { DetailPageComponent } from './component/detail-page/detail-page.component';
+import { WishlistComponent } from './component/wishlist/wishlist.component';
+
 
 
 const routes: Routes = [
@@ -23,10 +25,13 @@ const routes: Routes = [
       { path: 'breed', component: BreedComponent },
       { path: 'cart', component: CartComponent},
       { path: 'health', component: HealthComponent},
+      { path: 'detail', component: DetailPageComponent },
+      { path: 'wishlist', component: WishlistComponent},
+
     ]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'detail', component: ProductDetailComponent },
+
 ];
 
 @NgModule({

@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  
+
   show = false;
 
   showOptions: boolean = false;
-  
+
   constructor(private router: Router) { }
 
   redirectToCart() {
@@ -29,4 +29,5 @@ export class HeaderComponent implements OnInit {
   closepopup(){
     this.show = false;
   }
+
 }

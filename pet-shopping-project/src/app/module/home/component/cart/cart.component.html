@@ -1,29 +1,28 @@
-<!-- src/app/shopping-cart/shopping-cart.component.html -->
+<div class="cart-container">
+  <h2 class="cart-title">Danh sách giỏ hàng của bạn</h2>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <h2>Product List</h2>
-      <div class="card-deck">
-        <div *ngFor="let item of products" class="card">
-          <img src="product-image.jpg" class="card-img-top" alt="{{ item.name }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text">${{ item.price }}</p>
-            <button class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
-          </div>
-        </div>
+  <div *ngIf="shoppingCart.length === 0" class="empty-cart">
+    <p>Giỏ hàng của bạn đang trống.</p>
+  </div>
+
+  <div *ngFor="let item of shoppingCart" class="cart-item">
+    <div class="item-details">
+      <img [src]="item.image" alt="{{item.name}}" class="product-image">
+      <div class="item-info">
+        <p class="product-name">{{ item.name }}</p>
+        <p class="product-price">{{ item.price }}</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <h2>Your Shopping Cart</h2>
-      <ul class="list-group">
-        <li *ngFor="let cartItem of cartItems" class="list-group-item">
-          <span>{{ cartItem.name }}</span>
-          <span class="badge badge-danger float-right">${{ cartItem.price }}</span>
-          <button class="btn btn-danger btn-sm float-right" (click)="removeFromCart(cartItem)">Remove</button>
-        </li>
-      </ul>
+    <div class="quantity-control">
+      <label>Số lượng:</label>
+      <input type="number" [(ngModel)]="item.quantity" min="1" (change)="updateCartItem(item)">
     </div>
+    <p class="total-cost">Tổng tiền: {{ item.price * item.quantity }}</p>
+    <button (click)="removeFromCart(item.productId)" class="remove-button">Xóa</button>
+  </div>
+
+  <div *ngIf="shoppingCart.length > 0" class="total-cost">
+    <p>Tổng tiền giỏ hàng: {{ getTotalCartCost() }}</p>
+    <button (click)="checkout()" class="checkout-button">Thanh toán</button>
   </div>
 </div>

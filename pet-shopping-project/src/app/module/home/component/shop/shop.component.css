@@ -6,6 +6,7 @@
   padding: 40px;
   margin: 0;
   font-family: 'Roboto';
+  text-decoration: none;
 }
 
 
@@ -91,7 +92,7 @@
 
 .product-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   /* Chia thành 3 cột cho 1 dòng */
   flex-wrap: wrap;
   justify-content: flex-start;

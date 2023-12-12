@@ -21,7 +21,7 @@ export class PetService {
   }
 
   getDetailById(id : number): Observable<Pet>{
-    return this.http.get<Pet>(this._API_URL + id)
+    return this.http.get<Pet>(this._API_URL + '/'+ id)
   }
 
 }

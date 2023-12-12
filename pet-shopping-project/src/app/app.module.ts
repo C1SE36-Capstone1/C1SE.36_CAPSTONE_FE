@@ -3,15 +3,19 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './module/home/home.module';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
+    
 
   ],
   schemas: [
@@ -24,6 +28,7 @@ import { HomeModule } from './module/home/home.module';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
   ],
   exports:[],
   providers: [],

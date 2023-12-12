@@ -28,18 +28,18 @@
             </span>
         </div>
     </div>
-    <!-- <div class="registration form">
+    <div class="registration form">
         <header>Signup</header>
         <form [formGroup]="formSignUp" (ngSubmit)="onSubmit()">
             <div class="input-field">
                 <input type="text" placeholder="Enter your full name" formControlName = "fullName">
             </div>
             <span class="text-danger"
-                *ngIf="formSignUp.get('fullName').hasError('pattern') 
+                *ngIf="formSignUp.get('fullName').hasError('pattern')
                 && formSignUp.get('fullName').touched">Bạn cần nhập thông tin này
             </span>
             <span class="text-danger"
-                *ngIf="formSignUp.get('fullName').hasError('pattern') 
+                *ngIf="formSignUp.get('fullName').hasError('pattern')
                 && formSignUp.get('fullName').touched">Bạn cần nhập thông tin này
             </span>
             <span class="text-danger"
@@ -67,5 +67,5 @@
                 <label for="check">Login</label>
             </span>
         </div>
-    </div> -->
+    </div>
 </div>

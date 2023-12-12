@@ -1,43 +1,76 @@
-/* src/app/shopping-cart/shopping-cart.component.css */
-
-.container {
-  margin-top: 20px;
-}
-
-.card {
-  margin-bottom: 20px;
-}
-
-.list-group-item {
+.cart-item {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.item-details {
+  display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
 
-.btn-danger {
-  margin-left: 10px;
+.item-info {
+  flex-grow: 1;
 }
 
-/* Style for the cart total */
-.cart-total {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 10px;
+.quantity-control {
+  display: flex;
+  align-items: center;
 }
 
-/* Style for the checkout button */
-.checkout-btn {
-  background-color: #e44d26;
+.quantity-control label {
+  margin-right: 5px;
+  color: #333;
+}
+
+.remove-button {
+  background-color: #dc3545;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 8px 12px;
   cursor: pointer;
-  font-size: 1.2em;
-  margin-top: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.checkout-btn:hover {
-  background-color: #ff6347; /* Lighter shade on hover */
+.remove-button:hover {
+  background-color: #bb2d3b;
+}
+
+.total-cost {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
+}
+
+.checkout-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #218838;
 }

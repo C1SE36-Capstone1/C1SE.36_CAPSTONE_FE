@@ -3,7 +3,10 @@ import { CategoryService } from '../../../../service/Product/category.service';
 import { Category } from '../../../../model/Product/category';
 import { ProductService } from 'src/app/service/Product/product.service';
 import { Product } from 'src/app/model/Product/product';
-import { Router } from '@angular/router';
+import { CartService } from '../../../../service/Cart/cart.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FavoriteService } from 'src/app/service/Favorite/favorite.service';
+
 
 @Component({
   selector: 'app-shop',
@@ -11,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
+
 
   selectedCategoryId: number;
 
@@ -20,14 +24,20 @@ export class ShopComponent implements OnInit {
   showAll = false;
   show = true;
   totalProducts: number = 0;
-  productsPerPage: number = 9;
+  productsPerPage: number = 12;
   currentPage: number = 1;
   sortType: string ='';
   sortOrder: string = '';
 
   constructor( private router: Router,
+               private cartService : CartService,
                private category : CategoryService,
-               private product : ProductService) { }
+               private product : ProductService,
+               private route: ActivatedRoute,
+               private favoriteService: FavoriteService,
+               private productService: ProductService,
+
+               ) { }
 
   ngOnInit(): void {
     this.category.getAll().subscribe((result) =>{
@@ -40,6 +50,7 @@ export class ShopComponent implements OnInit {
       this.displayedProducts = this.getProductSlice();
     })
   }
+
 
   showAllCategories(): void {
     this.showAll =! this.showAll;
@@ -116,12 +127,20 @@ export class ShopComponent implements OnInit {
       return 'Giá từ thấp đến cao'
     else if(this.sortType=== 'desc')
       return 'Giá từ cao xuống thấp'
-    else 
+    else
       return 'Sắp xếp sản phẩm'
   }
 
   redirectToProductDetail(productId: number): void {
     this.router.navigate(['shop/', productId]);
+  }
+
+  addToFavorites(item: Product): void {
+    this.favoriteService.addToFavorites(item);
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
   }
 }
 

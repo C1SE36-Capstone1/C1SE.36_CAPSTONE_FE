@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { BreedComponent } from './component/breed/breed.component';
 import { CartComponent } from './component/cart/cart.component';
 import { HealthComponent } from './component/health/health.component';
+import { DetailPageComponent } from './component/detail-page/detail-page.component';
+import { WishlistComponent } from './component/wishlist/wishlist.component';
+
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { HealthComponent } from './component/health/health.component';
     HeaderComponent,
     FooterComponent,
     CartComponent,
-    HealthComponent
+    HealthComponent,
+    DetailPageComponent,
+    WishlistComponent,
+
   ],
   imports: [
     CommonModule,
