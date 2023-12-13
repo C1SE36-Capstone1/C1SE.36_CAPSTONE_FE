@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   formSignUp: FormGroup;
   email = '';
-  roles: string[] = [];
+  roles: string;
   returnUrl: string;
   message = '';
   showPassword = false;
@@ -52,29 +52,38 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.formLogin.value).subscribe(data => {
+    this.authService.login(this.formLogin.value).subscribe(
+      data => {
           if (this.formLogin.value.remember_me) {
             sessionStorage.clear();
             this.tokenStorageService.saveTokenLocal(data.token);
             this.tokenStorageService.saveUserLocal(data.username);
-            this.tokenStorageService.saveRoleLocal(data.roles[0]);
+            this.tokenStorageService.saveRoleLocal(data.roles);
+            console.log('role: ' + data.roles)
           } else {
             localStorage.clear();
             this.tokenStorageService.saveTokenSession(data.token);
             this.tokenStorageService.saveUserSession(data.username);
-            this.tokenStorageService.saveRoleSession(data.roles[0]);
+            this.tokenStorageService.saveRoleSession(data.roles);
+            console.log('role: ' + data.roles)
           }
           this.authService.isLoggedIn = true;
           this.formLogin.reset();
-          this.router.navigateByUrl(this.returnUrl);
-        },
+          const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+          if (this.roles === 'ADMIN' && this.returnUrl === '/') {
+            this.returnUrl = 'admin';
+          } else if (this.roles === 'USER' && this.returnUrl === '/') {
+            this.returnUrl = 'home';
+          }
+          this.router.navigateByUrl(returnUrl);
+      },
         err => {
           console.error(err);
           this.authService.isLoggedIn = false;
           this.message = 'Invalid email or password';
-        });
-    
+        }
+    );
   }
-  }
+}
 
 

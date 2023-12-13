@@ -2,8 +2,59 @@
   margin: 0;
 }
 
+.slideshow-container {
+  width: 100%;
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.slideshow-container img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  animation: fade 1.5ms ;
+}
+
+.slideshow-container img.active {
+  display: block;
+}
+
+.indicators {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.indicators span {
+  width: 10px;
+  height: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.indicators span.active {
+  background-color: #717171;
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .body-container {
-  padding: 40px;
+  padding: 20px 40px 40px 40px;
   margin: 0;
   font-family: 'Roboto';
 }
@@ -95,7 +146,7 @@
 .show-product {
   width: 80%;
   margin-left: 10px;
-  background-color: #dbdbdb;
+  background-color: #f3f0f0;
   border-radius: 10px;
 }
 
@@ -114,7 +165,6 @@
   margin: 10px;
   position: relative;
   border-radius: 20px;
-  border: 1px dashed #ddd;
   overflow: hidden;
   padding: 10px 5px;
 }
@@ -196,8 +246,6 @@
 }
 
 .product:hover {
-  border: 1px dashed #FFA500;
-
   .add-button {
     opacity: 1;
     /* Hiển thị nút thêm vào giỏ hàng khi hover */
@@ -249,4 +297,13 @@
   background-color: #FF7A00;
   border: none;
   color: white;
+}
+
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: translateY(-8px); /* Nhích lên trên 8px khi rê chuột vào */
+  box-shadow: 0 4px 8px #FF7A00; /* Bóng đổ phía dưới */
 }

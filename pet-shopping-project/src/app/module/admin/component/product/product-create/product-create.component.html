@@ -1,47 +1,45 @@
-<form [formGroup]="addProduct" (ngSubmit)="submitProduct()">
-  <div class="form-group">
-    <label for="name">Product Name</label>
-    <input type="text" id="name" formControlName="name" class="form-control" />
-  </div>
+<section class="container">
+  <header>Add New Product</header>
+  <form [formGroup]="addProduct" (ngSubmit)="submitProduct()" class="form">
+    <div class="input-box">
+      <label>Product Image</label>
+      <input type="file" formControlName="image" placeholder="Choose product image" required />
+    </div>
 
-  <div class="form-group">
-    <label for="quantity">Quantity</label>
-    <input type="number" id="quantity" formControlName="quantity" class="form-control" />
-  </div>
+    <div class="input-box">
+      <label>Product Name</label>
+      <input type="text" formControlName="name" placeholder="Enter product name" required />
+    </div>
 
-  <div class="form-group">
-    <label for="price">Price</label>
-    <input type="number" id="price" formControlName="price" class="form-control" />
-  </div>
+    <div class="input-box">
+      <label>Description</label>
+      <input type="text" formControlName="description" placeholder="Enter product description" required />
+    </div>
 
-  <div class="form-group">
-    <label for="discount">Discount</label>
-    <input type="number" id="discount" formControlName="discount" class="form-control" />
-  </div>
+    <div class="input-box">
+      <label>Select Category</label>
+      <div class="select-box">
+        <select formControlName="categoryId" (change)="onCategoryChange($event)">
+          <option *ngFor="let item of categoryList" [value]="item.categoryId">{{item.categoryName}}</option>
+        </select>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="image">Image</label>
-    <input type="text" id="image" formControlName="image" class="form-control" />
-  </div>
+    <div class="column">
+      <div class="input-box">
+        <label>Quantity</label>
+        <input type="number" formControlName="quantity" placeholder="Enter product quantity" required />
+      </div>
+      <div class="input-box">
+        <label>Price</label>
+        <input type="number" formControlName="price" placeholder="Enter product price" required />
+      </div>
+      <div class="input-box">
+        <label>Discount</label>
+        <input type="number" formControlName="discount" placeholder="Enter product price" required />
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea id="description" formControlName="description" class="form-control"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="status">Status</label>
-    <input type="checkbox" id="status" formControlName="status" class="form-check-input" />
-  </div>
-
-  <div class="form-group">
-    <label for="sold">Sold</label>
-    <input type="number" id="sold" formControlName="sold" class="form-control" />
-  </div>
-
-  <select id="category" formControlName="categoryId" class="form-control" (change)="onCategoryChange($event)">
-    <option *ngFor="let item of categoryList" [value]="item.categoryId">{{ item.categoryName }}</option>
-  </select>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <button>Submit</button>
+  </form>
+</section>

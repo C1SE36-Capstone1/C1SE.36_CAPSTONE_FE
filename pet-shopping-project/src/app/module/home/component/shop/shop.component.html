@@ -1,13 +1,22 @@
 <div class="body-container">
-    <div class="banner-container">
-        <div class="banner">
-            <img src="assets/image/banner.jpg">
-        </div>
-        <div class="banner">
-            <img src="assets/image/banner.jpg">
-        </div>
+    <div class="slideshow-container">
+        <img *ngFor="let image of images; let i = index" [class.active]="i === currentImageIndex" [src]="image" alt="Slide">
     </div>
-    <div class="breadcrumb"></div>
+    
+    
+    <div class="indicators">
+        <span *ngFor="let image of images; let i = index" [class.active]="i === currentImageIndex"
+            (click)="selectImage(i)"></span>
+    </div>
+    <!-- <div class="banner-container">
+        <div class="banner">
+            <img src="assets/image/banner.jpg">
+        </div>
+        <div class="banner">
+            <img src="assets/image/banner.jpg">
+        </div>
+    </div> -->
+    <!-- <div class="breadcrumb"></div> -->
     <div class="product-container" style="display: flex;">
         <div class="filter">
             <div class="product-categories"> 
@@ -21,7 +30,7 @@
                             <span class="text">Tất cả</span>
                         </a>
                     </li>
-                    <li *ngFor="let item of categoryList.slice(0,7)">
+                    <li *ngFor="let item of categoryList?.slice(0,7)">
                         <a [routerLink]="['/shop', item.categoryName]" 
                             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.categoryName)">
@@ -30,9 +39,9 @@
                         </a>
                     </li>
                 </ul>
-                <a *ngIf="categoryList.length > 7 && show" (click)="showAllCategories()">Hiện thêm</a>
+                <a *ngIf="categoryList?.length > 7 && show" (click)="showAllCategories()">Hiện thêm</a>
                 <ul id="category-list" *ngIf="showAll">
-                    <li *ngFor="let item of categoryList.slice(7)">
+                    <li *ngFor="let item of categoryList?.slice(7)">
                         <a [routerLink]="['/shop', item.categoryName]" 
                             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.categoryName)">
@@ -56,7 +65,7 @@
             </div>
             <div class="product-list" >
                 <!-- Sản phẩm  -->
-                <div class="product" *ngFor="let item of displayedProducts">
+                <div class="product hover-effect" *ngFor="let item of displayedProducts">
                     <div class="image">
                         <img [src] = "item.image">
                         <div class="action-btn">

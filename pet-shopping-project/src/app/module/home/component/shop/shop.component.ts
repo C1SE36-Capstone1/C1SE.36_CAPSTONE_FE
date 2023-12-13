@@ -14,6 +14,12 @@ import { CartDetail } from 'src/app/model/Cart/cart-detail';
 })
 export class ShopComponent implements OnInit {
 
+  currentImageIndex: number = 0;
+  images: string[] = [
+    'assets/image/banner1.jpg',
+    'assets/image/banner2.jpg',
+    'assets/image/banner3.jpg'
+  ];
   selectedCategoryId: number;
 
   productList: Product[];
@@ -44,8 +50,23 @@ export class ShopComponent implements OnInit {
       this.displayedProducts = this.getProductSlice();
     })
 
+    this.startSlideshow();
   }
 
+  startSlideshow() {
+    setInterval(() => {
+      this.showNextImage();
+    }, 6000); // Chuyển ảnh mỗi 3 giây
+  }
+
+  showNextImage() {
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+  }
+
+  selectImage(index: number) {
+    this.currentImageIndex = index;
+  }
+  
   showAllCategories(): void {
     this.showAll =! this.showAll;
     this.show =! this.show;

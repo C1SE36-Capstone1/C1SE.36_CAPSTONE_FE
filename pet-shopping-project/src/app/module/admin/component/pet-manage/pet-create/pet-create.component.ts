@@ -36,19 +36,26 @@ export class PetCreateComponent implements OnInit {
 
   buildForm() {
     this.addPet = this.formBuilder.group({
-      productId: [0],
-      code: [''],
-      name: ['', [Validators.required, Validators.maxLength(45)]],
-      quantity: [0, [Validators.required, Validators.min(1), Validators.max(1000000000)]],
-      price: [0, [Validators.required]],
-      discount: [0, [Validators.required]],
-      image: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.maxLength(1000000000)]],
-      enteredDate: ['', [Validators.required]],
+      petId: [0],//
+      code: [''],//
+      name: ['', [Validators.required, Validators.maxLength(45)]],//
+      price: [0, [Validators.required]],//
+      images: ['', [Validators.required]],//
+      description: ['', [Validators.required, Validators.maxLength(1000000000)]],//
+      enteredDate: ['', [Validators.required]],//
       status: [true, [Validators.required]],
-      sold: [0, [Validators.required]],
-      category: this.formBuilder.group({
-        categoryId: [0, [Validators.required]]
+      petAge: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      breed: this.formBuilder.group({
+        breedId: [0, [Validators.required]]
+      }),
+      petInfo: this.formBuilder.group({
+        petInfoId: [],
+        color: ['', [Validators.required]],
+        size: ['', [Validators.required]],
+        health: ['', [Validators.required]],
+        training: ['', [Validators.required]],
+        personality: ['', [Validators.required]],
       })
     })
   }
