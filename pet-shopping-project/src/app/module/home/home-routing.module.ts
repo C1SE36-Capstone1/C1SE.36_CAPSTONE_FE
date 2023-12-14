@@ -10,6 +10,7 @@ import { CartComponent } from './component/cart/cart.component';
 import { DetailPageComponent } from './component/detail-page/detail-page.component';
 import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { HealthComponent } from './component/health/health.component';
+import { UserInfoComponent } from './component/user-info/user-info.component';
 
 
 
@@ -21,7 +22,6 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: 'contact-us', component: ContactUsComponent},
-
       { path: 'breed', component: BreedComponent},
       { path: 'cart', component: CartComponent},
       { path: 'detail', component: DetailPageComponent},
@@ -29,6 +29,7 @@ const routes: Routes = [
       { path: 'breed/:breedName', component: BreedComponent},
       { path: 'wishlist', component: WishlistComponent},
       { path: 'health', component: HealthComponent},
+      { path: 'user-info', component: UserInfoComponent}
     ]
   },
   { path: 'login', component: LoginComponent },

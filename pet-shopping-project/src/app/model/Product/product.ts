@@ -5,7 +5,7 @@ export interface Product {
     quantity?: number;
     price?: number; 
     discount?: number;
-    image?: number;
+    image?: string;
     description?: string;
     enteredDate?: Date;
     status?: boolean;

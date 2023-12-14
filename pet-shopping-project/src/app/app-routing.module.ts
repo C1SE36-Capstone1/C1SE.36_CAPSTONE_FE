@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth.guard';
+import { RoleGuard } from './role.guard';
 
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./module/home/home.module').then(module => module.HomeModule)},
   {path: 'login', loadChildren: () => import('./module/security/security.module').then(module => module.SecurityModule)},
-  {path: 'accounts', loadChildren: () => import('./module/account/account.module').then(module => module.AccountModule)},
   {path: 'admin', loadChildren: () => import('./module/admin/admin.module').then(module => module.AdminModule)}
 ];
 

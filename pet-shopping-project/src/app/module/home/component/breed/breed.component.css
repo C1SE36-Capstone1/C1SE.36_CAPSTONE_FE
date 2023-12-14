@@ -6,6 +6,8 @@
   padding: 40px;
   margin: 0;
   font-family: 'Roboto';
+  background-color: white ; 
+  /* #FFF7E4 */
 }
 
 
@@ -39,7 +41,7 @@
 }
 
 .filter {
-  width: 25%;
+  width: 20%;
   height: fit-content;
 }
 
@@ -93,8 +95,10 @@
 }
 
 .show-product {
-  width: 75%;
+  width: 80%;
   margin-left: 10px;
+  background-color: #f3f0f0;
+  border-radius: 10px;
 }
 
 .product-list {
@@ -109,27 +113,28 @@
   width: auto;
   height: auto;
   background-color: #ffffff;
-  margin: 30px 10px;
+  margin: 10px;
   position: relative;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .image {
-  border: 1px dashed #ddd;
   position: relative;
   width: 100%;
-  height: 0;
+  height: fit-content;
   padding-bottom: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
-
+  border-radius: 20px 20px 0 0;
 }
 
 .image img {
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .image a {
@@ -161,18 +166,6 @@
   margin: 5px 0;
 }
 
-.action-btn {
-  background-color: none;
-  position: absolute;
-  top: 10px;
-  right: 6px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all ease .3s;
-  z-index: 2;
-}
-
 .add-button {
   background-color: white;
   width: 45px;
@@ -190,9 +183,7 @@
   transition: all ease .3s;
 }
 
-.image:hover {
-  border: 1px dashed #FFA500;
-
+.product:hover {
   .add-button {
     opacity: 1;
     /* Hiển thị nút thêm vào giỏ hàng khi hover */
@@ -244,4 +235,13 @@
   background-color: #FF7A00;
   border: none;
   color: white;
+}
+
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: translateY(-8px); /* Nhích lên trên 5px khi rê chuột vào */
+  box-shadow:  2px 4px 8px #FF7A00; /* Bóng đổ phía dưới */
 }

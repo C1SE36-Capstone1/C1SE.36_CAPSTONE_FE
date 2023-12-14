@@ -21,7 +21,7 @@
                             <span class="text">Tất cả</span>
                         </a>
                     </li>
-                    <li *ngFor="let item of breedList.slice(0,7)">
+                    <li *ngFor="let item of breedList?.slice(0,7)">
                         <a [routerLink]="['/breed', item.breedName]" 
                             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.breedName)">
@@ -30,9 +30,9 @@
                         </a>
                     </li>
                 </ul>
-                <a *ngIf="breedList.length > 7 && show" (click)="showAllBreeds()">Hiện thêm</a>
+                <a *ngIf="breedList?.length > 7 && show" (click)="showAllBreeds()">Hiện thêm</a>
                 <ul id="category-list" *ngIf="showAll">
-                    <li *ngFor="let item of breedList.slice(7)">
+                    <li *ngFor="let item of breedList?.slice(7)">
                         <a [routerLink]="['/breed', item.breedName]" 
                             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.breedName)">
@@ -47,22 +47,17 @@
         <div class="show-product">
             <div class="product-list">
                 <!-- Pet  -->
-                <div class="product" *ngFor="let item of displayedPet">
+                <div class="product hover-effect" *ngFor="let item of displayedPet">
                     <div class="image">
                         <img [src]="item.images">
-                        <div class="action-btn">
-                            <button class="add-button" [routerLink]="['']"><i
-                                    class="fa fa-bag-shopping fa-lg"></i></button>
-                            <button class="add-button" [routerLink]="['']"><i class="fa fa-heart fa-lg"></i></button>
-                        </div>
                         <a routerLink="/detail" [queryParams]="{ type: 'pet', id: item.petId }" style="cursor: pointer;"></a>
 
                     </div>
-                    <h3><a routerLink="/detail" [queryParams]="{ type: 'pet', id: item.petId }" style="text-decoration: none;">{{item.code}}</a></h3>
+                    <h3 class="m-3"><a routerLink="/detail" [queryParams]="{ type: 'pet', id: item.petId }" style="text-decoration: none;">{{item.code}}</a></h3>
                 </div>
             </div>
             <div *ngIf="totalPet > petsPerPage">
-                <ul class="pagination">
+                <ul class="pagination m-2">
                     <li *ngFor="let page of getPageArray()" [class.active]="page === currentPage"
                         style="margin-right: 10px;">
                         <a (click)="changePage(page)" style="cursor: pointer;">{{page}}</a>
