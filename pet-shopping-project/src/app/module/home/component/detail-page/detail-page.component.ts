@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/service/Product/product.service';
 })
 export class DetailPageComponent implements OnInit {
 
+  zoomScale = 1.5;
   type: string | null = null;
   id: number | null = null;
   details: any = {};
@@ -25,6 +26,28 @@ export class DetailPageComponent implements OnInit {
   ngOnInit(): void {
     
     this.getProductDetail();
+  }
+
+  zoomImage(event: MouseEvent): void {
+    const imageContainer = event.currentTarget as HTMLElement;
+    const image = imageContainer.querySelector('img') as HTMLImageElement;
+
+    const rect = imageContainer.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const offsetY = event.clientY - rect.top;
+
+    const transformValue = `scale(${this.zoomScale}) translate(-${offsetX * (this.zoomScale - 1)}px, -${offsetY * (this.zoomScale - 1)}px)`;
+
+    if (image) {
+      image.style.transform = transformValue;
+    }
+  }
+
+  resetZoom(): void {
+    const images = document.querySelectorAll('.product .image img');
+    images.forEach(image => {
+      (image as HTMLImageElement).style.transform = 'none';
+    });
   }
 
   getProductDetail(): void {

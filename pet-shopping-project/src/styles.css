@@ -3,11 +3,10 @@
 }
 
 @font-face {
-    font-family: 'Nutino';
-    src: url('/assets/fonts/SVN-Nexa\ Bold.ttf') format('truetype'); 
+    font-family: 'OpenSans-Light';
+    src: url('/assets/fonts/OpenSans-Light.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
 }
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

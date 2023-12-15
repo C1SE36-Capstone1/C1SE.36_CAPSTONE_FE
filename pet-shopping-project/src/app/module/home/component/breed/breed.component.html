@@ -1,17 +1,16 @@
 <div class="body-container">
-    <div class="banner-container">
-        <div class="banner">
-            <img src="assets/image/banner.jpg">
-        </div>
-        <div class="banner">
-            <img src="assets/image/banner.jpg">
+    <div class="slideshow-container">
+        <img *ngFor="let image of images; let i = index" [class.active]="i === currentImageIndex" [src]="image" alt="Slide">
+        <div class="indicators">
+            <span *ngFor="let image of images; let i = index" [class.active]="i === currentImageIndex"
+                (click)="selectImage(i)"></span>
         </div>
     </div>
     <div class="breadcrumb"></div>
     <div class="product-container" style="display: flex;">
         <div class="filter">
             <div class="product-categories">
-                <h2>Pet Breeds</h2>
+                <h2>Dog Breeds</h2>
                 <ul id="category-list">
                     <li>
                         <a [routerLink]="['/breed','All']" 

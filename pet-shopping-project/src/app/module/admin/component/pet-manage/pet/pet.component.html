@@ -34,34 +34,33 @@
                     <col style="width: 10%;">
                     <col style="width: 10%;">
                 </colgroup>
-                <thead class="table-head">
+                <thead >
                     <tr>
-                        <th class="table-cell" style="text-align: center;">ID</th>
-                        <th class="table-cell" style="text-align: left;">Hình ảnh</th>
-                        <th class="table-cell" style="text-align: left;">Tên</th>
-                        <th class="table-cell" style="text-align: center;">Mô tả</th>
-                        <th class="table-cell" style="text-align: center;">Giá</th>
-                        <th class="table-cell" style="text-align: center;">Mã</th>
-                        <th class="table-cell" style="text-align: center;">Giống</th>
-                        <th class="table-cell" style="text-align: center;">Action</th>
+                        <th style="text-align: center;">ID</th>
+                        <th style="text-align: left;">Hình ảnh</th>
+                        <th style="text-align: left;">Tên</th>
+                        <th style="text-align: center;">Mô tả</th>
+                        <th style="text-align: center;">Giá</th>
+                        <th style="text-align: center;">Mã</th>
+                        <th style="text-align: center;">Giống</th>
+                        <th style="text-align: center;">Action</th>
                     </tr>
                 </thead>
-                <tbody class="table-body">
+                <tbody>
                     <tr *ngFor="let item of displayedPets">
-                        <td class="table-cell" style="text-align: center;">{{item.petId}}</td>
-                        <td class="table-cell" style="text-align: left;">
+                        <td style="text-align: center;">{{item.petId}}</td>
+                        <td style="text-align: left;">
                             <img [src]="item.images" style="max-height: 80px; max-width: 80px; width: auto; height: auto;">
                         </td>
-                        <td class="table-cell" style="text-align: left; overflow: hidden; text-overflow: ellipsis; max-width: 100%">
+                        <td style="text-align: left; overflow: hidden; text-overflow: ellipsis; max-width: 100%">
                             <span style="text-overflow: ellipsis; overflow: hidden;">{{item.name}}</span>
                             
                         </td>
-                        <td class="table-cell" style="text-align: left;">{{item.description}}</td>
-                        <td class="table-cell" style="text-align: center;">{{item.price}}</td>
-                        <td class="table-cell" style="text-align: center;">{{item.code}}</td>
-                        <td class="table-cell" style="text-align: center;">{{item.breed?.breedName}}</td>
-                        <!-- <td class="table-cell" style="text-align: center;">{{item.status ? 'Còn hàng' : 'Hết hàng'}}</td> -->
-                        <td class="table-cell" style="text-align: center; gap: 10px">
+                        <td [ngClass]="'truncate-text'" style="text-align: left;">{{item.description}}</td>
+                        <td style="text-align: center;">{{item.price}}</td>
+                        <td style="text-align: center;">{{item.code}}</td>
+                        <td style="text-align: center;">{{item.breed?.breedName}}</td>
+                        <td style="text-align: center; gap: 10px">
                             <i class="fa fa-pencil-square fa-lg"></i>
                             <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.petId)"></i>
                         </td>

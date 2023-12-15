@@ -32,6 +32,7 @@ a:hover{
     width: 25%;
     height: fit-content;
     border: 2px solid #cac7ff;
+    font-size: 17px;
 }
 .left ul{
     list-style: none;
@@ -47,6 +48,7 @@ a:hover{
     height: fit-content;
     border: 2px solid #cac7ff;
     padding: 20px;
+    font-size: 16px;
 }
 
 .right p, .right li{

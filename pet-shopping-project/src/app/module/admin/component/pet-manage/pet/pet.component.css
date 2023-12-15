@@ -115,38 +115,58 @@
 }
 
 .table-container {
+    width: 100%;
+    overflow-x: auto;
     margin-top: 30px;
     margin-bottom: 20px;
-    width: 100%;
     height: fit-content;
     border-radius: 5px;
     border: 2px solid #CECECE;
     background: #FFF;
-    overflow: hidden;
 }
 
-.table-head {
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead{
     background: #e0dede;
+    padding: 5px;
+    height: 20px;
 
-    .table-cell{
-        height: 60px;
+    tr {
+        height: 50px;
+        
+
+        th{
+            padding: 8px;
+            font-size: 16px;
+        }
     }
 }
 
-.table-body tr {
-    border-bottom: 1px solid #f4f7fa;
-    height: 100px;
+tbody{
+    tr{
+        border-bottom: 1px solid #e0dede;
 
-    .table-cell{
-        padding: 10px;
-        max-height: 100px;
+        td{
+            padding: 8px;
+            font-size: 16px;
+        }
     }
 }
 
-.table-body tr:hover {
+tbody tr:hover{
     background: #eeeaea;
 }
 
+.truncate-text {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 i {
     cursor: pointer;
     margin-left: 15px;

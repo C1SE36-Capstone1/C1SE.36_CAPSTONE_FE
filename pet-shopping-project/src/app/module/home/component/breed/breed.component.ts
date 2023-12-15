@@ -12,6 +12,12 @@ import { Router } from '@angular/router';
 })
 export class BreedComponent implements OnInit {
 
+  currentImageIndex: number = 0;
+  images: string[] = [
+    'assets/image/breed1.jpg',
+    'assets/image/breed2.jpg',
+  ];
+
   selectedBreedId: number;
  
   displayedPet: Pet[];
@@ -39,6 +45,22 @@ export class BreedComponent implements OnInit {
       this.totalPet = this.petList.length;
       this.displayedPet = this.getPetSlice();
     })
+
+    this.startSlideshow();
+  }
+
+  startSlideshow() {
+    setInterval(() => {
+      this.showNextImage();
+    }, 6000); // Chuyển ảnh mỗi 3 giây
+  }
+
+  showNextImage() {
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+  }
+
+  selectImage(index: number) {
+    this.currentImageIndex = index;
   }
 
   showAllBreeds(): void {
