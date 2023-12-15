@@ -1,0 +1,80 @@
+<div class="card">
+    <div class="card-head">
+        <div class="heading-banner">
+            <div class="text-heading">
+                <h1>Breeds</h1>
+                <div class="seach-bar-container">
+                    <form class="search-bar">
+                        <button type="submit"><img src="assets/image/search-symbol.png"></button>
+                        <input type="text" name="value" [(ngModel)]="searchTerm" (keyup.enter)="onEnter()">
+                    </form>
+                </div>
+                <button  class="add" (click)="toggleForm()">
+                    <span>Add Breed</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-container">
+            <table style="min-width: 100%; table-layout: fixed;">
+                <colgroup>
+                    <col style="width: 20%;">
+                    <col style="width: 60%">
+                    <col style="width: 20%;">
+                </colgroup>
+                <thead class="table-head">
+                    <tr>
+                        <th class="table-cell" style="text-align: center;">ID</th>
+                        <th class="table-cell" style="text-align: left;">
+                            <span title="sort by name">Name</span>
+                        </th>
+                        <th class="table-cell" style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr *ngFor="let item of displayedBreeds">
+                        <td class="table-cell" style="text-align: center;">{{item.breedId}}</td>
+                        <td class="table-cell" style="text-align: left;">{{item.breedName}}</td>
+                        <td class="table-cell" style="text-align: center; gap: 10px">
+                            <i class="fa fa-pencil-square fa-lg"></i>
+                            <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.breedId)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="totalBreed > breedsPerPage">
+            <ul class="pagination">
+              <li *ngFor="let page of getPageArray()" [class.active]="page === currentPage" style="margin-right: 10px;">
+                <a (click)="changePage(page)" style="cursor: pointer;">{{page}}</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="action-form" *ngIf="show">
+    <div class="close" (click)="closepopup()">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <div class="form">
+        <h2>Add New Breed</h2>
+        <form (submit)="addBreed()">
+          <label for="categoryName">Breed Name</label>
+          <input type="text" name="categoryName" [(ngModel)]="newBreed.breedName" required>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+</div>
+<div class="action-form" *ngIf="showDeletePopup">
+    <div class="close" (click)="closeDeletePopup()">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <i class="fa fa-trash fa-4x" style="color: rgb(0, 159, 127) ;"></i>
+    <h4>Delete Breed</h4>
+    <p>Are you sure, you want to delete?</p>
+    <div class="btn-action">
+        <button style="background-color:rgb(0, 159, 127)" (click)="closeDeletePopup()">Cancel</button>
+        <button style="background-color:rgb(220, 38, 38)" (click)="deleteBreedAtId()">Delete</button>
+    </div>
+</div>

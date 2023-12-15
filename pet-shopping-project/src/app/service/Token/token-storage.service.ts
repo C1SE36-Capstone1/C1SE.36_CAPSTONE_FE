@@ -19,6 +19,7 @@ export class TokenStorageService {
   }
 
   public saveTokenSession(token: string) :void{
+
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }

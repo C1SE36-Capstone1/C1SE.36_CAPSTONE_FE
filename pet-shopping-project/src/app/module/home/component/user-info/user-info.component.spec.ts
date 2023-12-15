@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategoryCreateComponent } from './category-create.component';
+import { UserInfoComponent } from './user-info.component';
 
-describe('CategoryCreateComponent', () => {
-  let component: CategoryCreateComponent;
-  let fixture: ComponentFixture<CategoryCreateComponent>;
+describe('UserInfoComponent', () => {
+  let component: UserInfoComponent;
+  let fixture: ComponentFixture<UserInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryCreateComponent ]
+      declarations: [ UserInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CategoryCreateComponent);
+    fixture = TestBed.createComponent(UserInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

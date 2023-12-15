@@ -25,6 +25,6 @@ export class BreedService {
   } 
 
   deleteAtBreedId(id : number): Observable<Breed>{
-    return this.http.delete<Breed>(this._API_URL + id);
+    return this.http.delete<Breed>(this._API_URL + '/' + id);
   }
 }

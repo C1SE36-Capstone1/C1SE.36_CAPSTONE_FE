@@ -1,1 +1,47 @@
 
+<section class="container">
+  <header>Add New Product</header>
+  <form [formGroup]="addProduct" (ngSubmit)="submitProduct()" class="form">
+    <div class="input-box">
+      <label>Product Image</label>
+      <input type="file" formControlName="image" placeholder="Choose product image" required />
+    </div>
+
+    <div class="input-box">
+      <label>Product Name</label>
+      <input type="text" formControlName="name" placeholder="Enter product name" required />
+    </div>
+
+    <div class="input-box">
+      <label>Description</label>
+      <input type="text" formControlName="description" placeholder="Enter product description" required />
+    </div>
+
+    <div class="input-box">
+      <label>Select Category</label>
+      <div class="select-box">
+        <select formControlName="categoryId" (change)="onCategoryChange($event)">
+          <option *ngFor="let item of categoryList" [value]="item.categoryId">{{item.categoryName}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="input-box">
+        <label>Quantity</label>
+        <input type="number" formControlName="quantity" placeholder="Enter product quantity" required />
+      </div>
+      <div class="input-box">
+        <label>Price</label>
+        <input type="number" formControlName="price" placeholder="Enter product price" required />
+      </div>
+      <div class="input-box">
+        <label>Discount</label>
+        <input type="number" formControlName="discount" placeholder="Enter product price" required />
+      </div>
+    </div>
+
+    <button>Submit</button>
+  </form>
+</section>
+

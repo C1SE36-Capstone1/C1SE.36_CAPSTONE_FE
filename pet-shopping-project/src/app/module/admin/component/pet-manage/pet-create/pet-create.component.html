@@ -1,0 +1,84 @@
+<!-- <form [formGroup]="addPet" (ngSubmit)="submitPet()">
+
+
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="number" id="price" formControlName="price" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="discount">Discount</label>
+    <input type="number" id="discount" formControlName="discount" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input type="text" id="image" formControlName="image" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description" class="form-control"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="status">Status</label>
+    <input type="checkbox" id="status" formControlName="status" class="form-check-input" />
+  </div>
+
+  <div class="form-group">
+    <label for="sold">Sold</label>
+    <input type="number" id="sold" formControlName="sold" class="form-control" />
+  </div>
+
+  <select id="category" formControlName="categoryId" class="form-control" (change)="onCategoryChange($event)">
+    <option *ngFor="let item of breedList" [value]="item.breedId">{{ item.breedName }}</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
+<section class="container">
+  <header>Add New Pet</header>
+  <form [formGroup]="addPet" (ngSubmit)="submitPet()" class="form">
+    <div class="input-box">
+      <label>Pet Image</label>
+      <input type="file" formControlName="images" placeholder="Choose pet image" required />
+    </div>
+
+    <div class="input-box">
+      <label>Pet Name</label>
+      <input type="text" formControlName="name" placeholder="Enter pet name" required />
+    </div>
+
+    <div class="input-box">
+      <label>Description</label>
+      <input type="text" formControlName="description" placeholder="Enter product description" required />
+    </div>
+
+    <div class="input-box">
+      <label>Select Breed</label>
+      <div class="select-box">
+        <select id="category" formControlName="breedId" class="form-control" (change)="onCategoryChange($event)">
+          <option *ngFor="let item of breedList" [value]="item.breedId">{{ item.breedName }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="input-box">
+        <label>Gender</label>
+        <input type="text" formControlName="gender" placeholder="Enter pet gender" required />
+      </div>
+      <div class="input-box">
+        <label>Price</label>
+        <input type="number" formControlName="price" placeholder="Enter product price" required />
+      </div>
+      <div class="input-box">
+        <label>Pet Age</label>
+        <input type="date" formControlName="petAge" placeholder="Enter birth date" required />
+      </div>
+    </div>
+
+    <button>Submit</button>
+  </form>
+</section>

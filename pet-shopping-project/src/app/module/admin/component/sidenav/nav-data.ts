@@ -50,9 +50,4 @@ export const  navbarData=[
         icon : 'fa fa-gear fa-lg',
         label: 'Setting'
     },
-    {
-        routerLink: 'logout',
-        icon : 'fa fa-sign-out fa-lg',
-        label: 'Log out'
-    }
 ];

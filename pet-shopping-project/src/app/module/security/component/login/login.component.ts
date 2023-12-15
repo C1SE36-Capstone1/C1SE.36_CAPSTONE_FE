@@ -13,12 +13,13 @@ import { SignInForm } from 'src/app/model/Request/sign-in-form';
 })
 export class LoginComponent implements OnInit {
 
-  signInForm: SignInForm = {
-    email: '',
-    password: ''
-  };
-  username = '';
-  roles: string[] = [];
+  formLogin: FormGroup;
+  formSignUp: FormGroup;
+  email = '';
+  returnUrl: string;
+  message = '';
+  showPassword = false;
+
 
   constructor(private authService : AuthService,
               private tokenStorageService : TokenStorageService,
@@ -26,6 +27,14 @@ export class LoginComponent implements OnInit {
               private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.formLogin = new FormGroup({
+      // email: new FormControl('', [Validators.required, Validators.pattern("^\\w{4,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
+      // password: new FormControl('', [ Validators.required, Validators.maxLength(32)]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      remember_me: new FormControl('')
+    })
+
 
   }
 
