@@ -6,7 +6,6 @@ export interface CartDetail {
     cartDetailId?: number;
     quantity?: number;
     price?: number;
-
     product?: Product;
     cart?: Cart;
     pet?: Pet;

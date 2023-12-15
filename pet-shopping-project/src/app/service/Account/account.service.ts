@@ -20,4 +20,8 @@ export class AccountService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<SignUpForm> (this._API_URL +'/user/signup', signUpForm, {headers});
   }
+
+  getAllAcount() : Observable<User[]>{
+    return this.http.get<User[]>(this._API_URL)
+  }
 }

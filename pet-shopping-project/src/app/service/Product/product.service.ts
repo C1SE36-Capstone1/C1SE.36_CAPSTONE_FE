@@ -36,4 +36,5 @@ export class ProductService {
   deleteProductAtId(id: number): Observable<void> {
     return this.http.delete<void>(this._API_URL + id);
   }
+
 }

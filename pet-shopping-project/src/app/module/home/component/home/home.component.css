@@ -1,40 +1,117 @@
 .body-container {
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
+  font-family: 'OpenSans-Light';
+}
+
+.website-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.horizontal-boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  width: 30%;
+  padding: 20px;
+  margin: 10px;
+  border: 10px solid transparent;
+  /* Border sẽ không được hiển thị, nhưng nó cần có độ dày */
+
+  border-radius: 10px;
+  text-align: left;
+  background-color: #fff8e1;
+  /* Màu vàng nhạt */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.box h2 {
+  color: #ffa000;
+}
+
+.box p {
+  color: #777;
+}
+
+.newest-product, .sales-product{
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+}
+
+.product-list{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* Chia thành 3 cột cho 1 dòng */
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.product {
+  width: auto;
+  height: auto;
+  background-color: #ffffff;
+  margin: 10px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 10px 5px;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.image a {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all .4s ease-in-out;
+}
+
+button{
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 3;
+  border-radius: 50%;
+  background-color: rgba(128, 128, 128, 0.5);
+  outline: none;
+  border: none;
+}
+
+button:hover{
+  background-color: #ffa000;
+
+  i{
+    color: #ffffff;
   }
-  
-  .website-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-  
-  .horizontal-boxes {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .box {
-    width: 30%;
-    padding: 20px;
-    margin: 10px;
-    border: 10px solid transparent; /* Border sẽ không được hiển thị, nhưng nó cần có độ dày */
-  
-    border-radius: 10px;
-    text-align: left;
-    background-color: #fff8e1; /* Màu vàng nhạt */
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .box:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .box h2 {
-    color: #ffa000;
-  }
-  
-  .box p {
-    color: #777;
-  }
+}
+
