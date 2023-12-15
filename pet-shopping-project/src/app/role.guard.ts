@@ -19,7 +19,7 @@ export class RoleGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const requiredRoles: string[] = next.data.roles;
 
-        const userRoles: string[] = [this.tokenStorageService.getRole()];
+        const userRoles: string[] = this.tokenStorageService.getRole();
 
         const hasRequiredRole = requiredRoles.some(role => userRoles.includes(role));
 

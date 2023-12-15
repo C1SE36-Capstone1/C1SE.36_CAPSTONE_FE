@@ -1,43 +1,103 @@
-/* src/app/shopping-cart/shopping-cart.component.css */
-
-.container {
-  margin-top: 20px;
+/* Định dạng cơ bản cho giỏ hàng */
+.cart-container {
+  width: 60%;
+  margin: auto;
+  padding: 20px;
 }
 
-.card {
+.cart-title {
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
-.list-group-item {
+.cart-item {
+  background-color: rgba(255, 255, 255, 0.8); /* Một màu nền đục */
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
   margin-bottom: 10px;
 }
 
-.btn-danger {
-  margin-left: 10px;
+.product-image {
+  width: 80px; /* Điều chỉnh kích thước ảnh sản phẩm */
+  height: auto;
+  margin-right: 10px;
 }
 
-/* Style for the cart total */
-.cart-total {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 10px;
+.item-info {
+  flex-grow: 1;
 }
 
-/* Style for the checkout button */
-.checkout-btn {
-  background-color: #e44d26;
+.product-name {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-control label {
+  margin-right: 5px;
+}
+
+.total-cost {
+  font-size: 18px;
+}
+
+.remove-button {
+  background-color: #ff0000;
   color: #fff;
+  padding: 5px 10px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
   cursor: pointer;
-  font-size: 1.2em;
-  margin-top: 10px;
 }
 
-.checkout-btn:hover {
-  background-color: #ff6347; /* Lighter shade on hover */
+.checkout-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .cart-container {
+    width: 100%;
+  }
+}
+/* CSS để làm cho phần "Tổng tiền giỏ hàng" nổi bật hơn */
+
+.total-cost p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Màu chữ của phần "Tổng tiền giỏ hàng" */
+}
+
+.checkout-button {
+  background-color: #4caf50; /* Màu nền của nút thanh toán */
+  color: white; /* Màu chữ của nút thanh toán */
+  padding: 10px 20px; /* Kích thước nút thanh toán */
+  font-size: 16px; /* Kích thước chữ nút thanh toán */
+  border: none; /* Loại bỏ đường viền của nút thanh toán */
+  border-radius: 8px; /* Độ cong của các góc của nút thanh toán */
+  cursor: pointer; /* Hình con trỏ khi di chuột qua nút thanh toán */
+  margin-top: 10px; /* Khoảng cách giữa nút thanh toán và phần "Tổng tiền giỏ hàng" */
+}
+
+/* Hiệu ứng hover khi di chuột qua nút thanh toán */
+.checkout-button:hover {
+  background-color: #45a049; /* Màu nền thay đổi khi di chuột qua nút thanh toán */
 }
