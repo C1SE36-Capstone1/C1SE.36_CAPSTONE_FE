@@ -1,0 +1,54 @@
+
+    <section class="container">
+      <header>Registration Form</header>
+      <form action="#" class="form" (ngSubmit)="submitAddAccount">
+        <div class="input-box">
+          <label style="display: flex;">Full Name <p style="color: red;">*</p> </label>
+          <input type="text" placeholder="Enter full name" required />
+        </div>
+        <div class="input-box">
+          <label style="display: flex;">Email <p style="color: red;">*</p></label>
+          <input type="text" placeholder="Enter email address" required />
+        </div>
+        <div class="column">
+          <div class="input-box">
+            <label style="display: flex;">Phone Number <p style="color: red;">*</p></label>
+            <input type="number" placeholder="Enter phone number" required />
+          </div>
+          <div class="input-box">
+            <label style="display: flex;">Birth Date <p style="color: red;">*</p></label>
+            <input type="date" placeholder="Enter birth date" required />
+          </div>
+        </div>
+        <div class="gender-box">
+          <h3  style="display: flex;">Gender <p style="color: red;">*</p></h3>
+          <div class="gender-option">
+            <div class="gender">
+              <input type="radio" id="check-male" name="gender" checked />
+              <label for="check-male">Male</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="check-female" name="gender" />
+              <label for="check-female">Female</label>
+            </div>
+          </div>
+        </div>
+        <div class="input-box address">
+          <label  style="display: flex;">Address <p style="color: red;">*</p></label>
+          <input type="text" placeholder="Enter street address" required />
+          <div class="column">
+            <div class="select-box">
+              <select>
+                <option hidden>Country</option>
+                <option>America</option>
+                <option>Japan</option>
+                <option>India</option>
+                <option>Nepal</option>
+              </select>
+            </div>
+            <input type="text" placeholder="Enter your city" required />
+          </div>
+        </div>
+        <button type="submit" (click)="submitAddAccount()">Submit</button>
+      </form>
+    </section>

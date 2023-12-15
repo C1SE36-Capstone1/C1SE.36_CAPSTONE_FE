@@ -1,33 +1,26 @@
+<div class="cart-container">
+  <h2 class="cart-title">Danh sách giỏ hàng của bạn</h2>
 
-<div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <h2>Giỏ Hàng Của Bạn</h2>
-        <div *ngIf="cartItems.length === 0" class="alert alert-info mt-3">
-          Giỏ hàng của bạn đang trống.
-        </div>
-        <div class="card-deck">
-          <div *ngFor="let item of cartItems" class="card">
-            <img [src]="item.image" class="card-img-top" alt="{{ item.name }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">${{ item.price }}</p>
-              <button class="btn btn-danger btn-sm float-right" (click)="removeFromCart(item)">Xóa</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <h2>Tóm Tắt Đơn Hàng</h2>
-        <ul class="list-group">
-          <li *ngFor="let cartItem of cartItems" class="list-group-item">
-            <span>{{ cartItem.name }}</span>
-            <span class="badge badge-danger float-right">${{ cartItem.price }}</span>
-          </li>
-        </ul>
-        <div class="text-right mt-3">
-          <button class="btn btn-primary" (click)="checkout()">Thanh Toán</button>
-        </div>
-      </div>
-    </div>
+  <div *ngIf="cartDetails.length === 0" class="empty-cart">
+    <p>Giỏ hàng của bạn đang trống.</p>
   </div>
+
+  <div *ngFor="let detail of cartDetails" class="cart-item">
+    <img [src]="detail.product?.image" alt="{{detail.product?.name}}" class="product-image">
+    <div class="item-info">
+      <p class="product-name">{{ detail.product?.name }}</p>
+      <p class="product-price">{{ detail.price }}</p>
+      <div class="quantity-control">
+        <label>Số lượng:</label>
+        <input type="number" [(ngModel)]="detail.quantity" min="1" (change)="updateCartDetail(detail)">
+      </div>
+      <p class="total-cost">Tổng tiền: {{ detail.price * detail.quantity }}</p>
+    </div>
+    <button (click)="deleteCartDetail(detail.cartDetailId)" class="remove-button">Xóa</button>
+  </div>
+
+  <div *ngIf="cartDetails.length > 0" class="total-cost">
+    <p>Tổng tiền giỏ hàng: {{ getTotalCartCost() }}</p>
+    <button (click)="checkout()" class="checkout-button">Thanh toán</button>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { Product } from 'src/app/model/Product/product';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CartService } from 'src/app/service/Cart/cart.service';
 import { CartDetail } from 'src/app/model/Cart/cart-detail';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shop',
@@ -39,7 +40,10 @@ export class ShopComponent implements OnInit {
                private activatedRoute : ActivatedRoute,
                private category : CategoryService,
                private cartService : CartService,
-               private product : ProductService) { }
+               private product : ProductService,
+               private snackBar: MatSnackBar,
+               private route: ActivatedRoute,
+               ) { }
 
   ngOnInit(): void {
     this.category.getAll().subscribe((result) =>{
@@ -68,7 +72,7 @@ export class ShopComponent implements OnInit {
   selectImage(index: number) {
     this.currentImageIndex = index;
   }
-  
+
   showAllCategories(): void {
     this.showAll =! this.showAll;
     this.show =! this.show;
@@ -78,7 +82,7 @@ export class ShopComponent implements OnInit {
     const category = this.categoryList.find(c => c.categoryName === categoryName);
     if (category) {
       this.selectedCategoryId = category.categoryId;
-  
+
       // Gọi phương thức getByCategory và cập nhật danh sách sản phẩm
       if (this.selectedCategoryId) {
         this.product.getByCategory(this.selectedCategoryId).subscribe(
@@ -91,7 +95,7 @@ export class ShopComponent implements OnInit {
             console.error('Error fetching products by category:', error);
           }
         );
-      } 
+      }
       // Thay đổi URL
       this.router.navigate(['/shop', categoryName]);
       this.currentPage = 1;
@@ -105,7 +109,7 @@ export class ShopComponent implements OnInit {
       this.currentPage = 1;
     }
   }
-  
+
 
   getProductSlice(): Product[] {
     const startIndex = (this.currentPage - 1 ) * this.productsPerPage;
@@ -154,7 +158,7 @@ export class ShopComponent implements OnInit {
       return 'Giá từ thấp đến cao'
     else if(this.sortType=== 'desc')
       return 'Giá từ cao xuống thấp'
-    else 
+    else
       return 'Sắp xếp sản phẩm'
   }
 
@@ -170,17 +174,26 @@ export class ShopComponent implements OnInit {
   //     }
   //   );
   // }
-
-  addCartDetail(): void {
-    const cartDetail : CartDetail = {}
-    
+  addToCart(product: Product): void {
+    const cartDetail: CartDetail = {
+      cartDetailId: null,
+      product: product,
+      quantity: 1,
+      price: product.price,
+      cart: {
+        cartId: 1, // Đặt giá trị cartId tùy thuộc vào logic của bạn
+      },
+    };
     this.cartService.addToCart(cartDetail).subscribe(
       (response) => {
-        console.log('Cart Detail added successfully:', response);
+        console.log('Thêm vào giỏ hàng thành công', response);
+        // Hiển thị thông báo
+        this.snackBar.open('Thêm vào giỏ hàng thành công', 'Đóng', {
+          duration: 3000,
+        });
       },
       (error) => {
-        // Xử lý khi request thất bại
-        console.error('Error adding Cart Detail:', error);
+        console.error('Lỗi khi thêm vào giỏ hàng', error);
       }
     );
   }
