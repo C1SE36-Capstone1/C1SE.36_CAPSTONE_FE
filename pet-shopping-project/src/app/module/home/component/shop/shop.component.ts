@@ -33,6 +33,8 @@ export class ShopComponent implements OnInit {
   sortType: string ='';
   sortOrder: string = '';
 
+
+
   constructor( private router: Router,
                private activatedRoute : ActivatedRoute,
                private category : CategoryService,
@@ -170,13 +172,10 @@ export class ShopComponent implements OnInit {
   // }
 
   addCartDetail(): void {
-    const cartDetail: CartDetail = {
-      // Khởi tạo đối tượng CartDetail theo cấu trúc của bạn
-    };
-
+    const cartDetail : CartDetail = {}
+    
     this.cartService.addToCart(cartDetail).subscribe(
       (response) => {
-        // Xử lý khi request thành công
         console.log('Cart Detail added successfully:', response);
       },
       (error) => {
