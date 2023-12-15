@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { SignInForm } from 'src/app/model/Request/sign-in-form';
+import { JwtResponse } from 'src/app/model/Response/jwt-response';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +25,8 @@ export class AuthService {
     };
   }
 
-  login(obj): Observable<any> {
-    return this.httpClient.post(this.AUTH_API + '/user/signin', {
-      email: obj.email,
-      password: obj.password
-    }, this.httpOptions);
+  login(signInForm: SignInForm): Observable<JwtResponse> {
+    return this.httpClient.post<JwtResponse>(this.AUTH_API + '/user/signin', signInForm);
   }
 
 }
