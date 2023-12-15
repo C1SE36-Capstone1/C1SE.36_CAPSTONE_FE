@@ -18,13 +18,7 @@ export class UserComponent implements OnInit {
   constructor(private accountService : AccountService) { }
 
   ngOnInit(): void {
-    this.loadAllAccount();
   }
 
-  loadAllAccount(): void {
-    this.accountService.getAllAccount().subscribe((data) => {
-      this.accountList = data;
-    });
-  }
 
 }
