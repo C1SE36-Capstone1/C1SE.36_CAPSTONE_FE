@@ -1,9 +1,8 @@
 <link href='https://fonts.googleapis.com/css?family=Convergence' rel='stylesheet'>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nexa:wght@300&display=swap">
 <div class="header-container">
     <div class="logo-container">
         <a class="logo-clickable" [routerLink]="['/home']">
-            <img src="assets/image/logo.png">
+            <img src="assets/image/logo1.png">
         </a>
     </div>
     <div class="menu-title">
@@ -14,12 +13,12 @@
                 </a>
             </li>
             <li>
-                <a [routerLink]="['/shop/All']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink]="['/shop']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <span class="text">Sản phẩm</span>
                 </a>
             </li>
             <li >
-                <a [routerLink]="['/breed/All']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a [routerLink]="['/breed']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <span class="text">Thú cưng</span>
                 </a>
             </li>
@@ -43,7 +42,7 @@
     </div>
     <div class="account-container">
         <ul>
-            <li> <a (click)="navigateToUserInfo()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <li> <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <i class="fa fa-user fa-lg"></i>
                 </a>
             </li>

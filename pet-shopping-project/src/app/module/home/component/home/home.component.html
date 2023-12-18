@@ -14,10 +14,10 @@
           </div>
     </div>
     <div class="newest-product" >
-        <p>Sản phẩm mới nhất</p>
+        <h1>Sản phẩm mới nhất <i class="fas fa-paw" style="transform: rotate(45deg); color: #FF7A00;"></i></h1>
         <!-- Sản phẩm  -->
         <div class="product-list" >
-            <div class="product hover-effect" *ngFor="let item of newestProduct.slice(currentIndex, currentIndex + itemsPerPage)">
+            <div class="product hover-effect" *ngFor="let item of newestProduct.slice(newestProductIndex, newestProductIndex + itemsPerPage)">
                 <div class="image">
                     <img [src] = "item.image">
                     <!-- <div class="action-btn">
@@ -27,18 +27,19 @@
                     <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
                 </div>
                 <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>
-                <p style="font-size: 14px;">{{item.price}}</p>
+                <p>{{item.price | currency:'VND'}}</p>
             </div>
         </div>
-        <button style="left: 0;"><i class="fa fa-arrow-left" (click)="prev()"></i></button>
-        <button style="right: 0;"><i class="fa fa-arrow-right" (click)="next()"></i></button>
+        <button style="left: 0;"><i class="fa fa-arrow-left" (click)="prev(1)"></i></button>
+        <button style="right: 0;"><i class="fa fa-arrow-right" (click)="next(1)"></i></button>
     </div>
     <div class="sales-product" >
-        <p>Khuyến mãi</p>
+        <h1>Khuyến mãi <i class="fas fa-paw" style="transform: rotate(45deg); color: #FF7A00;"></i></h1>
         <!-- Sản phẩm  -->
         <div class="product-list" >
-            <div class="product hover-effect" *ngFor="let item of discountProduct.slice(currentIndex, currentIndex + itemsPerPage)">
+            <div class="product hover-effect" *ngFor="let item of discountProduct.slice(discountProductIndex, discountProductIndex + itemsPerPage)">
                 <div class="image">
+                    <span>{{item.discount}} <i class="fa-solid fa-percent"></i></span>
                     <img [src] = "item.image">
                     <!-- <div class="action-btn">
                         <button class="add-button"><i class="fa fa-bag-shopping "></i></button>
@@ -47,11 +48,10 @@
                     <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
                 </div>
                 <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>
-                <p style="font-size: 14px;">{{item.price}}</p>
-                <p>{{item.discount}}</p>
+                <p>{{item.price | currency:'VND'}}</p>
             </div>
         </div>
-        <button style="left: 0;"><i class="fa fa-arrow-left" (click)="prev()"></i></button>
-        <button style="right: 0;"><i class="fa fa-arrow-right" (click)="next()"></i></button>
+        <button style="left: 0;"><i class="fa fa-arrow-left" (click)="prev(3)"></i></button>
+        <button style="right: 0;"><i class="fa fa-arrow-right" (click)="next(3)"></i></button>
     </div>
   </div>

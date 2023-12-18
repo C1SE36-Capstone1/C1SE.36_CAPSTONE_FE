@@ -20,12 +20,10 @@
   padding: 20px;
   margin: 10px;
   border: 10px solid transparent;
-  /* Border sẽ không được hiển thị, nhưng nó cần có độ dày */
 
   border-radius: 10px;
   text-align: left;
   background-color: #fff8e1;
-  /* Màu vàng nhạt */
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -35,7 +33,7 @@
 }
 
 .box h2 {
-  color: #ffa000;
+  color: #FF7A00;
 }
 
 .box p {
@@ -47,12 +45,18 @@
   width: 100%;
   height: fit-content;
   justify-content: center;
+  margin-bottom: 50px;
+  h1{
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 50px 0 20px 0;
+  }
 }
 
 .product-list{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* Chia thành 3 cột cho 1 dòng */
   flex-wrap: wrap;
   justify-content: flex-start;
 }
@@ -60,12 +64,31 @@
 .product {
   width: auto;
   height: auto;
-  background-color: #ffffff;
-  margin: 10px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   padding: 10px 5px;
+
+  h3 a{
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    padding: 10px;
+  }
+
+  a:hover{
+    color: #ffa000;
+  }
+  p{
+    font-size: 18px;
+    font-weight: 600;
+    color: red;
+  }
 }
 
 .image {
@@ -77,6 +100,22 @@
   display: flex;
   justify-content: center;
   border-radius: 20px;
+
+  span{
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    z-index: 2;
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 0, 0,0.8);
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+  }
 }
 
 .image img {
@@ -113,5 +152,14 @@ button:hover{
   i{
     color: #ffffff;
   }
+}
+
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: translateY(-8px); /* Nhích lên trên 8px khi rê chuột vào */
+  box-shadow: 0 4px 8px #FF7A00; /* Bóng đổ phía dưới */
 }
 

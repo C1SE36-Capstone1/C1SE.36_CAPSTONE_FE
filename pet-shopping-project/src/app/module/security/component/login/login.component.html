@@ -1,25 +1,32 @@
-
-<div class="wrapper">
-    <form action="#">
-      <h2>Login</h2>
-        <div class="input-field">
-        <input type="email"  required>
-        <label>Enter your email</label>
-      </div>
-      <div class="input-field">
-        <input type="password" required>
-        <label>Enter your password</label>
-      </div>
-      <div class="forget">
-        <label for="remember">
-          <input type="checkbox" id="remember">
-          <p>Remember me</p>
-        </label>
-        <a href="#">Forgot password?</a>
-      </div>
-      <button type="submit" (click)="login()">Log In</button>
-      <div class="register">
-        <p>Don't have an account? <a href="#">Register</a></p>
-      </div>
-    </form>
+<div class="login-container">
+	<div class="image-section">
+	  <!-- Nội dung hình ảnh và văn bản có thể được thêm vào đây -->
+	  <!-- Các nút đăng nhập mạng xã hội có thể được thêm vào đây nếu cần -->
+	</div>
+	<div class="form-section">
+	  <div class="form-wrapper">
+		<h2>Login</h2>
+		<form>
+		  <div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" id="email"  formControlName="email" name="Email" required>
+		  </div>
+		  <div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" id="password" formControlName="password" name="password" required>
+		  </div>
+		  <div class="form-group remember-me">
+			<input type="checkbox" id="rememberMe" name="rememberMe">
+			<label for="rememberMe">Remember me</label>
+		  </div>
+		  <div class="form-group">
+			<button type="submit" class="login-button">Login</button>
+		  </div>
+		  <div class="form-links">
+			<a href="#">Create Your Account</a>
+			<a href="#">forget password?</a>
+		  </div>
+		</form>
+	  </div>
+	</div>
   </div>

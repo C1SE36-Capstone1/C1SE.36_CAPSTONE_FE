@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
   discountProduct : Product[];
   newestProduct : Product[];
   itemsPerPage = 5;
-  currentIndex = 0;
+  newestProductIndex = 0;
+  discountProductIndex = 0;
 
   constructor(private productService : ProductService,
               private el: ElementRef) { }
@@ -40,14 +41,42 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  next() {
-    const lastIndex = this.newestProduct.length - this.itemsPerPage;
-    this.currentIndex = (this.currentIndex + 1) % (lastIndex + 1);
+  next(number: number) {
+    switch (number) {
+      case 1:
+        const newestLastIndex = this.newestProduct.length - this.itemsPerPage;
+        this.newestProductIndex = (this.newestProductIndex + 1) % (newestLastIndex + 1);
+        break;
+      case 2:
+        // Handle case 2 logic here
+        break;
+      case 3:
+        const discountLastIndex = this.discountProduct.length - this.itemsPerPage;
+        this.discountProductIndex = (this.discountProductIndex + 1) % (discountLastIndex + 1);
+        break;
+      default:
+        // Handle default case or do nothing
+        break;
+    }
   }
-
-  prev() {
-    const lastIndex = this.newestProduct.length - this.itemsPerPage;
-    this.currentIndex = (this.currentIndex - 1 + lastIndex + 1) % (lastIndex + 1);
+  
+  prev(number: number) {
+    switch (number) {
+      case 1:
+        const newestLastIndex = this.newestProduct.length - this.itemsPerPage;
+        this.newestProductIndex = (this.newestProductIndex - 1 + newestLastIndex + 1) % (newestLastIndex + 1);
+        break;
+      case 2:
+        // Handle case 2 logic here
+        break;
+      case 3:
+        const discountLastIndex = this.discountProduct.length - this.itemsPerPage;
+        this.discountProductIndex = (this.discountProductIndex - 1 + discountLastIndex + 1) % (discountLastIndex + 1);
+        break;
+      default:
+        // Handle default case or do nothing
+        break;
+    }
   }
 
   scrollToDiv(divNumber: number) {
