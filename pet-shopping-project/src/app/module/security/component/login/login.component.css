@@ -86,7 +86,7 @@
   background-color: #45a049;
 }
 
-/* Responsive layout for smaller screens */
+ Responsive layout for smaller screens
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
