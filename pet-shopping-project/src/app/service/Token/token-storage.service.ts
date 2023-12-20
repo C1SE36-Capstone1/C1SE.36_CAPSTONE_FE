@@ -8,9 +8,6 @@ const ROLE_KEY = 'ROLE-KEY';
   providedIn: 'root'
 })
 export class TokenStorageService {
-
-  private role?: string[];
-
   constructor() { }
 
   signOut() {
@@ -18,38 +15,50 @@ export class TokenStorageService {
     window.localStorage.clear();
   }
 
-  public saveTokenSession(token: string) :void{
-
+  // Lưu vào sessionStorage
+  public saveTokenSession(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
-  public saveUserSession(user) :void{
+  public saveUserSession(user): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public saveRoleSession(role) :void{
+  public saveRoleSession(role): void {
     window.sessionStorage.removeItem(ROLE_KEY);
     window.sessionStorage.setItem(ROLE_KEY, JSON.stringify(role));
   }
 
-  public getRole() :string[] {
-    this.role = [];
-    if(this.getToken()){
-      JSON.parse(sessionStorage.getItem(ROLE_KEY)).array.forEach(role => {
-        this.role?.push(role.name)
-      });
-    }
-    return this.role;
+  // Lưu vào localStorage
+  public saveTokenLocal(token: string): void {
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, token);
   }
 
-  public getUser()  {
-      return JSON.parse(sessionStorage.getItem(USER_KEY));
+  public saveUserLocal(user): void {
+    window.localStorage.removeItem(USER_KEY);
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
+  public saveRoleLocal(role): void {
+    window.localStorage.removeItem(ROLE_KEY);
+    window.localStorage.setItem(ROLE_KEY, JSON.stringify(role));
+  }
+
+  // Lấy dữ liệu từ cả sessionStorage và localStorage
   public getToken(): string {
-      return sessionStorage.getItem(TOKEN_KEY);
-    
+    return sessionStorage.getItem(TOKEN_KEY) || localStorage.getItem(TOKEN_KEY);
+  }
+
+  public getUser() {
+    const user = sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY);
+    return user ? JSON.parse(user) : null;
+  }  
+
+  public getRole(): string[] {
+    const roleData = sessionStorage.getItem(ROLE_KEY) || localStorage.getItem(ROLE_KEY);
+    return roleData ? JSON.parse(roleData).map(role => role.name) : [];
   }
 }

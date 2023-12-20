@@ -11,21 +11,24 @@ export class AuthGuard implements CanActivate {
 
   constructor(private router: Router,
               private tokenStorageService: TokenStorageService){}
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const token = this.tokenStorageService.getToken();
-      if (token !== null) {
+      if (token && token.trim() !== '') {
         return true;
       }
-      Swal.fire({
+
+      // Sử dụng promise của SweetAlert2 để đảm bảo chuyển hướng sau khi thông báo đóng
+      return Swal.fire({
         position: 'center',
         icon: 'info',
         title: 'Bạn phải đăng nhập để sử dụng chức năng này!',
         showConfirmButton: false,
         timer: 1500
+      }).then(() => {
+        return this.router.createUrlTree(['/login'], {queryParams: {returnUrl: state.url}});
       });
-      return this.router.createUrlTree(['/login'], {queryParams: {returnUrl: state.url}});
   }
-  
 }

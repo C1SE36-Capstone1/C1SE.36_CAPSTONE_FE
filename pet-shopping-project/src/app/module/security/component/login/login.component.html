@@ -1,25 +1,33 @@
-
-<div class="wrapper">
-    <form action="#">
-      <h2>Login</h2>
-        <div class="input-field">
-        <input type="email"  required>
-        <label>Enter your email</label>
-      </div>
-      <div class="input-field">
-        <input type="password" required>
-        <label>Enter your password</label>
-      </div>
-      <div class="forget">
-        <label for="remember">
-          <input type="checkbox" id="remember">
-          <p>Remember me</p>
-        </label>
-        <a href="#">Forgot password?</a>
-      </div>
-      <button type="submit" (click)="login()">Log In</button>
-      <div class="register">
-        <p>Don't have an account? <a href="#">Register</a></p>
-      </div>
-    </form>
+<div class="register-container">
+	<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+	  
+	  <!-- Trường nhập email -->
+	  <div class="form-group">
+		<label for="email">Email</label>
+		<input type="email" class="form-control" id="email" formControlName="email">
+		<div *ngIf="signinForm.get('email').invalid && signinForm.get('email').touched">
+		  <small class="form-text text-muted">Email không hợp lệ.</small>
+		</div>
+	  </div>
+  
+	  <!-- Trường nhập mật khẩu -->
+	  <div class="form-group">
+		<label for="password">Mật khẩu</label>
+		<input type="password" class="form-control" id="password" formControlName="password">
+		<div *ngIf="signinForm.get('password').invalid && signinForm.get('password').touched">
+		  <small class="form-text text-muted">Mật khẩu không đúng.</small>
+		</div>
+	  </div>
+  
+	  <!-- Checkbox "Ghi nhớ đăng nhập" -->
+	  <!-- <div class="form-group form-check">
+		<input type="checkbox" class="form-check-input" id="rememberMe" formControlName="rememberMe">
+		<label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+	  </div> -->
+  
+	  <!-- Nút đăng nhập -->
+	  <button type="submit" class="btn btn-primary" [disabled]="!signinForm.valid">Đăng nhập</button>
+  
+	</form>
   </div>
+  

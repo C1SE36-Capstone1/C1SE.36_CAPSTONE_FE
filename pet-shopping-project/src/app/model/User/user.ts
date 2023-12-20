@@ -5,9 +5,11 @@ export interface User {
     password?: number;
     phone?: string;
     address?: string;
+    birthdate?: Date;
     gender?: boolean;
     image?: string;
     registerDate?: Date;
     status?: boolean;
     token?: string;
+    role?: string[];
 }

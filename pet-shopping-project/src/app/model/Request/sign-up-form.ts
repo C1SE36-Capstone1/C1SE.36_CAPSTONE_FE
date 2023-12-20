@@ -3,11 +3,5 @@ export interface SignUpForm {
     email?: string;
     password?: string;
     phone?: string;
-    address?: string;
-    gender?: boolean;
-    status?: boolean;
-    image?: string;
-    registerDate?: Date;
-    code?: string;
     role?: string[];
 }
