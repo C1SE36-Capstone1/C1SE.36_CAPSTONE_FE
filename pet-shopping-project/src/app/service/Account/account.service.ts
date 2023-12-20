@@ -14,5 +14,7 @@ export class AccountService {
   register(signUpForm: SignUpForm): Observable<any> {
     return this.http.post(`${this.apiBaseUrl}/signup`, signUpForm);
   }
-
+  getAllAcount() : Observable<User[]>{
+    return this.http.get<User[]>(this._API_URL)
+  }
 }

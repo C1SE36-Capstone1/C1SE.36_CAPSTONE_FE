@@ -1,16 +1,57 @@
 <div class="body-container">
     <img src="assets/image/home.jpg" alt="Website Image" class="website-image">
     <div class="horizontal-boxes">
-        <div class="box">
+        <div class="box" (click)="scrollToDiv(1)">
             <h2>Sản phẩm mới</h2>
   
         </div>
-        <div class="box">
+        <div class="box" (click)="scrollToDiv(2)">
             <h2>Sản phẩm nổi bật</h2>
   
         </div>
-        <div class="box">
+        <div class="box"(click)="scrollToDiv(3)">
             <h2>Khuyến mãi</h2>
           </div>
+    </div>
+    <div class="newest-product" >
+        <h1>Sản phẩm mới nhất <i class="fas fa-paw" style="transform: rotate(45deg); color: #FF7A00;"></i></h1>
+        <!-- Sản phẩm  -->
+        <div class="product-list" >
+            <div class="product hover-effect" *ngFor="let item of newestProduct.slice(newestProductIndex, newestProductIndex + itemsPerPage)">
+                <div class="image">
+                    <img [src] = "item.image">
+                    <!-- <div class="action-btn">
+                        <button class="add-button"><i class="fa fa-bag-shopping "></i></button>
+                        <button class="add-button" [routerLink]="['']"><i class="fa fa-heart "></i></button>
+                    </div> -->
+                    <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
+                </div>
+                <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>
+                <p>{{item.price | currency:'VND'}}</p>
+            </div>
+        </div>
+        <button style="left: 0;"><i class="fa fa-arrow-left" (click)="prev(1)"></i></button>
+        <button style="right: 0;"><i class="fa fa-arrow-right" (click)="next(1)"></i></button>
+    </div>
+    <div class="sales-product" >
+        <h1>Khuyến mãi <i class="fas fa-paw" style="transform: rotate(45deg); color: #FF7A00;"></i></h1>
+        <!-- Sản phẩm  -->
+        <div class="product-list" >
+            <div class="product hover-effect" *ngFor="let item of discountProduct.slice(discountProductIndex, discountProductIndex + itemsPerPage)">
+                <div class="image">
+                    <span>{{item.discount}} <i class="fa-solid fa-percent"></i></span>
+                    <img [src] = "item.image">
+                    <!-- <div class="action-btn">
+                        <button class="add-button"><i class="fa fa-bag-shopping "></i></button>
+                        <button class="add-button" [routerLink]="['']"><i class="fa fa-heart "></i></button>
+                    </div> -->
+                    <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
+                </div>
+                <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>
+                <p>{{item.price | currency:'VND'}}</p>
+            </div>
+        </div>
+        <button style="left: 0;"><i class="fa fa-arrow-left" (click)="prev(3)"></i></button>
+        <button style="right: 0;"><i class="fa fa-arrow-right" (click)="next(3)"></i></button>
     </div>
   </div>

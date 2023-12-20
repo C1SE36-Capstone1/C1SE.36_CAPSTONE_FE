@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/model/Product/product';
 import { PetService } from 'src/app/service/Pet/pet.service';
 import { ProductService } from 'src/app/service/Product/product.service';
 
@@ -11,19 +11,31 @@ import { ProductService } from 'src/app/service/Product/product.service';
 })
 export class DetailPageComponent implements OnInit {
 
+  zoomScale = 1.5;
   type: string | null = null;
   id: number | null = null;
   details: any = {};
   productId: number;
 
+  ratingForm: FormGroup;
+  stars: number[] = [];
+  currentRating: number = 0;
+
   selectedTab: string = 'tab1';
 
   constructor(private route: ActivatedRoute, 
               private petService : PetService,
-              private productService: ProductService) { }
+              private productService: ProductService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    
+    this.ratingForm = this.fb.group({
+      rating: [0]
+    });
+
+    // Số lượng ngôi sao tối đa
+    const maxRating = 5;
+    this.stars = Array(maxRating).fill(0).map((_, i) => i + 1);
     this.getProductDetail();
   }
 
@@ -64,4 +76,10 @@ export class DetailPageComponent implements OnInit {
   changeTab(tab: string) {
     this.selectedTab = tab;
   }
+
+  rate(star: number): void {
+    this.ratingForm.patchValue({ rating: star });
+    this.currentRating = star;
+  }
+
 }

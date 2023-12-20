@@ -22,9 +22,9 @@ export class UserComponent implements OnInit {
   }
 
   loadAllAccount(): void {
-    // this.accountService.getAllAccount().subscribe((data) => {
-    //   this.accountList = data;
-    // });
+    this.accountService.getAllAcount().subscribe((data) => {
+      this.accountList = data;
+    });
   }
 
 }

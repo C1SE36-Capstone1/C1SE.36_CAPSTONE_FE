@@ -34,6 +34,8 @@ export class ShopComponent implements OnInit {
   sortType: string ='';
   sortOrder: string = '';
 
+
+
   constructor( private router: Router,
                private activatedRoute : ActivatedRoute,
                private category : CategoryService,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
@@ -9,19 +9,14 @@ import { HomeComponent } from './component/home/home.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { CustomerComponent } from './component/customer/customer.component';
 import { SecurityModule } from '../security/security.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreedComponent } from './component/breed/breed.component';
-
 import { CartComponent } from './component/cart/cart.component';
-
 import { DetailPageComponent } from './component/detail-page/detail-page.component';
 import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { HealthComponent } from './component/health/health.component';
 import { UserInfoComponent } from './component/user-info/user-info.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-
 
 
 @NgModule({
@@ -36,22 +31,21 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CartComponent,
     DetailPageComponent,
     WishlistComponent,
-
     HealthComponent,
     UserInfoComponent,
-
-
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     SecurityModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSnackBarModule,
   ],
   exports: [
-    HeaderComponent,
-    FooterComponent
   ],
 })
 export class HomeModule { }

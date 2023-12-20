@@ -9,30 +9,29 @@
         </div>
         <div class="right">
             <h1 class="product-title">{{details.name}}</h1>
-            <p class="price">
-                <span class="price-currncy">đ</span>
-                {{details.price}}
-            </p>
-            <div class="product-rating">
-                <div class="star-rating"></div>
-                <a href="#">(
-                    <span class="count">5</span>
-                    Reviews )
-                </a>
-            </div>
-            <div class="buy-product-container">
-                <div class="input-quantity">
-                    Còn {{details.quantity}} hàng
-                </div>
-                <div class="button-action">
-                    <button type="submit" class="add-to-cart">Thêm vào giỏ</button>
-                    <button type="submit" class="buy-product">Mua ngay</button>
-                </div>
-            </div>
-            <div class="catergory-container">
-                Danh mục:
-                <a [routerLink]="['/shop', details.category?.categoryName]">{{details.category?.categoryName}}</a>
-            </div>
+            <div class="rating"></div>
+            <table class="table-container">
+                <colgroup>
+                    <col style="width: 30%;">
+                    <col style="width: 70%;">
+                </colgroup>
+                <tr>
+                    <th>Giá</th>
+                    <th style="color: #FF7B36; font-size: 30px;">{{details.price | currency:'VND'}}</th>
+                </tr>
+                <tr>
+                    <th>Số lượng</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th><button type="submit" class="btn-action">Mua ngay</button></th>
+                    <th><button type="submit" class="btn-action">Thêm vào giỏ</button></th>
+                </tr>
+                <tr>
+                    <th>Danh mục</th>
+                    <th><a style="text-decoration: none;" [routerLink]="['/shop', details.category?.categoryName]">{{details.category?.categoryName}}</a></th>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -47,12 +46,22 @@
         </ul>
         <div class="tab-change" [ngSwitch]="selectedTab">
             <div class="description-tab-panel" *ngSwitchCase="'tab1'">
-                <h5>{{details.description}}</h5>
+                <h3>{{details.description}}</h3>
             </div>
             <div class="description-tab-panel" *ngSwitchCase="'tab2'">
-                <h4>5 sao</h4>
-                <div class="pet-info">
+                <h3>5 sao</h3>
+                <!-- <div class="star-rating">
+                    <span *ngFor="let item of stars; let i = index" (click)="onStarClick(i + 1)">
+                      <i class="fa-star" [class.fa-solid]="i < selectedRating" [class.fa-regular]="i >= selectedRating"></i>
+                    </span>
                 </div>
+                <p>Đánh giá: {{ selectedRating }} sao</p> -->
+                <div class="rating" [formGroup]="ratingForm">
+                    <mat-icon *ngFor="let star of stars" (click)="rate(star)">
+                      <i [class]="star <= currentRating ? 'fa-solid fa-star' : 'fa-regular fa-star'"></i>
+                    </mat-icon>
+                </div>
+                <p>Đánh giá của bạn: {{ currentRating }} <i class="fa-solid fa-star" *ngIf="currentRating > 0"></i></p>
             </div>
         </div>
     </div>
@@ -63,25 +72,38 @@
     <div class="top">
         <div class="left">
             <div class="img-product">
-                <div class="img-viewpoint" >
+                <div class="img-viewpoint">
                     <img [src]="details.images">
                 </div>
             </div>
         </div>
         <div class="right">
-            <h1 class="product-title">Mã: {{details.code}}</h1>
-            <h1 class="product-title">Tên: {{details.name}}</h1>
-            <p class="price">
-                <span>Giá: </span>
-                <span class="price-currncy"><i class="fa-solid fa-dong-sign"></i></span>
-                {{details.price}}
-            </p>
-            <p>Tuổi: {{getFormattedPetAge(details.petAge)}}</p>
-            <p>Giới tính: {{ details.gender === 'female' ? 'Cái' : 'Đực' }}</p>
-            <div class="catergory-container">
-                Giống:
-                <a [routerLink]="['/breed', details.breed?.breedName]" >{{details.breed?.breedName}}</a>
-            </div>
+            <table class="table-container">
+                <colgroup>
+                    <col style="width: 30%;">
+                    <col style="width: 70%;">
+                </colgroup>
+                <tr>
+                    <th style="font-size: 30px; font-weight: 900;">{{details.name}}</th>
+                    <th style="font-size: 30px; font-weight: 900;">{{details.code}}</th>
+                </tr>
+                <tr>
+                    <th>Giá</th>
+                    <th style="color: #FF7B36; font-size: 30px;">{{details.price | currency:'VND'}}</th>
+                </tr>
+                <tr>
+                    <th>Tuổi</th>
+                    <th>{{getFormattedPetAge(details.petAge)}}</th>
+                </tr>
+                <tr>
+                    <th>Giới tính</th>
+                    <th>{{ details.gender === 'female' ? 'Cái' : 'Đực' }}</th>
+                </tr>
+                <tr>
+                    <th>Giống</th>
+                    <th><a  style="text-decoration: none;" [routerLink]="['/breed', details.breed?.breedName]" >{{details.breed?.breedName}}</a></th>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="bottom">
@@ -95,7 +117,7 @@
         </ul>
         <div class="tab-change" [ngSwitch]="selectedTab">
             <div class="description-tab-panel" *ngSwitchCase="'tab1'">
-                <h5>{{details.description}}</h5>
+                <h3>{{details.description}}</h3>
                 <div class="pet-info">
                     <table class="info-table">
                         <colgroup>
@@ -126,7 +148,7 @@
                 </div>
             </div>
             <div class="description-tab-panel" *ngSwitchCase="'tab2'">
-                <h4>5 sao</h4>
+                <h3>5 sao</h3>
                 <div class="pet-info">
                 </div>
             </div>

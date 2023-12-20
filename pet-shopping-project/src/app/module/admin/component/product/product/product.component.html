@@ -22,18 +22,8 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-container">
+        <!-- <div class="table-container">
             <table style="width: 100%; ">
-                <colgroup>
-                    <col style="width: 5%;" >
-                    <col style="width: 7%">
-                    <col style="width: 20%;">
-                    <col style="width: 30%;">
-                    <col style="width: 8%;">
-                    <col style="width: 10%;">
-                    <col style="width: 10%;">
-                    <col style="width: 10%;">
-                </colgroup>
                 <thead class="table-head">
                     <tr>
                         <th class="table-cell" style="text-align: center;">ID</th>
@@ -54,13 +44,12 @@
                         </td>
                         <td class="table-cell" style="text-align: left; overflow: hidden; text-overflow: ellipsis; max-width: 100%">
                             <span style="text-overflow: ellipsis; overflow: hidden;">{{item.name}}</span>
-                            
                         </td>
                         <td class="table-cell" style="text-align: left;">{{item.description}}</td>
                         <td class="table-cell" style="text-align: center;">{{item.price}}</td>
                         <td class="table-cell" style="text-align: center;">{{item.quantity}}</td>
                         <td class="table-cell" style="text-align: center;">{{item.category?.categoryName}}</td>
-                        <!-- <td class="table-cell" style="text-align: center;">{{item.status ? 'Còn hàng' : 'Hết hàng'}}</td> -->
+                        
                         <td class="table-cell" style="text-align: center; gap: 10px">
                             <i class="fa fa-pencil-square fa-lg"></i>
                             <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.productId)"></i>
@@ -68,7 +57,51 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
+        <div class="table-container">
+            <table>
+                <colgroup>
+                    <col style="width: 10%">
+                    <col style="width: 17%;">
+                    <col style="width: 35%;">
+                    <col style="width: 8%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Hình ảnh</th>
+                        <th style="text-align: center;">Tên</th>
+                        <th style="text-align: center;">Mô tả</th>
+                        <th style="text-align: center;">Giá</th>
+                        <th style="text-align: center;">Số lượng</th>
+                        <th style="text-align: center;">Danh mục</th>
+                        <th style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of displayedProducts">
+                        <td style="text-align: center;">
+                            <img [src]="item.image" style="max-height: 80px; max-width: 80px; width: auto; height: auto;">
+                        </td>
+                        <td style="text-align: left;">
+                            <span [ngClass]="'truncate-text'">{{item.name}}</span>
+                        </td>
+                        <td style="text-align: left;" [ngClass]="'truncate-text'">{{item.description}}</td>
+                        <td style="text-align: center;">{{item.price}}</td>
+                        <td style="text-align: center;">{{item.quantity}}</td>
+                        <td style="text-align: center;">{{item.category?.categoryName}}</td>
+                        
+                        <td style="align-items: center; justify-content: center; gap: 10px">
+                            <i class="fa fa-pencil-square fa-lg"></i>
+                            <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.productId)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+              
+            </table>
+          </div>
     </div>
     <div *ngIf="totalProducts > productsPerPage">
         <ul class="pagination">
