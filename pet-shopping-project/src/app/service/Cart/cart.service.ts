@@ -1,38 +1,47 @@
+// cart.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Product } from 'src/app/model/Product/product';
 import { CartDetail } from 'src/app/model/Cart/cart-detail';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  private _CART_URL = 'http://localhost:8080/api/cartDetail';
+  private _API_URL = 'http://localhost:8080/api/cartDetail/';
 
+  constructor(private http: HttpClient){}
 
-  constructor(private http: HttpClient) { }
-
-  addToCart( cartDetail : CartDetail): Observable<CartDetail> {
-    return this.http.post<CartDetail>(this._CART_URL, cartDetail);
+  getCartDetails(cartId: number): Observable<CartDetail[]> {
+    const _API_URL = `${this._API_URL}cart/${cartId}`;
+    return this.http.get<CartDetail[]>(_API_URL);
   }
 
-  getCartItems(): Observable<any[]> {
-    return this.http.get<any[]>(this._CART_URL);
+
+  addToCart(detail: CartDetail): Observable<CartDetail> {
+    if (!detail.cart) {
+      detail.cart = {};
+    }
+    detail.cart.cartId = 1;
+    return this.http.post<CartDetail>(this._API_URL, detail).pipe(
+      tap((response) => console.log('Add to cart response:', response))
+    );
   }
 
-  removeFromCart(cartItemId: number): Observable<any> {
-    const url = `${this._CART_URL}/${cartItemId}`;
-    return this.http.delete<any>(url);
+
+  updateCartDetail(detail: CartDetail): Observable<CartDetail> {
+    if (!detail.cart) {
+      detail.cart = {};
+    }
+    detail.cart.cartId = 1;
+    return this.http.put<CartDetail>(this._API_URL, detail);
   }
 
-  updateCartItemQuantity(cartItemId: number, quantity: number): Observable<any> {
-    const url = `${this._CART_URL}/${cartItemId}`;
-    const body = { quantity };
-    return this.http.put<any>(url, body);
-  }
-
-  checkout(): Observable<any> {
-    return this.http.post<any>(`${this._CART_URL}/checkout`, {});
+  deleteCartDetail(id: number): Observable<void> {
+    const _API_URL = `${this._API_URL}${id}`;
+    return this.http.delete<void>(_API_URL);
   }
 
 }

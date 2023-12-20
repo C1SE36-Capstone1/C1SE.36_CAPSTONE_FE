@@ -19,6 +19,7 @@ import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { HealthComponent } from './component/health/health.component';
 import { UserInfoComponent } from './component/user-info/user-info.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -38,7 +39,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
     HealthComponent,
     UserInfoComponent,
-    
+
 
   ],
   imports: [
@@ -46,6 +47,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HomeRoutingModule,
     SecurityModule,
     FormsModule,
+    MatSnackBarModule,
   ],
   exports: [
     HeaderComponent,

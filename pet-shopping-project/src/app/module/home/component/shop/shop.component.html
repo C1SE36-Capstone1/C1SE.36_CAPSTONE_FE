@@ -2,8 +2,8 @@
     <div class="slideshow-container">
         <img *ngFor="let image of images; let i = index" [class.active]="i === currentImageIndex" [src]="image" alt="Slide">
     </div>
-    
-    
+
+
     <div class="indicators">
         <span *ngFor="let image of images; let i = index" [class.active]="i === currentImageIndex"
             (click)="selectImage(i)"></span>
@@ -19,22 +19,22 @@
     <!-- <div class="breadcrumb"></div> -->
     <div class="product-container" style="display: flex;">
         <div class="filter">
-            <div class="product-categories"> 
+            <div class="product-categories">
                 <h2>Product Categories</h2>
                 <ul id="category-list" >
                     <li>
-                        <a [routerLink]="['/shop','All']" 
+                        <a [routerLink]="['/shop','All']"
                             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick('0')">
-                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <i class="fa fa-paw fa-rotate-90"></i>
                             <span class="text">Tất cả</span>
                         </a>
                     </li>
                     <li *ngFor="let item of categoryList?.slice(0,7)">
-                        <a [routerLink]="['/shop', item.categoryName]" 
+                        <a [routerLink]="['/shop', item.categoryName]"
                             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.categoryName)">
-                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <i class="fa fa-paw fa-rotate-90"></i>
                             <span class="text">{{item.categoryName}}</span>
                         </a>
                     </li>
@@ -42,10 +42,10 @@
                 <a *ngIf="categoryList?.length > 7 && show" (click)="showAllCategories()">Hiện thêm</a>
                 <ul id="category-list" *ngIf="showAll">
                     <li *ngFor="let item of categoryList?.slice(7)">
-                        <a [routerLink]="['/shop', item.categoryName]" 
+                        <a [routerLink]="['/shop', item.categoryName]"
                             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.categoryName)">
-                            <i class="fa fa-paw fa-rotate-90"></i> 
+                            <i class="fa fa-paw fa-rotate-90"></i>
                             <span class="text">{{item.categoryName}}</span>
                         </a>
                     </li>
@@ -69,11 +69,11 @@
                     <div class="image">
                         <img [src] = "item.image">
                         <div class="action-btn">
-                            <button class="add-button"(click)="addCartDetail()"><i class="fa fa-bag-shopping "></i></button>
+                            <button class="add-button"(click)="addToCart(item)"><i class="fa fa-bag-shopping "></i></button>
                             <button class="add-button" [routerLink]="['']"><i class="fa fa-heart "></i></button>
                         </div>
                         <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
-                        
+
                     </div>
                     <p style="font-size: 14px;">{{item.price}}</p>
                     <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>

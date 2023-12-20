@@ -1,137 +1,80 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-  padding: 0 10px;
-}
-
-body::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background:  #000;
-  background-position: center;
-  background-size: cover;
-}
-
-.wrapper {
-  width: 400px;
+/* Bố cục container chính */
+.register-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #ffffff;
   border-radius: 8px;
-  padding: 30px;
-  text-align: center;
-  border: 1px solid black;
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
+  
 }
 
+/* Căn chỉnh form và các thành phần bên trong */
 form {
-  display: flex;
-  flex-direction: column;
+  margin-top: 20px;
 }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color:black;
+.form-group {
+  margin-bottom: 15px;
 }
 
-.input-field {
-  position: relative;
-  border-bottom: 2px solid black;
-  margin: 15px 0;
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.input-field label {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  color:black;
-  font-size: 16px;
-  pointer-events: none;
-  transition: 0.15s ease;
-}
-
-.input-field input {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   width: 100%;
-  height: 40px;
-  background: transparent;
-  border: none;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #0056b3;
   outline: none;
-  font-size: 16px;
-  color: black;
 }
 
-.input-field input:focus~label,
-.input-field input:valid~label {
-  font-size: 0.8rem;
-  top: 10px;
-  transform: translateY(-120%);
-}
-
-.forget {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px 0 35px 0;
-  color:black;
-}
-
-#remember {
-  accent-color: black;
-}
-
-.forget label {
-  display: flex;
-  align-items: center;
-}
-
-.forget label p {
-  margin-left: 8px;
-}
-
-.wrapper a {
-  color: black;
-  text-decoration: none;
-}
-
-.wrapper a:hover {
-  text-decoration: underline;
-}
-
-button {
-  background: black;
-  color: #000;
-  font-weight: 600;
+/* Nút đăng ký */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
   border: none;
-  padding: 12px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 3px;
-  font-size: 16px;
-  border: 2px solid transparent;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  color: black;
-  border-color: black;
-  background: rgba(255, 255, 255, 0.15);
+button[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
-.register {
-  text-align: center;
-  margin-top: 30px;
-  color: black;
+/* Thông báo lỗi */
+.form-text {
+  color: #ff0000;
+  font-size: 0.8em;
+}
+
+
+.form-check {
+  margin-bottom: 15px;
+}
+
+.form-check-input {
+  margin-top: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.form-check-label {
+  vertical-align: middle;
 }

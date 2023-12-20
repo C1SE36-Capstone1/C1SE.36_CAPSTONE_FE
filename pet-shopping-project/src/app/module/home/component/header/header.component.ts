@@ -9,6 +9,7 @@ import { TokenStorageService } from 'src/app/service/Token/token-storage.service
 })
 export class HeaderComponent implements OnInit {
 
+  currentUser: any;
   isLoggedIn : boolean;
   username: string;
   show = false;
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     this.username = this.tokenStorageService.getUser();
-    console.log('user: ' +this.username)
+    this.currentUser = this.tokenStorageService.getUser();
+    console.log('Email user: ' +this.currentUser?.email)
   }
 
   openpopup(){
@@ -38,8 +40,13 @@ export class HeaderComponent implements OnInit {
 
   navigateToUserInfo() {
     if (this.isLoggedIn) {
+      console.log('Token header 1 is: '+this.tokenStorageService.getToken());
+      console.log('Email user: '+ this.currentUser?.email);
+      
       this.router.navigate(['/user-info']);
-    } else {
+    } else if(this.tokenStorageService.getToken()==null) {
+      console.log('Token header 2 is: '+this.tokenStorageService.getToken());
+      
       this.router.navigate(['/login']);
     }
   }
