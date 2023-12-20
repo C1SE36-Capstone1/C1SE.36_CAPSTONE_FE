@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../../service/Auth/auth.service';
-import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
+import { FormGroup, Validators,FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SignInForm } from 'src/app/model/Request/sign-in-form';
+import { AccountService } from 'src/app/service/Account/account.service';
+import { AuthService } from 'src/app/service/Auth/auth.service';
+import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
 
 
 @Component({
@@ -13,33 +13,37 @@ import { SignInForm } from 'src/app/model/Request/sign-in-form';
 })
 export class LoginComponent implements OnInit {
 
-  formLogin: FormGroup;
-  formSignUp: FormGroup;
-  email = '';
-  returnUrl: string;
-  message = '';
-  showPassword = false;
+  signinForm: FormGroup;
 
-
-  constructor(private authService : AuthService,
-              private tokenStorageService : TokenStorageService,
-              private router : Router,
-              private activatedRoute : ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private tokenStorageService :TokenStorageService) { }
 
   ngOnInit(): void {
-    this.formLogin = new FormGroup({
-      // email: new FormControl('', [Validators.required, Validators.pattern("^\\w{4,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
-      // password: new FormControl('', [ Validators.required, Validators.maxLength(32)]),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      remember_me: new FormControl('')
-    })
-
-
+    this.signinForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
   }
 
-  login(){
-    
+  onSubmit() {
+    if (this.signinForm.valid) {
+      this.authService.login(this.signinForm.value).subscribe(
+        data => {
+          // Lưu token và thông tin người dùng
+          console.log('Token is: '+this.tokenStorageService.getToken());
+          
+          // Chuyển hướng người dùng sau khi đăng nhập thành công
+          this.router.navigate(['/home']);
+        },
+        error => {
+          console.error('Lỗi đăng nhập', error);
+          // Xử lý lỗi đăng nhập tại đây
+          
+        }
+      );
+    }
   }
 }
 

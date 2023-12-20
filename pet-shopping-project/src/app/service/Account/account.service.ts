@@ -1,26 +1,19 @@
-import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/model/User/user';
-import { TokenStorageService } from '../Token/token-storage.service';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { SignUpForm } from 'src/app/model/Request/sign-up-form';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable({ providedIn: 'root' })
 export class AccountService {
+  private apiBaseUrl = 'http://localhost:8080/api/auth/user';
 
-  private _API_URL = 'http://localhost:8080/api/auth';
+  constructor(private http: HttpClient) { }
 
-  constructor(private http : HttpClient,
-              private tokenStorageService: TokenStorageService) { }
-
-  addUser(signUpForm: SignUpForm) : Observable<SignUpForm>{
-    const token = this.tokenStorageService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<SignUpForm> (this._API_URL +'/user/signup', signUpForm, {headers});
+  register(signUpForm: SignUpForm): Observable<any> {
+    return this.http.post(`${this.apiBaseUrl}/signup`, signUpForm);
   }
-
   getAllAcount() : Observable<User[]>{
     return this.http.get<User[]>(this._API_URL)
   }

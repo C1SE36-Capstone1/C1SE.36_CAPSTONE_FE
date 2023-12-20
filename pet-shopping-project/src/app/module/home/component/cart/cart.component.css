@@ -39,6 +39,7 @@
 .product-price {
   font-size: 16px;
   margin-bottom: 5px;
+
 }
 
 .quantity-control {
@@ -56,11 +57,36 @@
 
 .remove-button {
   background-color: #ff0000;
+
   color: #fff;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
 }
+
+/* .checkout-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Responsive styles */
+/* @media (max-width: 768px) {
+  .cart-container {
+    width: 100%;
+  }  */
+/* =======
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+ */
+}
+/* CSS để làm cho phần "Tổng tiền giỏ hàng" nổi bật hơn */
+
 
 .checkout-button {
   background-color: #4caf50;
@@ -84,6 +110,23 @@
   font-size: 18px;
   font-weight: bold;
   color: #333; /* Màu chữ của phần "Tổng tiền giỏ hàng" */
+
+}
+
+.checkout-button {
+  background-color: #4caf50; /* Màu nền của nút thanh toán */
+  color: white; /* Màu chữ của nút thanh toán */
+  padding: 10px 20px; /* Kích thước nút thanh toán */
+  font-size: 16px; /* Kích thước chữ nút thanh toán */
+  border: none; /* Loại bỏ đường viền của nút thanh toán */
+  border-radius: 8px; /* Độ cong của các góc của nút thanh toán */
+  cursor: pointer; /* Hình con trỏ khi di chuột qua nút thanh toán */
+  margin-top: 10px; /* Khoảng cách giữa nút thanh toán và phần "Tổng tiền giỏ hàng" */
+}
+
+/* Hiệu ứng hover khi di chuột qua nút thanh toán */
+.checkout-button:hover {
+  background-color: #45a049; /* Màu nền thay đổi khi di chuột qua nút thanh toán */
 }
 
 .checkout-button {
