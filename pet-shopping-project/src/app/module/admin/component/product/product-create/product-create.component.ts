@@ -66,13 +66,7 @@ export class ProductCreateComponent implements OnInit {
     this.addProduct.reset();
   }
 
-  submitProduct() {
-    // const currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-
-    // this.addProduct.patchValue({
-    //   enterDate: currentDate,
-    // });
-    
+  submitProduct() {    
     console.log(this.addProduct.value)
     this.productService.addProduct(this.addProduct.value).subscribe(
       () => {

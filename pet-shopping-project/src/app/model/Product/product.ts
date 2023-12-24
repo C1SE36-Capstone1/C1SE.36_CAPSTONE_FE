@@ -2,6 +2,7 @@ import { Category } from './category';
 export interface Product {
     productId?: number;
     name?: string;
+    code?: string;
     quantity?: number;
     price?: number; 
     discount?: number;

@@ -88,13 +88,13 @@
                         <td style="text-align: center;">
                             <span [ngClass]="'truncate-text'">{{item.code}}</span>
                         </td>
-                        <td style="text-align: left;" [ngClass]="'truncate-text'">{{item.name}}</td>
+                        <td style="text-align: left;" [ngClass]="'truncate-text'" (click)="openProductDetailModal(item)">{{item.name}}</td>
                         <td style="text-align: center;">{{item.price}}</td>
                         <td style="text-align: center;">{{item.quantity}}</td>
                         <td style="text-align: center;">{{item.category?.categoryName}}</td>
                         
                         <td style="align-items: center; justify-content: center; gap: 10px">
-                            <i class="fa fa-pencil-square fa-lg"></i>
+                            <i class="fa fa-pencil-square fa-lg" (click)="openProductEditModal(item)"></i>
                             <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.productId)"></i>
                         </td>
                     </tr>

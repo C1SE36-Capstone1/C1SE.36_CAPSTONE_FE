@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h4 class="modal-title">Chỉnh Sửa {{ product.name }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (submit)="saveChanges()">
+        <div class="input-field">
+            <input type="file" accept="image/*,.jpg,.jpeg,.png,.webp" />
+            <img  [src]="editedProduct.image">
+        </div>
+
+        <div class="input-field">
+            <label for="productName"><strong>Tên Sản Phẩm</strong></label>
+            <input type="text" id="productName" name="productName" [(ngModel)]="editedProduct.name" required>
+        </div>
+        
+        <div class="input-field">
+            <label for="productDescription">Mô Tả</label>
+            <textarea id="productDescription" name="productDescription" [(ngModel)]="editedProduct.description"></textarea>
+        </div>
+        <div class="input-field">
+            <label for="productPrice">Giá</label>
+            <input type="number" id="productPrice" name="productPrice" [(ngModel)]="editedProduct.price" required>
+            <label for="productQuantity">Số Lượng</label>
+            <input type="number" id="productQuantity" name="productQuantity" [(ngModel)]="editedProduct.quantity" required>
+            <label for="productDiscount">Giảm giá</label>
+            <input type="number" id="productDiscount" name="productDiscount" [(ngModel)]="editedProduct.discount" required>
+        </div>
+        
+        <div class="input-field">
+            
+        </div>
+        
+
+        <button type="submit">Lưu Thay Đổi</button>
+    </form>
+  </div>

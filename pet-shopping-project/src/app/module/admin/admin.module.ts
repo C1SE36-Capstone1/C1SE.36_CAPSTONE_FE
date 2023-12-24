@@ -14,6 +14,8 @@ import { BreedComponent } from './component/breed/breed.component';
 import { ProductCreateComponent } from './component/product/product-create/product-create.component';
 import { PetComponent } from './component/pet-manage/pet/pet.component';
 import { PetCreateComponent } from './component/pet-manage/pet-create/pet-create.component';
+import { ProductDetailComponent } from './component/product/product-detail/product-detail.component';
+import { ProductEditComponent } from './component/product/product-edit/product-edit.component';
 
 
 
@@ -28,7 +30,7 @@ import { PetCreateComponent } from './component/pet-manage/pet-create/pet-create
     UserComponent, 
     BreedComponent, 
     ProductCreateComponent, 
-    PetComponent, PetCreateComponent,
+    PetComponent, PetCreateComponent, ProductDetailComponent, ProductEditComponent,
   ],
   imports: [
     CommonModule,
