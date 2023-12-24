@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SignUpForm } from 'src/app/model/Request/sign-up-form';
+import { User } from 'src/app/model/User/user';
 
 
 @Injectable({ providedIn: 'root' })

@@ -9,7 +9,7 @@
                         <input type="text" name="value" [(ngModel)]="searchTerm" (keyup.enter)="onEnter()">
                     </form>
                 </div>
-                <button  class="add" (click)="toggleForm()">
+                <button  class="add" (click)="openAddForm()">
                     <span>Add Breed</span>
                 </button>
             </div>
@@ -37,7 +37,7 @@
                         <td class="table-cell" style="text-align: center;">{{item.breedId}}</td>
                         <td class="table-cell" style="text-align: left;">{{item.breedName}}</td>
                         <td class="table-cell" style="text-align: center; gap: 10px">
-                            <i class="fa fa-pencil-square fa-lg"></i>
+                            <i class="fa fa-pencil-square fa-lg" (click)="openEditForm(item.breedId)"></i>
                             <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.breedId)"></i>
                         </td>
                     </tr>
@@ -55,16 +55,16 @@
 </div>
 <div class="action-form" *ngIf="show">
     <div class="close" (click)="closepopup()">
-        <i class="fa-solid fa-xmark"></i>
+      <i class="fa-solid fa-xmark"></i>
     </div>
     <div class="form">
-        <h2>Add New Breed</h2>
-        <form (submit)="addBreed()">
-          <label for="categoryName">Breed Name</label>
-          <input type="text" name="categoryName" [(ngModel)]="newBreed.breedName" required>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      <h2>{{ isEditMode ? 'Edit Breed' : 'Add New Breed' }}</h2>
+      <form (submit)="handleSubmit()">
+        <label for="breedName">Breed Name</label>
+        <input type="text" name="breedName" [(ngModel)]="newBreed.breedName" required>
+        <button type="submit">{{ isEditMode ? 'Save' : 'Submit' }}</button>
+      </form>
+    </div>
 </div>
 <div class="action-form" *ngIf="showDeletePopup">
     <div class="close" (click)="closeDeletePopup()">

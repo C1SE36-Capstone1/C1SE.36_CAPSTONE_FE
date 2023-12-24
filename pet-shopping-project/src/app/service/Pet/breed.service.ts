@@ -24,6 +24,10 @@ export class BreedService {
     return this.http.post<Breed>(this._API_URL, breed);
   } 
 
+  updateBreed(id: number, breed: Breed): Observable<Breed> {
+    return this.http.put<Breed>(this._API_URL + '/' + id, breed);
+  }
+
   deleteAtBreedId(id : number): Observable<Breed>{
     return this.http.delete<Breed>(this._API_URL + '/' + id);
   }

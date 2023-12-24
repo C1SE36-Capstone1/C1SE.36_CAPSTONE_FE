@@ -52,10 +52,13 @@ export class TokenStorageService {
     return sessionStorage.getItem(TOKEN_KEY) || localStorage.getItem(TOKEN_KEY);
   }
 
-  public getUser() {
-    const user = sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY);
-    return user ? JSON.parse(user) : null;
-  }  
+  getUser() {
+    if (localStorage.getItem(USER_KEY) !== null) {
+      return JSON.parse(localStorage.getItem(USER_KEY));
+    } else {
+      return JSON.parse(sessionStorage.getItem(USER_KEY));
+    }
+  }
 
   public getRole(): string[] {
     const roleData = sessionStorage.getItem(ROLE_KEY) || localStorage.getItem(ROLE_KEY);

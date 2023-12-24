@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.signinForm.value).subscribe(
         data => {
           // Lưu token và thông tin người dùng
-          console.log('Token is: '+this.tokenStorageService.getToken());
-          
           // Chuyển hướng người dùng sau khi đăng nhập thành công
           this.router.navigate(['/home']);
         },

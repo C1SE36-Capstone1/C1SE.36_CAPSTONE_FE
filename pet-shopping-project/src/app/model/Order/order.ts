@@ -7,6 +7,5 @@ export interface Order {
     address?: string;
     phone?: string;
     status?: boolean;
-
     user?: User;
 }

@@ -72,8 +72,8 @@
                 <thead>
                     <tr>
                         <th style="text-align: center;">Hình ảnh</th>
-                        <th style="text-align: center;">Tên</th>
-                        <th style="text-align: center;">Mô tả</th>
+                        <th style="text-align: center;">Mã</th>
+                        <th style="text-align: left;">Tên</th>
                         <th style="text-align: center;">Giá</th>
                         <th style="text-align: center;">Số lượng</th>
                         <th style="text-align: center;">Danh mục</th>
@@ -85,10 +85,10 @@
                         <td style="text-align: center;">
                             <img [src]="item.image" style="max-height: 80px; max-width: 80px; width: auto; height: auto;">
                         </td>
-                        <td style="text-align: left;">
-                            <span [ngClass]="'truncate-text'">{{item.name}}</span>
+                        <td style="text-align: center;">
+                            <span [ngClass]="'truncate-text'">{{item.code}}</span>
                         </td>
-                        <td style="text-align: left;" [ngClass]="'truncate-text'">{{item.description}}</td>
+                        <td style="text-align: left;" [ngClass]="'truncate-text'">{{item.name}}</td>
                         <td style="text-align: center;">{{item.price}}</td>
                         <td style="text-align: center;">{{item.quantity}}</td>
                         <td style="text-align: center;">{{item.category?.categoryName}}</td>
@@ -116,7 +116,7 @@
         <i class="fa-solid fa-xmark"></i>
     </div>
     <i class="fa fa-trash fa-4x" style="color: rgb(0, 159, 127) ;"></i>
-    <h4>Delete Category</h4>
+    <h4>Delete Product</h4>
     <p>Are you sure, you want to delete?</p>
     <div class="btn-action">
         <button style="background-color:rgb(0, 159, 127)" (click)="closeDeletePopup()">Cancel</button>

@@ -50,12 +50,6 @@
             </div>
             <div class="description-tab-panel" *ngSwitchCase="'tab2'">
                 <h3>5 sao</h3>
-                <!-- <div class="star-rating">
-                    <span *ngFor="let item of stars; let i = index" (click)="onStarClick(i + 1)">
-                      <i class="fa-star" [class.fa-solid]="i < selectedRating" [class.fa-regular]="i >= selectedRating"></i>
-                    </span>
-                </div>
-                <p>Đánh giá: {{ selectedRating }} sao</p> -->
                 <div class="rating" [formGroup]="ratingForm">
                     <mat-icon *ngFor="let star of stars" (click)="rate(star)">
                       <i [class]="star <= currentRating ? 'fa-solid fa-star' : 'fa-regular fa-star'"></i>

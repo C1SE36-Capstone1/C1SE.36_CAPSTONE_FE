@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PetService } from 'src/app/service/Pet/pet.service';
 import { ProductService } from 'src/app/service/Product/product.service';
+import { User } from '../../../../model/User/user';
+import { Product } from '../../../../model/Product/product';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-detail-page',
@@ -26,11 +29,23 @@ export class DetailPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
               private petService : PetService,
               private productService: ProductService,
-              private fb: FormBuilder) { }
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.ratingForm = this.fb.group({
-      rating: [0]
+    this.ratingForm = this.formBuilder.group({
+      id : [0],
+      rating: [0, [Validators.required]],
+      comment: [''],
+      ratedDate: ['', [Validators.required]],
+      user: this.formBuilder.group({
+        userId: [0, [Validators.required]]
+      }),
+      product: this.formBuilder.group({
+        productId: [0, [Validators.required]]
+      }),
+      OrderDetail: this.formBuilder.group({
+        orderDetailId: [0, [Validators.required]]
+      })
     });
 
     // Số lượng ngôi sao tối đa
@@ -78,8 +93,13 @@ export class DetailPageComponent implements OnInit {
   }
 
   rate(star: number): void {
+    const currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     this.ratingForm.patchValue({ rating: star });
     this.currentRating = star;
+    this.ratingForm.patchValue({
+      ratedDate: currentDate
+    });
+    console.log(this.ratingForm.value)
   }
 
 }
