@@ -21,7 +21,7 @@
 
   <div *ngIf="cartDetails.length > 0" class="total-cost">
     <p>Tổng tiền giỏ hàng: {{ getTotalCartCost() }}</p>
-    <button (click)="checkout()" class="checkout-button">Thanh toán</button>
+    <button [routerLink]="['/payment']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="checkout-button">Thanh toán</button>
   </div>
 </div>
 

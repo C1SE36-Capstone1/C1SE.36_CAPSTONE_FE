@@ -10,6 +10,11 @@ import { TokenStorageService } from 'src/app/service/Token/token-storage.service
 export class UserInfoComponent implements OnInit {
 
   currentUser: any;
+  selectedTab: string = 'tab1';
+
+  changeTab(tab: string) {
+    this.selectedTab = tab;
+  }
 
   constructor(private tokenStorageService: TokenStorageService,
               private router: Router) {}

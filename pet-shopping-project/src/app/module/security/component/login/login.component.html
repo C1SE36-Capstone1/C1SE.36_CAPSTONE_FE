@@ -34,7 +34,7 @@
 ======= -->
 <div class="register-container">
 	<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
-	  
+
 	  <!-- Trường nhập email -->
 	  <div class="form-group">
 		<label for="email">Email</label>
@@ -43,7 +43,7 @@
 		  <small class="form-text text-muted">Email không hợp lệ.</small>
 		</div>
 	  </div>
-  
+
 	  <!-- Trường nhập mật khẩu -->
 	  <div class="form-group">
 		<label for="password">Mật khẩu</label>
@@ -52,16 +52,16 @@
 		  <small class="form-text text-muted">Mật khẩu không đúng.</small>
 		</div>
 	  </div>
-  
+
 	  <!-- Checkbox "Ghi nhớ đăng nhập" -->
 	  <!-- <div class="form-group form-check">
 		<input type="checkbox" class="form-check-input" id="rememberMe" formControlName="rememberMe">
 		<label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
 	  </div> -->
-  
+
 	  <!-- Nút đăng nhập -->
 	  <button type="submit" class="btn btn-primary" [disabled]="!signinForm.valid">Đăng nhập</button>
-  
+
 	</form>
   </div>
   
