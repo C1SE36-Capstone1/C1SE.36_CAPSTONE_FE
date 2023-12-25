@@ -7,6 +7,8 @@ import { Product } from 'src/app/model/Product/product';
 import { CartDetail } from 'src/app/model/Cart/cart-detail';
 import { Cart } from '../../../../model/Cart/cart';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,52 +17,56 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartDetails: CartDetail[] = [];
   cartId: number = 1; // Thay đổi giá trị này tùy thuộc vào id của giỏ hàng bạn muốn hiển thị
   totalCartCost: number = 0;
-
+  rf: FormGroup;
+  cart?: Cart;
+  details?: CartDetail[];
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.getCartDetails();
+    this.getCart();
   }
 
-  getCartDetails() {
-      this.cartService.getCartDetails(this.cartId).subscribe(
-        (response) => {
-          this.cartDetails = response;
-          this.calculateTotalCartCost();
-          console.log('Danh sách chi tiết giỏ hàng:', this.cartDetails);
-        },
-        (error) => {
-          console.error('Lỗi khi lấy chi tiết giỏ hàng', error);
-        }
-      );
-    }
-    addToCart(product: Product): void {
-      const cartDetail: CartDetail = {
-        cartDetailId: 0,
-        product: product,
-        quantity: 1,
-        price: product.price,
-        cart: {
-          cartId: 1,
-        },
-      };
+  formBuilder() {
+    this.rf = new FormGroup({
+      address: new FormControl(this.cart.address, [Validators.required, Validators.pattern('^[^!@#$%^&*()_+<>?\'\"{}\\`~|/\\\\]+$')]),
+      phone: new FormControl(this.cart.phone, [Validators.required, Validators.pattern('^0\\d{9,10}')]),
+      amount: new FormControl(this.cart.amount, [Validators.required, Validators.pattern('')])
+    });
+  }
 
-      this.cartService.addToCart(cartDetail).subscribe(
-        (response) => {
-          console.log('Thêm vào giỏ hàng thành công', response);
-          this.getCartDetails();
-          this.showSuccessMessage('Thêm vào giỏ hàng thành công'); // Hiển thị thông báo
-        },
-        (error) => {
-          console.error('Lỗi khi thêm vào giỏ hàng', error);
+  getCart() {
+    this.cartService.getCart().subscribe(next => {
+      this.cart = next.cart;
+      this.details = next.cartDetailList;
+      this.formBuilder();
+      console.log(this.details);
+
+    }, error => alert('Lỗi rồi đó'));
+  }
+
+    addToCart(productId: number) {
+      let flag = false;
+      this.details.forEach(value => {
+        if (value.product.productId === productId) {
+          flag = true;
         }
-      );
+      });
+      if (flag) {
+        Swal.fire('Lưu ý',
+          'Sản phẩm đã có trong giỏ',
+          'info');
+      } else {
+        this.cartService.addToCart(productId).subscribe(next => {
+          Swal.fire('Thành công',
+            'Đã thêm sản phẩm vào giỏ',
+            'success');
+        });
+      }
     }
 
     private showSuccessMessage(message: string): void {
@@ -74,7 +80,7 @@ export class CartComponent implements OnInit {
       this.cartService.updateCartDetail(detail).subscribe(
         (response) => {
           console.log('Cập nhật chi tiết giỏ hàng thành công', response);
-          this.getCartDetails();
+          this.getCart();
         },
         (error) => {
           console.error('Lỗi khi cập nhật chi tiết giỏ hàng', error);
@@ -85,7 +91,7 @@ export class CartComponent implements OnInit {
       this.cartService.deleteCartDetail(id).subscribe(
         () => {
           console.log('Xóa chi tiết giỏ hàng thành công');
-          this.getCartDetails();
+          this.getCart();
         },
         (error) => {
           console.error('Lỗi khi xóa chi tiết giỏ hàng', error);
@@ -94,18 +100,18 @@ export class CartComponent implements OnInit {
     }
 
     calculateTotalCartCost() {
-      this.totalCartCost = this.cartDetails.reduce(
+      this.totalCartCost = this.details.reduce(
         (total, detail) => total + detail.price * detail.quantity,
         0
       );
     }
 
     getTotalCartCost(): number {
-      return this.cartDetails.reduce((total, detail) => total + detail.price * detail.quantity, 0);
+      return this.details.reduce((total, detail) => total + detail.price * detail.quantity, 0);
     }
 
     checkout() {
 
     }
-    
+
 }

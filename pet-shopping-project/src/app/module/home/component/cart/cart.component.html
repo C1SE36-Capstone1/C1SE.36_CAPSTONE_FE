@@ -1,11 +1,11 @@
 <div class="cart-container">
   <h2 class="cart-title">Danh sách giỏ hàng của bạn</h2>
 
-  <div *ngIf="cartDetails.length === 0" class="empty-cart">
+  <div *ngIf="details.length === 0" class="empty-cart">
     <p>Giỏ hàng của bạn đang trống.</p>
   </div>
 
-  <div *ngFor="let detail of cartDetails" class="cart-item">
+  <div *ngFor="let detail of details" class="cart-item">
     <img [src]="detail.product?.image" alt="{{detail.product?.name}}" class="product-image">
     <div class="item-info">
       <p class="product-name">{{ detail.product?.name }}</p>
@@ -19,7 +19,7 @@
     <button (click)="deleteCartDetail(detail.cartDetailId)" class="remove-button">Xóa</button>
   </div>
 
-  <div *ngIf="cartDetails.length > 0" class="total-cost">
+  <div *ngIf="details.length > 0" class="total-cost">
     <p>Tổng tiền giỏ hàng: {{ getTotalCartCost() }}</p>
     <button [routerLink]="['/payment']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="checkout-button">Thanh toán</button>
   </div>
