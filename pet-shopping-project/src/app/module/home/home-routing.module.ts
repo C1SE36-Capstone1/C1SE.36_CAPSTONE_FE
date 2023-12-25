@@ -11,6 +11,7 @@ import { DetailPageComponent } from './component/detail-page/detail-page.compone
 import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { HealthComponent } from './component/health/health.component';
 import { UserInfoComponent } from './component/user-info/user-info.component';
+import { PaymentComponent } from './component/payment/payment.component';
 
 
 
@@ -30,7 +31,8 @@ const routes: Routes = [
       { path: 'breed/:breedName', component: BreedComponent},
       { path: 'wishlist', component: WishlistComponent},
       { path: 'health', component: HealthComponent},
-      { path: 'user-info', component: UserInfoComponent}
+      { path: 'user-info', component: UserInfoComponent},
+      { path: 'payment', component: PaymentComponent},
     ]
   },
   { path: 'login', component: LoginComponent },

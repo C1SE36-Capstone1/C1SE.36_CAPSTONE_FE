@@ -1,6 +1,89 @@
-<div>
-    <h2>User Information</h2>
-    <p><strong>Email:</strong> {{ currentUser?.email }}</p>
-    <!-- Hiển thị các thông tin khác nếu có -->
-    <button (click)="signout()">Sign-out</button>
+<div class="body-container">
+  <div class="header">
+      <h1>Tài khoản của bạn
+      </h1>
   </div>
+  <div class="information-container">
+      <div class="left">
+          <ul>
+              <li><a (click)="changeTab('tab1')">Thông tin tài khoản</a></li>
+              <li><a (click)="changeTab('tab2')">Hạng hội viên</a></li>
+              <li><a (click)="changeTab('tab3')">Lịch sử mua hàng</a></li>
+              <li><a (click)="changeTab('tab4')">Địa chỉ giao hàng</a></li>
+              <li><a (click)="changeTab('tab5')">Danh sách cửa hàng</a></li>
+              <li><a (click)="changeTab('tab6')">Sản phẩm yêu thích</a></li>
+              <li><a (click)="changeTab('tab7')">Ưu đãi của bạn</a></li>
+              <li><a (click)="changeTab('tab8')">Đăng Xuất</a></li>
+          </ul>
+      </div>
+      <div class="right" [ngSwitch]="selectedTab">
+          <!-- ... existing code ... -->
+          <div class="tab" *ngSwitchCase="'tab1'">
+            <h4>Thông tin tài khoản</h4>
+            <div class="account-info">
+              <div class="login-info">
+                <p><strong>Email:</strong> <!-- Thêm email người dùng ở đây --></p>
+                <p><strong>Số Điện Thoại:</strong> <!-- Thêm số điện thoại người dùng ở đây --></p>
+                <button (click)="changeTab('changePassword')">Thay đổi mật khẩu</button>
+              </div>
+              <div class="personal-info">
+                <h4>Thông tin cá nhân</h4>
+                <!-- Thêm các trường thông tin cá nhân và các form cập nhật thông tin cá nhân -->
+                <form>
+                  <div class="label">Họ và tên:</div>
+    <input type="text" id="fullName" name="fullName" placeholder="Họ và tên" required>
+
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email">
+
+                  <label for="phone">Số Điện Thoại:</label>
+                  <input type="tel" id="phone" name="phone">
+
+                  <label>Giới tính:</label>
+                  <div class="gender-options">
+                    <label>
+                      <input type="radio" name="gender" value="male">
+                      Nam
+                    </label>
+                    <label>
+                      <input type="radio" name="gender" value="female">
+                      Nữ
+                    </label>
+                  </div>
+
+                  <label for="dob">Ngày Sinh:</label>
+                  <input type="date" id="dob" name="dob">
+
+                  <!-- Thêm các trường thông tin khác cần cập nhật -->
+
+                  <button type="submit">Cập nhật thông tin</button>
+                </form>
+              </div>
+            </div>
+          </div>
+<!-- ... existing code ... -->
+
+          <div class="tab" *ngSwitchCase="'tab2'">
+              <h4>Hạng hội viên</h4>
+          </div>
+          <div class="tab" *ngSwitchCase="'tab3'">
+              <h4>Lịch sử mua hàng</h4>
+          </div>
+          <div class="tab" *ngSwitchCase="'tab4'">
+              <h4>Địa chỉ giao hàng</h4>
+          </div>
+          <div class="tab" *ngSwitchCase="'tab5'">
+              <h4>Danh sách cửa hàng</h4>
+          </div>
+          <div class="tab" *ngSwitchCase="'tab6'">
+              <h4>Sản phẩm yêu thích</h4>
+          </div>
+          <div class="tab" *ngSwitchCase="'tab7'">
+              <h4>Ưu đãi của bạn</h4>
+          </div>
+          <div class="tab" *ngSwitchCase="'tab8'">
+              <h4>Đăng xuất</h4><button (click)="signout()">Sign-out</button>
+            </div>
+      </div>
+  </div>
+</div>

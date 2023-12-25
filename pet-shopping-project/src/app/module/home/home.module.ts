@@ -17,6 +17,7 @@ import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { HealthComponent } from './component/health/health.component';
 import { UserInfoComponent } from './component/user-info/user-info.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PaymentComponent } from './component/payment/payment.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     WishlistComponent,
     HealthComponent,
     UserInfoComponent,
+    PaymentComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

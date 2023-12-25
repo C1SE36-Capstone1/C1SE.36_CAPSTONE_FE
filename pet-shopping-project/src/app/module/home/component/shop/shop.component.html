@@ -9,7 +9,7 @@
     <!-- <div class="breadcrumb"></div> -->
     <div class="product-container" style="display: flex;">
         <div class="filter">
-            <div class="product-categories"> 
+            <div class="product-categories">
                 <h2>Categories</h2>
                 <ul id="category-list" >
                     <li>
@@ -59,7 +59,7 @@
                     <div class="image">
                         <img [src] = "item.image">
                         <div class="action-btn">
-                            <button class="add-button"(click)="addToCart(item)"><i class="fa fa-bag-shopping "></i></button>
+                            <button class="add-button" (click)="addToCart(item.productId)"><i class="fa fa-bag-shopping "></i></button>
                             <button class="add-button" [routerLink]="['']"><i class="fa fa-heart "></i></button>
                         </div>
                         <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>

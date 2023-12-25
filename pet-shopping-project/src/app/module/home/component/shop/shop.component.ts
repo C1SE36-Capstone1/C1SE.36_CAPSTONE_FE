@@ -7,6 +7,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CartService } from 'src/app/service/Cart/cart.service';
 import { CartDetail } from 'src/app/model/Cart/cart-detail';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-shop',
@@ -33,7 +34,7 @@ export class ShopComponent implements OnInit {
   currentPage: number = 1;
   sortType: string ='';
   sortOrder: string = '';
-
+  cartDetails: CartDetail[] = [];
 
 
   constructor( private router: Router,
@@ -59,6 +60,25 @@ export class ShopComponent implements OnInit {
     this.startSlideshow();
   }
 
+  addToCart(productId: number) {
+    let flag = false;
+    this.cartDetails.forEach(value => {
+      if (value.product.productId === productId) {
+        flag = true;
+      }
+    });
+    if (flag) {
+      Swal.fire('Lưu ý',
+        'Sản phẩm đã có trong giỏ',
+        'info');
+    } else {
+      this.cartService.addToCart(productId).subscribe(next => {
+        Swal.fire('Thành công',
+          'Đã thêm sản phẩm vào giỏ',
+          'success');
+      });
+    }
+  }
   startSlideshow() {
     setInterval(() => {
       this.showNextImage();
@@ -162,39 +182,5 @@ export class ShopComponent implements OnInit {
       return 'Sắp xếp sản phẩm'
   }
 
-  // addToCart(item: any): void {
-  //   this.cartService.addToCart(item).subscribe(
-  //     () => {
-  //       console.log('Item added to cart successfully.');
-  //       // Có thể thêm logic hiển thị thông báo thành công nếu cần
-  //     },
-  //     (error) => {
-  //       console.error('Error adding item to cart:', error);
-  //       // Có thể thêm logic hiển thị thông báo lỗi nếu cần
-  //     }
-  //   );
-  // }
-  addToCart(product: Product): void {
-    const cartDetail: CartDetail = {
-      cartDetailId: null,
-      product: product,
-      quantity: 1,
-      price: product.price,
-      cart: {
-        cartId: 1, // Đặt giá trị cartId tùy thuộc vào logic của bạn
-      },
-    };
-    this.cartService.addToCart(cartDetail).subscribe(
-      (response) => {
-        console.log('Thêm vào giỏ hàng thành công', response);
-        // Hiển thị thông báo
-        this.snackBar.open('Thêm vào giỏ hàng thành công', 'Đóng', {
-          duration: 3000,
-        });
-      },
-      (error) => {
-        console.error('Lỗi khi thêm vào giỏ hàng', error);
-      }
-    );
-  }
+
 }
