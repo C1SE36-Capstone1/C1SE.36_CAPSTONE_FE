@@ -24,9 +24,8 @@ throw new Error('Method not implemented.');
     address: '',
   };
 
-  constructor(
-    private cartService: CartService,
-    private snackBar: MatSnackBar
+  constructor( private cartService: CartService,
+               private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {

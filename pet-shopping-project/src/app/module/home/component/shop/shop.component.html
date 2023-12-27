@@ -65,7 +65,7 @@
                         <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
 
                     </div>
-                    <p style="font-size: 14px;">{{item.price}}</p>
+                    <p style="font-size: 14px;">{{item.price | currency:'VND'}}</p>
                     <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>
                 </div>
             </div>

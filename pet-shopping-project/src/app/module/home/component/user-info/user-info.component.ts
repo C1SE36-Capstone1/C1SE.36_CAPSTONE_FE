@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
-import { AuthService } from '../../../../service/Auth/auth.service';
+
 
 @Component({
   selector: 'app-user-info',
@@ -10,33 +10,25 @@ import { AuthService } from '../../../../service/Auth/auth.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  username: any;
-  currentUser: string;
-  role = [];
-  returnUrl: string;
-  userDetailUrl = '';
-  avatarSrc = '';
+  currentUser: any;
+  selectedTab: string = 'tab1';
 
-  constructor(private tokenStorageService: TokenStorageService,
-              private authService : AuthService,
-              private router: Router) {}
-
-  ngOnInit(): void {
-    // Lấy thông tin người dùng từ TokenStorageService
-    this.loadHeader();
-    // Các thông tin khác cũng có thể được lấy tùy thuộc vào cách bạn lưu chúng trong TokenStorageService
+  changeTab(tab: string) {
+    this.selectedTab = tab;
   }
 
-  loadHeader(): void {
-    if (this.tokenStorageService.getToken()) {
-      
-    }
-    console.log(this.tokenStorageService.getToken()); 
+  constructor(private tokenStorageService: TokenStorageService,
+              private router: Router,) {}
+
+  ngOnInit(): void {
+    this.currentUser = this.tokenStorageService.getUser();
   }
 
   signout(){
     this.tokenStorageService.signOut();
-    this.router.navigate(['/home']);
-    this.authService.isLoggedIn = false;
+    this.router.navigate(['/home']).then(() => {
+      window.location.reload();
+  });
+    
   }
 }

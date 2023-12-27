@@ -23,9 +23,6 @@ export class ProductEditComponent implements OnInit {
   }
 
   saveChanges(): void {
-    // Thực hiện các thay đổi cần thiết và đóng modal
-    // Lưu ý: Bạn có thể thực hiện gọi API để cập nhật thông tin trên server tại đây
-    // Sau đó đóng modal và làm mới danh sách sản phẩm hoặc làm thay đổi cần thiết
     this.activeModal.close(this.editedProduct);
   }
 

@@ -17,15 +17,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartId: number = 1; // Thay đổi giá trị này tùy thuộc vào id của giỏ hàng bạn muốn hiển thị
+  
   totalCartCost: number = 0;
   rf: FormGroup;
   cart?: Cart;
   details?: CartDetail[];
-  constructor(
-    private cartService: CartService,
-    private snackBar: MatSnackBar
-  ) {}
+
+  constructor( private cartService: CartService,
+               private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getCart();
@@ -45,7 +44,6 @@ export class CartComponent implements OnInit {
       this.details = next.cartDetailList;
       this.formBuilder();
       console.log(this.details);
-
     }, error => alert('Lỗi rồi đó'));
   }
 

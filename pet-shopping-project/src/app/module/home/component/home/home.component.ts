@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/Product/product';
+import { AuthService } from 'src/app/service/Auth/auth.service';
 import { ProductService } from 'src/app/service/Product/product.service';
+import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
 
 @Component({
   selector: 'app-home',
