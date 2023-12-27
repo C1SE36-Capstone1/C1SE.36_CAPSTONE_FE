@@ -44,6 +44,7 @@ export class ShopComponent implements OnInit {
                private product : ProductService,
                private snackBar: MatSnackBar,
                private route: ActivatedRoute,
+               private ProductService: ProductService,
                ) { }
 
   ngOnInit(): void {
@@ -68,17 +69,29 @@ export class ShopComponent implements OnInit {
       }
     });
     if (flag) {
-      Swal.fire('Lưu ý',
-        'Sản phẩm đã có trong giỏ',
-        'info');
+      Swal.fire('Lưu ý', 'Sản phẩm đã có trong giỏ', 'info');
     } else {
       this.cartService.addToCart(productId).subscribe(next => {
-        Swal.fire('Thành công',
-          'Đã thêm sản phẩm vào giỏ',
-          'success');
+
+        console.log('Cart Details after adding product:', this.cartDetails);
+        Swal.fire('Thành công', 'Đã thêm sản phẩm vào giỏ', 'success');
       });
     }
   }
+
+  addToFavorites(product: Product): void {
+    this.ProductService.addProduct(product).subscribe(
+      (addedProduct) => {
+        console.log('Sản phẩm đã được thêm vào yêu thích:', addedProduct);
+      },
+      (error) => {
+        console.error('Lỗi khi thêm sản phẩm vào yêu thích:', error);
+      }
+    );
+  }
+
+
+
   startSlideshow() {
     setInterval(() => {
       this.showNextImage();
