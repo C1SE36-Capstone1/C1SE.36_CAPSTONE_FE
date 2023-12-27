@@ -15,7 +15,7 @@ throw new Error('Method not implemented.');
 }
   cartDetails: CartDetail[] = [];
   totalCartCost: number = 0;
-  
+
   // Thêm các trường thông tin khách hàng tại đây
   customer = {
     fullName: '',
@@ -23,6 +23,7 @@ throw new Error('Method not implemented.');
     phone: '',
     address: '',
   };
+
 
   constructor(
     private cartService: CartService,
@@ -68,3 +69,4 @@ throw new Error('Method not implemented.');
     });
   }
 }
+

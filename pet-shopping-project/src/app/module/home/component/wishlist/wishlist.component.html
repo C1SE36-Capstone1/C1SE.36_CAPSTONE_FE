@@ -1,1 +1,7 @@
-<p>wishlist works!</p>
+<div>
+  <h2>Danh sách yêu thích</h2>
+  <div *ngFor="let favorite of favorites">
+    <!-- Hiển thị thông tin sản phẩm yêu thích -->
+    {{ favorite.name }}
+  </div>
+</div>
