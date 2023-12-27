@@ -13,7 +13,7 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   register(signUpForm: SignUpForm): Observable<any> {
-    return this.http.post(`${this._API_URL}/signup`, signUpForm);
+    return this.http.post(`${this._API_URL}/create`, signUpForm);
   }
   
   getAllAcount() : Observable<User[]>{
