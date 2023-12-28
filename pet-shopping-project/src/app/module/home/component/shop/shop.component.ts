@@ -8,6 +8,9 @@ import { CartService } from 'src/app/service/Cart/cart.service';
 import { CartDetail } from 'src/app/model/Cart/cart-detail';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
+import { WishlistService } from '../../../../service/wishlist/wishlist.service';
+import { favorite } from 'src/app/model/Product/favorite';
+import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
 
 @Component({
   selector: 'app-shop',
@@ -37,6 +40,7 @@ export class ShopComponent implements OnInit {
   cartDetails: CartDetail[] = [];
 
 
+
   constructor( private router: Router,
                private activatedRoute : ActivatedRoute,
                private category : CategoryService,
@@ -45,9 +49,13 @@ export class ShopComponent implements OnInit {
                private snackBar: MatSnackBar,
                private route: ActivatedRoute,
                private ProductService: ProductService,
+               private wishlistService: WishlistService,
+               private tokenStorageService: TokenStorageService
                ) { }
 
   ngOnInit(): void {
+
+
     this.category.getAll().subscribe((result) =>{
       this.categoryList = result;
     });
@@ -78,20 +86,13 @@ export class ShopComponent implements OnInit {
       });
     }
   }
-
-  addToFavorites(product: Product): void {
-    this.ProductService.addProduct(product).subscribe(
-      (addedProduct) => {
-        console.log('Sản phẩm đã được thêm vào yêu thích:', addedProduct);
-      },
-      (error) => {
-        console.error('Lỗi khi thêm sản phẩm vào yêu thích:', error);
-      }
-    );
+  addProductToFavorite(productId: number){
+    this.wishlistService.addProductToFavorite(productId) .subscribe(next => {
+      Swal.fire('Thành công',
+            'Sanr phaamr ',
+            'success');
+    })
   }
-
-
-
   startSlideshow() {
     setInterval(() => {
       this.showNextImage();

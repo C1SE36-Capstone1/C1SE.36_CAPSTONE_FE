@@ -2,7 +2,9 @@ import { User } from "../User/user";
 import { Product } from "./product";
 
 export interface favorite {
-    favorute?: number;
+  
+length: any;
+    id?: number;
     user?: User;
     product?: Product;
 }
