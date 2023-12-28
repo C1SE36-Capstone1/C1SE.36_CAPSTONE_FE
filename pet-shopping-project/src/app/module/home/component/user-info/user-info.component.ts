@@ -12,6 +12,7 @@ export class UserInfoComponent implements OnInit {
 
   currentUser: any;
   selectedTab: string = 'tab1';
+  role : any;
 
   changeTab(tab: string) {
     this.selectedTab = tab;
@@ -22,6 +23,8 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.tokenStorageService.getUser();
+    this.role = this.tokenStorageService.getRole();
+    console.log(this.role);
   }
 
   signout(){

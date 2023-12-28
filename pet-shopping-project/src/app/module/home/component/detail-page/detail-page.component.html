@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="right">
-            <h1 class="product-title">{{details.name}}</h1>
+            <h1 class="product-title" style="padding: 20px 0 0 0; font-size: 30px; font-weight: 900;">{{details.name}}</h1>
             <div class="rating"></div>
             <table class="table-container">
                 <colgroup>
@@ -98,19 +98,29 @@
                     <th><a  style="text-decoration: none;" [routerLink]="['/breed', details.breed?.breedName]" >{{details.breed?.breedName}}</a></th>
                 </tr>
             </table>
+            <div class="contact">
+                <div class="link-page">
+                    <a><i class="fa fa-phone"></i>Liên hệ</a>
+                    <a> <i class="fa fa-user"></i>Chat ngay </a>
+                </div>
+                <div class="page-info">
+                    <p style="text-align: center; background-color: #F5F5F5">Tham khảo thêm</p>
+                    <li>Facebook: <a href="https://www.facebook.com/">https://www.facebook.com/</a></li>
+                    <li>Youtube: <a href="https://www.youtube.com/">https://www.youtube.com/</a></li>
+                    <li>Instagram: <a href="https://www.instagram.com">https://www.instagram.com</a></li>
+                    <li>Phone: 000-0000-0000</li>
+                </div>
+            </div>
         </div>
     </div>
     <div class="bottom">
         <ul class="tabs">
             <li class="description-tab">
-                <a [class.active]="selectedTab === 'tab1'" (click)="changeTab('tab1')">Mô tả</a>
-            </li>
-            <li class="Review-tab">
-                <a [class.active]="selectedTab === 'tab2'" (click)="changeTab('tab2')">Đánh giá</a>
+                <a [class.active]="selectedTab === 'tab1'">Mô tả</a>
             </li>
         </ul>
-        <div class="tab-change" [ngSwitch]="selectedTab">
-            <div class="description-tab-panel" *ngSwitchCase="'tab1'">
+        <div class="tab-change">
+            <div class="description-tab-panel">
                 <h3>{{details.description}}</h3>
                 <div class="pet-info">
                     <table class="info-table">
@@ -139,11 +149,6 @@
                             <th>{{details.petInfo?.training}}</th>
                         </tr>
                     </table>
-                </div>
-            </div>
-            <div class="description-tab-panel" *ngSwitchCase="'tab2'">
-                <h3>5 sao</h3>
-                <div class="pet-info">
                 </div>
             </div>
         </div>

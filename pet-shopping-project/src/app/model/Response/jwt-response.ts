@@ -1,3 +1,5 @@
+import { Role } from "../User/role";
+
 export interface JwtResponse {
   token?: string;
   id?: string;
@@ -10,5 +12,5 @@ export interface JwtResponse {
   status?: boolean;
   image?: string;
   registerDate?: Date;
-  role?: string[];
+  role?: Role;
 }
