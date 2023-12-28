@@ -34,7 +34,7 @@ export class CartService {
   updateCart(cartWithDetail: CartWithDetail): Observable<CartWithDetail> {
     const token = this.tokenStorageService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<CartWithDetail>(`${this._API_URL}/update`, cartWithDetail, {headers});
+    return this.http.put<CartWithDetail>(`${this._API_URL}update`, cartWithDetail, {headers});
   }
 
   deleteCartDetail(id: number): Observable<void> {
