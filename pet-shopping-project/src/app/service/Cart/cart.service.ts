@@ -22,6 +22,7 @@ export class CartService {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.http.get<CartWithDetail>(this._API_URL, {headers});
     }
+    
 
 
   addToCart(productId: number): Observable<CartDetail[]> {

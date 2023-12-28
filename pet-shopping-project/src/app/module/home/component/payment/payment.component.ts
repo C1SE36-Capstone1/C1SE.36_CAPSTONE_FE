@@ -137,3 +137,4 @@ export class PaymentComponent implements OnInit {
     this.paymentMethod = e.target.value;
   }
 }
+

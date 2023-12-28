@@ -1,7 +1,8 @@
 <div class="cart-container">
   <h2 class="cart-title">Danh sách giỏ hàng của bạn</h2>
 
-  <div *ngIf="!details || details.length === 0" class="empty-cart">
+  <div *ngIf="!details || details?.length === 0" class="empty-cart">
+
     <p>Giỏ hàng của bạn đang trống.</p>
   </div>
 
@@ -21,8 +22,8 @@
     </div>
   </div>
 
-  <div *ngIf="details && details.length > 0" class="total-cost">
-    <p>Tổng tiền giỏ hàng: {{ getTotalAmount() }}</p>
-    <button [routerLink]="['/payment']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="checkout-button">Thanh toán</button>
+  <div *ngIf="details.length > 0" class="total-cost">
+    <p>Tổng tiền giỏ hàng: {{ getTotalCartCost() }}</p>
+    <button (click)="goToPaymentPage()" class="checkout-button">Thanh toán</button>
   </div>
 </div>

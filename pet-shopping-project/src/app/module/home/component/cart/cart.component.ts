@@ -1,6 +1,6 @@
 
 // Trong cart.component.ts
-
+import { PaymentService } from 'src/app/service/Payment/payment.service';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/service/Cart/cart.service';
 import { Product } from 'src/app/model/Product/product';
@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartWithDetail } from 'src/app/model/Cart/cart-with-detail';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,9 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private paymentservice: PaymentService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -43,35 +46,46 @@ export class CartComponent implements OnInit {
     });
   }
 
-  getCart() {
-    this.cartService.getCart().subscribe(next => {
-      this.cart = next.cart;
-      this.details = next.cartDetailList;
-      this.formBuilder();
-      console.log(this.details);
+  // getCart() {
+  //   this.cartService.getCart().subscribe(next => {
+  //     this.cart = next.cart;
+  //     this.details = next.cartDetailList;
+  //     this.formBuilder();
+  //     console.log(this.details);
 
-    }, error => alert('Lỗi rồi đó'));
+  //   }, error => alert('Lỗi rồi đó'));
+  // }
+  getCart() {
+    this.cartService.getCart().subscribe(
+      next => {
+        this.cart = next.cart;
+        this.details = next.cartDetailList;
+        this.formBuilder();
+        console.log('Details received:', this.details);
+      },
+      error => alert('Lỗi rồi đó')
+    );
   }
 
-    addToCart(productId: number) {
-      let flag = false;
-      this.details.forEach(value => {
-        if (value.product.productId === productId) {
-          flag = true;
-        }
-      });
-      if (flag) {
-        Swal.fire('Lưu ý',
-          'Sản phẩm đã có trong giỏ',
-          'info');
-      } else {
-        this.cartService.addToCart(productId).subscribe(next => {
-          Swal.fire('Thành công',
-            'Đã thêm sản phẩm vào giỏ',
-            'success');
-        });
+
+  addToCart(productId: number) {
+    let flag = false;
+    this.details.forEach(value => {
+      if (value.product.productId === productId) {
+        flag = true;
       }
+    });
+    if (flag) {
+      Swal.fire('Lưu ý', 'Sản phẩm đã có trong giỏ', 'info');
+    } else {
+      this.cartService.addToCart(productId).subscribe(next => {
+        this.getCart(); // Cập nhật thông tin giỏ hàng sau khi thêm
+        Swal.fire('Thành công', 'Đã thêm sản phẩm vào giỏ', 'success');
+      });
     }
+  }
+h
+
 
     private showSuccessMessage(message: string): void {
       this.snackBar.open(message, 'Đóng', {
@@ -152,7 +166,17 @@ export class CartComponent implements OnInit {
     }
     
     checkout() {
-
+      const cartId = this.cartId;
+      this.paymentservice.processPayment(cartId).subscribe(
+        () => {
+          this.router.navigate(['/payment']);
+        },
+        (error) => {
+          console.error('Lỗi thanh toán', error);
+        }
+      );
     }
-
+    goToPaymentPage() {
+      this.router.navigate(['/payment']);
+    }
 }

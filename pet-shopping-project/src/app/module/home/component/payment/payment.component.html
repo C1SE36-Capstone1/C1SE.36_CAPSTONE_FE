@@ -1,41 +1,42 @@
-<!-- payment.component.html -->
 <div class="checkout-container">
   <div class="checkout-header">
     <h2>Thông tin thanh toán</h2>
   </div>
 
-  <div class="checkout-details">
-    <div class="customer-info">
-      <h3>Thông tin khách hàng</h3>
-      <form>
-        <div class="form-group">
-          <label for="fullName">Họ và tên:</label>
-          <input type="text" id="fullName" name="fullName" required>
-        </div>
+  <div class="payment-details-container">
+    <div class="customer-info-container">
+      <div class="customer-info">
+        <h3>Thông tin khách hàng</h3>
+        <form>
+          <div class="form-group">
+            <label for="fullName">Họ và tên:</label>
+            <input type="text" id="fullName" name="fullName" required>
+          </div>
 
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" >
-        </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+          </div>
 
-        <div class="form-group">
-          <label for="phone">Số điện thoại:</label>
-          <input type="tel" id="phone" name="phone" >
-        </div>
+          <div class="form-group">
+            <label for="phone">Số điện thoại:</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
 
-        <div class="form-group">
-          <label for="address">Địa chỉ:</label>
-          <textarea id="address" name="address" ></textarea>
-        </div>
+          <div class="form-group">
+            <label for="address">Địa chỉ:</label>
+            <textarea id="address" name="address"></textarea>
+          </div>
 
-        <div class="form-group">
-          <label for="paymentMethod">Phương thức thanh toán:</label>
-          <select id="paymentMethod" name="paymentMethod">
-            <option value="creditCard">Thẻ tín dụng</option>
-            <option value="bankTransfer">Chuyển khoản ngân hàng</option>
-            <!-- Thêm các phương thức thanh toán khác nếu cần -->
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="paymentMethod">Phương thức thanh toán:</label>
+            <select id="paymentMethod" name="paymentMethod">
+              <option value="creditCard">Thẻ tín dụng</option>
+              <option value="bankTransfer">Chuyển khoản ngân hàng</option>
+              <!-- Thêm các phương thức thanh toán khác nếu cần -->
+            </select>
+          </div>
+
 
         <button type="button" >Xác nhận thanh toán</button>
       </form>
@@ -59,12 +60,12 @@
             <p class="total-cost">Tổng tiền: {{ item.product.price * item.quantity }}</p>
           </div>
         </div>
-      </div>
 
       <!-- Hiển thị tổng tiền thanh toán -->
       <div *ngIf="cart?.length > 0" class="total-cost">
         <p>Tổng tiền thanh toán: {{ totalAmount }}</p>
         <button (clicl)="checkout()" class="checkout-button">Xác nhận thanh toán</button>
+
       </div>
     </div>
   </div>
