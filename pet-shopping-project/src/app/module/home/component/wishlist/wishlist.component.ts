@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WishlistService } from 'src/app/service/wishlist/wishlist.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
@@ -11,10 +12,13 @@ export class WishlistComponent implements OnInit {
   favorites: any[] = [];
   errorMessage: string = '';
 
+
   constructor(private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
+
     this.loadWishlist();
+
   }
 
   loadWishlist() {

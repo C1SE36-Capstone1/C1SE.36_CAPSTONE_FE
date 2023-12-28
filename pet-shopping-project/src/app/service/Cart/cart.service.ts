@@ -32,17 +32,23 @@ export class CartService {
   }
 
 
-  updateCartDetail(detail: CartDetail): Observable<CartDetail> {
-    if (!detail.cart) {
-      detail.cart = {};
-    }
-    detail.cart.cartId = 1;
-    return this.http.put<CartDetail>(this._API_URL, detail);
+  updateCart(cartWithDetail: CartWithDetail): Observable<CartWithDetail> {
+    const token = this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<CartWithDetail>(`${this._API_URL}/update`, cartWithDetail, {headers});
   }
 
   deleteCartDetail(id: number): Observable<void> {
+    const token = this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const _API_URL = `${this._API_URL}${id}`;
-    return this.http.delete<void>(_API_URL);
+    return this.http.delete<void>(_API_URL,{headers});
+  }
+
+  checkout(cartWithDetail: CartWithDetail): Observable<CartWithDetail> {
+    const token = this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json').set('charset', 'utf-8');
+    return this.http.put<CartWithDetail>(`${this._API_URL}/checkout`, cartWithDetail, {headers});
   }
 
 }

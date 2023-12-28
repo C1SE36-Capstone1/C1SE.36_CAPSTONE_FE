@@ -5,6 +5,5 @@ export interface Cart {
     amount?: number;
     address?: string;
     phone?: string;
-
-    user?:User;
+    
 }

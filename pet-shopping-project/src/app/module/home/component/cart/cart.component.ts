@@ -9,6 +9,7 @@ import { Cart } from '../../../../model/Cart/cart';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CartWithDetail } from 'src/app/model/Cart/cart-with-detail';
 import { Router } from '@angular/router';
 
 
@@ -23,6 +24,9 @@ export class CartComponent implements OnInit {
   rf: FormGroup;
   cart?: Cart;
   details?: CartDetail[];
+
+  total = 0;
+
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar,
@@ -90,8 +94,8 @@ h
     }
 
 
-    updateCartDetail(detail: CartDetail) {
-      this.cartService.updateCartDetail(detail).subscribe(
+    updateCartDetail(detail: CartWithDetail) {
+      this.cartService.updateCart(detail).subscribe(
         (response) => {
           console.log('Cập nhật chi tiết giỏ hàng thành công', response);
           this.getCart();
@@ -101,6 +105,44 @@ h
         }
       );
     }
+
+    decreaseQuantity(cartDetailId: number) {
+      const tempCartDetails: CartDetail[] = [];
+      this.details.forEach(next => {
+        if (next.cartDetailId === cartDetailId) {
+            next.quantity--;
+        }
+        tempCartDetails.push(next);
+      });
+      this.details = tempCartDetails;
+      this.getTotalAmount();
+      this.cartService.updateCart(this.prepareCartForSendingToBackend()).subscribe();
+    }
+  
+    increaseQuantity(cartDetailId: number) {
+      const tempCartDetails: CartDetail[] = [];
+      this.details.forEach(next => {
+        if (next.cartDetailId === cartDetailId) {
+          next.quantity++;
+        }
+        tempCartDetails.push(next);
+      });
+      this.details = tempCartDetails;
+      this.getTotalAmount();
+      this.cartService.updateCart(this.prepareCartForSendingToBackend()).subscribe();
+    }
+
+    getTotalAmount() {
+      let temp = 0;
+      this.details.forEach(item => {
+        if (item.status === true) {
+          temp += item.quantity * item.product.price;
+        }
+      });
+      this.total = temp;
+    }
+
+    
     deleteCartDetail(id: number) {
       this.cartService.deleteCartDetail(id).subscribe(
         () => {
@@ -113,17 +155,16 @@ h
       );
     }
 
-    calculateTotalCartCost() {
-      this.totalCartCost = this.details.reduce(
-        (total, detail) => total + detail.price * detail.quantity,
-        0
-      );
+    prepareCartForSendingToBackend(): CartWithDetail {
+      this.cart.address = this.rf.value.receiverAddress;
+      this.cart.phone = this.rf.value.receiverPhone;
+      //this.cart.user.email = this.rf.value.receiverEmail;
+      const cartWithDetail: CartWithDetail = {cart: this.cart, cartDetailList: this.details};
+      cartWithDetail.cartDetailList = this.details;
+      cartWithDetail.cart = this.cart;
+      return cartWithDetail;
     }
-
-    getTotalCartCost(): number {
-      return this.details.reduce((total, detail) => total + detail.price * detail.quantity, 0);
-    }
-
+    
     checkout() {
       const cartId = this.cartId;
       this.paymentservice.processPayment(cartId).subscribe(

@@ -1,22 +1,25 @@
 <div class="cart-container">
   <h2 class="cart-title">Danh sách giỏ hàng của bạn</h2>
 
-  <div *ngIf="details?.length === 0" class="empty-cart">
+  <div *ngIf="!details || details?.length === 0" class="empty-cart">
+
     <p>Giỏ hàng của bạn đang trống.</p>
   </div>
 
-  <div *ngFor="let detail of details" class="cart-item">
-    <img [src]="detail.product?.image" alt="{{detail.product?.name}}" class="product-image">
-    <div class="item-info">
-      <p class="product-name">{{ detail.product?.name }}</p>
-      <p class="product-price">{{ detail.price }}</p>
-      <div class="quantity-control">
-        <label>Số lượng:</label>
-        <input type="number" [(ngModel)]="detail.quantity" min="1" (change)="updateCartDetail(detail)">
+  <div *ngIf="details">
+    <div *ngFor="let detail of details" class="cart-item">
+      <img [src]="detail.product?.image" alt="{{detail.product?.name}}" class="product-image">
+      <div class="item-info">
+        <p class="product-name">{{ detail.product?.name }}</p>
+        <p class="product-price">{{ detail.price }}</p>
+        <div class="quantity-control">
+          <label>Số lượng:</label>
+          <input type="number" [(ngModel)]="detail.quantity" min="1" (change)="updateCartDetail(detail)">
+        </div>
+        <p class="total-cost">Tổng tiền: {{ detail.price * detail.quantity }}</p>
       </div>
-      <p class="total-cost">Tổng tiền: {{ detail.price * detail.quantity }}</p>
+      <button (click)="deleteCartDetail(detail.cartDetailId)" class="remove-button">Xóa</button>
     </div>
-    <button (click)="deleteCartDetail(detail.cartDetailId)" class="remove-button">Xóa</button>
   </div>
 
   <div *ngIf="details.length > 0" class="total-cost">
@@ -24,4 +27,3 @@
     <button (click)="goToPaymentPage()" class="checkout-button">Thanh toán</button>
   </div>
 </div>
-
