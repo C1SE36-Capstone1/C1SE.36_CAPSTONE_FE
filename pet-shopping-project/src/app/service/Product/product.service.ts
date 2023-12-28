@@ -1,9 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model/Product/product';
 import { BehaviorSubject } from 'rxjs';
-
+import { catchError } from 'rxjs/operators';
+import { WishlistService } from '../wishlist/wishlist.service';
+import { TokenStorageService } from '../Token/token-storage.service';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,9 @@ export class ProductService {
   private favoritesSubject = new BehaviorSubject<Product[]>([]);
   favorites$ = this.favoritesSubject.asObservable();
 
-  constructor (private http: HttpClient) {
+
+  constructor (private http: HttpClient,
+      private tokenStorageService: TokenStorageService) {
   }
 
   getAll() {
@@ -38,8 +43,10 @@ export class ProductService {
     const favorites = [...this.favoritesSubject.value, product];
     this.favoritesSubject.next(favorites);
 
-    return this.http.post<Product>(this._API_URL, product);
+    const token = this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
+    return this.http.post<Product>(this._API_URL, product, { headers });
   }
 
   deleteProductAtId(id: number): Observable<void> {
@@ -49,20 +56,6 @@ this.favoritesSubject.next(favorites);
 
     return this.http.delete<void>(this._API_URL + id);
   }
-  addToFavorites(product: Product): Observable<Product> {
-    return this.http.post<Product>(this._FAVORITES_URL + 'email', product);
-  }
-  removeFromFavorites(id: number): Observable<void> {
-    return this.http.delete<void>(this._FAVORITES_URL + id);
-  }
-  updateFavorites(): void {
-    this.http.get<Product[]>(this._FAVORITES_URL + 'email').subscribe(
-      (favorites) => {
-        this.favoritesSubject.next(favorites);
-      },
-      (error) => {
-        console.error('Lỗi khi cập nhật danh sách yêu thích:', error);
-      }
-    );
-  }
+
+
 }
