@@ -2,8 +2,12 @@ import { formatDate  } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Category } from "src/app/model/Product/category";
+
 import { CategoryService } from "src/app/service/Product/category.service";
 import { ProductService } from "src/app/service/Product/product.service";
+import { AngularFireStorage} from "@angular/fire/storage";
+import { finalize } from "rxjs/operators";
+
 
 @Component({
   selector: "app-product-create",
@@ -20,10 +24,10 @@ export class ProductCreateComponent implements OnInit {
   uploadedAvatar: any = null;
 
 
-  constructor(
-    private productService: ProductService,
-    private categoryService: CategoryService,
-    private formBuilder: FormBuilder
+  constructor(private productService: ProductService,
+              private categoryService: CategoryService,
+              private formBuilder: FormBuilder,
+              private fireStorage : AngularFireStorage,
   ) {
     this.categoryService.getAll().subscribe((data) => {
       this.categoryList = data;
@@ -53,39 +57,51 @@ export class ProductCreateComponent implements OnInit {
     })
   }
 
-  changeFile(event: any) {
+  
+
+  onFileSelected(event : any) {
     this.uploadedAvatar = event.target.files[0];
-    if (this.uploadedAvatar) {
-      const reader = new FileReader();
-      reader.readAsDataURL(this.uploadedAvatar);
-    }
-    console.log("file0", this.uploadedAvatar);
+    return this.uploadedAvatar;
+    
   }
 
   reset() {
     this.addProduct.reset();
   }
 
-  submitProduct() {    
+  async submitProduct() {    
+    // try {
+    //   const path = `IMG_PRODUCT/${this.uploadedAvatar.name}`;
+    //   const uploadTask = await this.fireStorage.upload(path, this.uploadedAvatar);
+    //   const url = await uploadTask.ref.getDownloadURL();
+  
+    //   this.addProduct.value.image = url;
+  
+    //   console.log('Tải ảnh lên thành công. URL:', url);
+    // } catch (error) {
+    //   console.error('Lỗi tải ảnh lên:', error);
+    // }
+    console.log(this.uploadedAvatar);
+    const avatarName = this.uploadedAvatar.name;
+      const fileRef = this.fireStorage.ref(avatarName);
+      this.fireStorage.upload(avatarName, this.uploadedAvatar).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            console.log('url', url);
+            this.addProduct.value.image = url;
+            
+    
+    })}))
     console.log(this.addProduct.value)
-    this.productService.addProduct(this.addProduct.value).subscribe(
-      () => {
-        
-        console.log("successful:");
-        this.reset();
-      },
-      (error) => {
-        console.log(error.error);
-      }
-    );
-  }
+    this.productService.addProduct(this.addProduct.value).subscribe(() => {
+      console.log("successful:");
+      this.reset();
+    })}
 
   onCategoryChange(event: any) {
     const currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     const selectedCategoryId = event.target.value;
     console.log('Selected Category ID:', selectedCategoryId);
-  
-    // Cập nhật categoryId trong form
     this.addProduct.patchValue({
       category: {
         categoryId: selectedCategoryId

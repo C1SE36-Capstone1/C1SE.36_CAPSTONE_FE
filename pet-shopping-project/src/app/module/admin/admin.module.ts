@@ -17,6 +17,9 @@ import { PetCreateComponent } from './component/pet-manage/pet-create/pet-create
 import { ProductDetailComponent } from './component/product/product-detail/product-detail.component';
 import { ProductEditComponent } from './component/product/product-edit/product-edit.component';
 
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -30,13 +33,19 @@ import { ProductEditComponent } from './component/product/product-edit/product-e
     UserComponent, 
     BreedComponent, 
     ProductCreateComponent, 
-    PetComponent, PetCreateComponent, ProductDetailComponent, ProductEditComponent,
+    PetComponent, 
+    PetCreateComponent, 
+    ProductDetailComponent, 
+    ProductEditComponent,
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+  ],
 })
 export class AdminModule { }
