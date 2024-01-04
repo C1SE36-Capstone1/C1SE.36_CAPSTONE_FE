@@ -1,3 +1,4 @@
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenStorageService } from '../Token/token-storage.service';
@@ -33,5 +34,4 @@ export class PaymentService {
       return this.httpClient.get<any>(`${this._API_URL}/fail/${txnRef}`, {headers});
     }
 
-
-}
+  }

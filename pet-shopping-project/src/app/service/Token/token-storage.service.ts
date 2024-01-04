@@ -53,9 +53,18 @@ export class TokenStorageService {
   }
 
   public getUser() {
-    const user = sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY);
-    return user ? JSON.parse(user) : null;
-  }  
+    const sessionUser = sessionStorage.getItem(USER_KEY);
+    const localUser = localStorage.getItem(USER_KEY);
+
+    if (sessionUser) {
+      return JSON.parse(sessionUser);
+    } else if (localUser) {
+      return JSON.parse(localUser);
+    } else {
+      return null;
+    }
+  }
+
 
   public getRole(): string[] {
     const roleData = sessionStorage.getItem(ROLE_KEY) || localStorage.getItem(ROLE_KEY);

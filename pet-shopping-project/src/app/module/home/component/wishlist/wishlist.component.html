@@ -1,12 +1,9 @@
-<!-- wishlist.component.html
-<div *ngIf="wishlist.length > 0; else emptyWishlist">
-    <h2>Your Wishlist</h2>
-    <ul>
-      <li *ngFor="let item of wishlist">
-        {{ item.product?.name }} - <button (click)="removeFromWishlist(item.favorite)">Remove</button>
-      </li>
-    </ul>
+
+<h2>Danh sách sản phẩm yêu thích</h2>
+<div *ngFor="let favorite of favorites" class="wishlist-item">
+  <img [src]="favorite.product?.image" alt="{{favorite.product?.name}}" class="product-image">
+  <div class="item-info">
+    <p class="product-name">{{ favorite.product?.name }}</p>
   </div>
-  <ng-template #emptyWishlist>
-    <p>Your Wishlist is empty.</p>
-  </ng-template> -->
+  <button (click)="deleteFavorite(favorite.favoriteId)" class="remove-button">Xóa</button>
+</div>
