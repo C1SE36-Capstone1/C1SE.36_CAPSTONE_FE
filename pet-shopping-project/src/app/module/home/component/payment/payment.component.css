@@ -133,3 +133,17 @@ select {
   font-size: 18px;
   color: #333;
 }
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: red;
+}
+

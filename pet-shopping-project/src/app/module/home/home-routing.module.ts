@@ -33,9 +33,11 @@ const routes: Routes = [
       { path: 'health', component: HealthComponent},
       { path: 'user-info', component: UserInfoComponent},
       { path: 'payment', component: PaymentComponent},
+
     ]
   },
   { path: 'login', component: LoginComponent },
+  
 ];
 
 @NgModule({

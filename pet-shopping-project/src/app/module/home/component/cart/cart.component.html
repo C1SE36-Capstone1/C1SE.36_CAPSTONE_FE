@@ -6,24 +6,25 @@
     <p>Giỏ hàng của bạn đang trống.</p>
   </div>
 
-  <div *ngIf="details">
+  <div *ngIf="details?.length > 0">
     <div *ngFor="let detail of details" class="cart-item">
-      <img [src]="detail.product?.image" alt="{{detail.product?.name}}" class="product-image">
+      <img [src]="detail.product?.image" alt="{{ detail.product?.name }}" class="product-image">
       <div class="item-info">
         <p class="product-name">{{ detail.product?.name }}</p>
-        <p class="product-price">{{ detail.price }}</p>
+        <p class="product-price">Giá : {{ detail.product?.price }}</p>
         <div class="quantity-control">
           <label>Số lượng:</label>
-          <input type="number" [(ngModel)]="detail.quantity" min="1" (change)="updateCartDetail(detail)">
+          <button *ngIf="detail.quantity > 1" (click)="updateQuantity(detail.cartDetailId, false)">-</button>
+          <span>{{ detail.quantity }}</span>
+          <button *ngIf="detail.quantity < detail.product.quantity" (click)="updateQuantity(detail.cartDetailId, true)">+</button>
         </div>
-        <p class="total-cost">Tổng tiền: {{ detail.price * detail.quantity }}</p>
+        <p class="total-cost">Tổng tiền: {{ detail.product?.price * detail.quantity }}</p>
       </div>
       <button (click)="deleteCartDetail(detail.cartDetailId)" class="remove-button">Xóa</button>
     </div>
   </div>
-
-  <div *ngIf="details.length > 0" class="total-cost">
-    <p>Tổng tiền giỏ hàng: {{ getTotalCartCost() }}</p>
+  <div class="total-cost" *ngIf="details?.length > 0">
+    <p>Tổng tiền giỏ hàng: {{ total }}</p>
     <button (click)="goToPaymentPage()" class="checkout-button">Thanh toán</button>
   </div>
 </div>
