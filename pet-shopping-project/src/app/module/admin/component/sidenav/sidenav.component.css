@@ -71,7 +71,7 @@
 
         .subNav{
             list-style: none;
-            padding: 2px 0;
+            padding: 5px 0;
             margin: 0;
             display: flex;
             flex-direction: column;

@@ -56,8 +56,6 @@ export class ProductCreateComponent implements OnInit {
     })
   }
 
-  
-
   async onFileSelected(event : any) {
     this.uploadedAvatar = event.target.files[0];
     // return this.uploadedAvatar;

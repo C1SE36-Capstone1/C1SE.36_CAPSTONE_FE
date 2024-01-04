@@ -7,8 +7,12 @@
   <div class="modal-body">
     <form (submit)="saveChanges()">
         <div class="input-field">
-            <input type="file" accept="image/*,.jpg,.jpeg,.png,.webp" />
             <img  [src]="editedProduct.image">
+        </div>
+
+        <div class="input-field">
+            <label for="productName"><strong>Mã Sản Phẩm</strong></label>
+            <input type="text" id="productName" name="productName" [(ngModel)]="editedProduct.code" required>
         </div>
 
         <div class="input-field">
@@ -17,20 +21,27 @@
         </div>
         
         <div class="input-field">
-            <label for="productDescription">Mô Tả</label>
+            <label for="productDescription"><strong>Mô Tả</strong></label>
             <textarea id="productDescription" name="productDescription" [(ngModel)]="editedProduct.description"></textarea>
         </div>
         <div class="input-field">
-            <label for="productPrice">Giá</label>
+            <label for="productPrice"><strong>Giá</strong></label>
             <input type="number" id="productPrice" name="productPrice" [(ngModel)]="editedProduct.price" required>
-            <label for="productQuantity">Số Lượng</label>
+            <label for="productQuantity"><strong>Số Lượng</strong></label>
             <input type="number" id="productQuantity" name="productQuantity" [(ngModel)]="editedProduct.quantity" required>
-            <label for="productDiscount">Giảm giá</label>
+            <label for="productDiscount"><strong>Giảm giá</strong></label>
             <input type="number" id="productDiscount" name="productDiscount" [(ngModel)]="editedProduct.discount" required>
         </div>
         
         <div class="input-field">
-            
+            <div class="input-box">
+                <label><strong>Select Category</strong></label>
+                <div class="select-box">
+                  <select [(ngModel)]="editedProduct.category.categoryId" name="category">
+                    <option *ngFor="let item of categoryList" [value]="item.categoryId">{{item.categoryName}}</option>
+                  </select>
+                </div>
+              </div>
         </div>
         
 

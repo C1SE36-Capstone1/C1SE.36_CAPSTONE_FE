@@ -28,6 +28,10 @@ export class PetService {
     return this.http.post<Pet>(this._API_URL + '/', pet);
   }
 
+  updatePetAtId(id: number, pet: Pet): Observable<Pet> {
+    return this.http.put<Pet>(this._API_URL + '/' + id, pet);
+  }
+
   deletePetAtId(id: number): Observable<void> {
     return this.http.delete<void>(this._API_URL + '/' + id);
   }

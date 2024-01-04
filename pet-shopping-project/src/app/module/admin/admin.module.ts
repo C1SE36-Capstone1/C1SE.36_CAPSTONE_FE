@@ -20,6 +20,9 @@ import { ProductEditComponent } from './component/product/product-edit/product-e
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { PetDetailComponent } from './component/pet-manage/pet-detail/pet-detail.component';
+import { PetEditComponent } from './component/pet-manage/pet-edit/pet-edit.component';
+
 
 
 @NgModule({
@@ -36,8 +39,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     PetComponent, 
     PetCreateComponent, 
     ProductDetailComponent, 
-    ProductEditComponent,
-    
+    ProductEditComponent, PetDetailComponent, PetEditComponent,
   ],
   imports: [
     CommonModule,

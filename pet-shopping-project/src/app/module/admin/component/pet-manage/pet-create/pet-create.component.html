@@ -1,48 +1,15 @@
-<!-- <form [formGroup]="addPet" (ngSubmit)="submitPet()">
-
-
-  <div class="form-group">
-    <label for="price">Price</label>
-    <input type="number" id="price" formControlName="price" class="form-control" />
-  </div>
-
-  <div class="form-group">
-    <label for="discount">Discount</label>
-    <input type="number" id="discount" formControlName="discount" class="form-control" />
-  </div>
-
-  <div class="form-group">
-    <label for="image">Image</label>
-    <input type="text" id="image" formControlName="image" class="form-control" />
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea id="description" formControlName="description" class="form-control"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="status">Status</label>
-    <input type="checkbox" id="status" formControlName="status" class="form-check-input" />
-  </div>
-
-  <div class="form-group">
-    <label for="sold">Sold</label>
-    <input type="number" id="sold" formControlName="sold" class="form-control" />
-  </div>
-
-  <select id="category" formControlName="categoryId" class="form-control" (change)="onCategoryChange($event)">
-    <option *ngFor="let item of breedList" [value]="item.breedId">{{ item.breedName }}</option>
-  </select>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
 <section class="container">
   <header>Add New Pet</header>
   <form [formGroup]="addPet" (ngSubmit)="submitPet()" class="form">
     <div class="input-box">
       <label>Pet Image</label>
-      <input type="file" formControlName="images" placeholder="Choose pet image" required />
+      <input type="file" (change)="onFileSelected($event)"  placeholder="Choose pet image" accept="image/*" required />
+      <img formControlName="image" [src]="addPet.get('images').value">
+    </div>
+
+    <div class="input-box">
+      <label>Code</label>
+      <input type="text" formControlName="code" placeholder="Enter pet code" required />
     </div>
 
     <div class="input-box">
@@ -52,7 +19,7 @@
 
     <div class="input-box">
       <label>Description</label>
-      <input type="text" formControlName="description" placeholder="Enter product description" required />
+      <input type="text" formControlName="description" placeholder="Enter pet description" required />
     </div>
 
     <div class="input-box">

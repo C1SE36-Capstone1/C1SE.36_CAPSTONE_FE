@@ -41,11 +41,6 @@ export const  navbarData=[
         label: 'Review'
     },
     {
-        routerLink: 'message',
-        icon : 'fa fa-message fa-lg',
-        label: 'Message'
-    },
-    {
         routerLink: 'setting',
         icon : 'fa fa-gear fa-lg',
         label: 'Setting'

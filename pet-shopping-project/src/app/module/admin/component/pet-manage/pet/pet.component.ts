@@ -3,6 +3,9 @@ import { PetService } from 'src/app/service/Pet/pet.service';
 import { Breed } from '../../../../../model/Pet/breed';
 import { BreedService } from 'src/app/service/Pet/breed.service';
 import { Pet } from 'src/app/model/Pet/pet';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PetDetailComponent } from '../pet-detail/pet-detail.component';
+import { PetEditComponent } from '../pet-edit/pet-edit.component';
 
 @Component({
   selector: 'app-pet',
@@ -31,7 +34,8 @@ export class PetComponent implements OnInit {
   searchTerm : string ='';
   
   constructor( private petService : PetService,
-               private Breed : BreedService) { }
+               private Breed : BreedService,
+               private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.Breed.getAllBreed().subscribe((data) => {
@@ -107,17 +111,24 @@ export class PetComponent implements OnInit {
       });
   }
 
-  // deletePet(id: number): void {
-  //   this.petService.deletePetAtId(id)
-  //     .subscribe(() => {
-  //       // Handle successful deletion
-  //       console.log('Pet deleted successfully');
-  //       this.loadPet();
-  //     }, error => {
-  //       // Handle errors
-  //       console.error('Error deleting pet:', error);
-  //     });
-  // }
+  openPetDetailModal(pet: Pet): void {
+    const modalRef = this.modalService.open(PetDetailComponent, {
+      size: 'lg', 
+    });
+    modalRef.componentInstance.pet = pet; 
+  }
+
+  openPetEditModal(pet: Pet): void {
+    const modalRef = this.modalService.open(PetEditComponent, {
+      size: 'lg',
+    });
+    modalRef.componentInstance.pet = pet;
+    modalRef.result.then((result) => {
+      console.log('Edit successful:', result);
+    }, (reason) => {
+      console.log('Fail to edit:', reason);
+    });
+  }
 
   search(): void {
     this.petList = [...this.originalPetList]; // Khôi phục danh sách gốc trước khi tìm kiếm

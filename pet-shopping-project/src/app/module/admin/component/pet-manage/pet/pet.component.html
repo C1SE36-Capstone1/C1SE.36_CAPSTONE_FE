@@ -52,16 +52,15 @@
                         <td style="text-align: left;">
                             <img [src]="item.images" style="max-height: 80px; max-width: 80px; width: auto; height: auto;">
                         </td>
-                        <td style="text-align: left; overflow: hidden; text-overflow: ellipsis; max-width: 100%">
-                            <span style="text-overflow: ellipsis; overflow: hidden;">{{item.name}}</span>
-                            
+                        <td [ngClass]="'truncate-text'" style="text-align: left;" (click)="openPetDetailModal(item)">
+                            {{item.name}}
                         </td>
                         <td [ngClass]="'truncate-text'" style="text-align: left;">{{item.description}}</td>
                         <td style="text-align: center;">{{item.price}}</td>
                         <td style="text-align: center;">{{item.code}}</td>
                         <td style="text-align: center;">{{item.breed?.breedName}}</td>
                         <td style="text-align: center; gap: 10px">
-                            <i class="fa fa-pencil-square fa-lg"></i>
+                            <i class="fa fa-pencil-square fa-lg" (click)="openPetEditModal(item)"></i>
                             <i class="fa fa-trash fa-lg" (click)="confirmDelete(item.petId)"></i>
                         </td>
                     </tr>
@@ -82,7 +81,7 @@
         <i class="fa-solid fa-xmark"></i>
     </div>
     <i class="fa fa-trash fa-4x" style="color: rgb(0, 159, 127) ;"></i>
-    <h4>Delete Category</h4>
+    <h4>Delete Pet</h4>
     <p>Are you sure, you want to delete?</p>
     <div class="btn-action">
         <button style="background-color:rgb(0, 159, 127)" (click)="closeDeletePopup()">Cancel</button>

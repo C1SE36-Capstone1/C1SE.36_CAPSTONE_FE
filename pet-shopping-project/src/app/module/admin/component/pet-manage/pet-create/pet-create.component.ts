@@ -1,5 +1,6 @@
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Breed } from 'src/app/model/Pet/breed';
 import { BreedService } from 'src/app/service/Pet/breed.service';
@@ -20,11 +21,11 @@ export class PetCreateComponent implements OnInit {
   uploadedAvatar: any = null;
 
 
-  constructor(
-    private petService: PetService,
-    private breedService: BreedService,
-    private formBuilder: FormBuilder
-  ) {
+  constructor(private petService: PetService,
+              private breedService: BreedService,
+              private formBuilder: FormBuilder,
+              private fireStorage : AngularFireStorage) 
+  {
     this.breedService.getAllBreed().subscribe((data) => {
       this.breedList = data;
     });
@@ -36,12 +37,12 @@ export class PetCreateComponent implements OnInit {
 
   buildForm() {
     this.addPet = this.formBuilder.group({
-      petId: [0],//
-      code: [''],//
-      name: ['', [Validators.required, Validators.maxLength(45)]],//
+      petId: [0],
+      code: [''],
+      name: ['', [Validators.required, Validators.maxLength(45)]],
       price: [0, [Validators.required]],//
       images: ['', [Validators.required]],//
-      description: ['', [Validators.required, Validators.maxLength(1000000000)]],//
+      description: ['', [Validators.required, Validators.maxLength(1000000000)]],
       enteredDate: ['', [Validators.required]],//
       status: [true, [Validators.required]],
       petAge: ['', [Validators.required]],
@@ -73,37 +74,35 @@ export class PetCreateComponent implements OnInit {
     this.addPet.reset();
   }
 
-  submitPet() {
-    // const currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-
-    // this.addProduct.patchValue({
-    //   enterDate: currentDate,
-    // });
-    
-    console.log(this.addPet.value)
-    this.petService.addPet(this.addPet.value).subscribe(
-      () => {
-        
-        console.log("successful:");
-        this.reset();
-      },
-      (error) => {
-        console.log(error.error);
-      }
-    );
+  async onFileSelected(event : any) {
+    this.uploadedAvatar = event.target.files[0];
+    try {
+      const path = `IMG_PET/${this.uploadedAvatar.name}`;
+      const uploadTask = await this.fireStorage.upload(path, this.uploadedAvatar);
+      const url = await uploadTask.ref.getDownloadURL();
+      this.addPet.get('images').setValue(url);
+      console.log('Tải ảnh lên thành công. URL:', url);
+    } catch (error) {
+      console.error('Lỗi tải ảnh lên:', error);
+    }
   }
+
+  async submitPet() {   
+    console.log(this.addPet.value)
+    this.petService.addPet(this.addPet.value).subscribe(() => {
+      console.log("successful:");
+      this.reset();
+    })}
 
   onCategoryChange(event: any) {
     const currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     const selectedBreedId = event.target.value;
     console.log('Selected Category ID:', selectedBreedId);
-  
-    // Cập nhật categoryId trong form
     this.addPet.patchValue({
       category: {
         categoryId: selectedBreedId
       },
-       enteredDate: currentDate
+      enteredDate: currentDate
     });
   
     console.log('Form Value After Update:', this.addPet.value);
