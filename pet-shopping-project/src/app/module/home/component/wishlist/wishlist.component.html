@@ -1,1 +1,9 @@
-<p>wishlist works!</p>
+
+<h2>Danh sách sản phẩm yêu thích</h2>
+<div *ngFor="let favorite of favorites" class="wishlist-item">
+  <img [src]="favorite.product?.image" alt="{{favorite.product?.name}}" class="product-image">
+  <div class="item-info">
+    <p class="product-name">{{ favorite.product?.name }}</p>
+  </div>
+  <button (click)="deleteFavorite(favorite.favoriteId)" class="remove-button">Xóa</button>
+</div>

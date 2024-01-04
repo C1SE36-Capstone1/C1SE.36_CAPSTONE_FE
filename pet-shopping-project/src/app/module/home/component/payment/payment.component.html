@@ -1,77 +1,78 @@
-<!-- payment.component.html -->
 <div class="checkout-container">
   <div class="checkout-header">
     <h2>Thông tin thanh toán</h2>
   </div>
 
-  <div class="checkout-details">
-    <div class="customer-info">
-      <h3>Thông tin khách hàng</h3>
-      <form>
-        <div class="form-group">
-          <label for="fullName">Họ và tên:</label>
-          <input type="text" id="fullName" name="fullName" required>
-        </div>
+  <div class="payment-details-container">
+    <div class="customer-info-container">
+      <div class="customer-info">
+        <h3>Thông tin khách hàng</h3>
+        <form [formGroup]="paymentForm">
+          <div class="form-group">
+            <label for="fullName">Họ và tên:</label>
+            <input type="text" id="fullName" formControlName="name">
+            <div *ngIf="paymentForm.get('name').invalid && paymentForm.get('name').touched" class="error-message">
+              Họ và tên là bắt buộc.
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" formControlName="email">
+            <div *ngIf="paymentForm.get('email').invalid && paymentForm.get('email').touched" class="error-message">
+              Email không hợp lệ.
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <label for="phone">Số điện thoại:</label>
+            <input type="tel" id="phone" formControlName="phone">
+            <div *ngIf="paymentForm.get('phone').invalid && paymentForm.get('phone').touched" class="error-message">
+              Số điện thoại là bắt buộc.
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <label for="address">Địa chỉ:</label>
+            <textarea id="address" formControlName="address"></textarea>
+            <div *ngIf="paymentForm.get('address').invalid && paymentForm.get('address').touched" class="error-message">
+              Địa chỉ là bắt buộc.
+            </div>
+          </div>
 
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" >
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Số điện thoại:</label>
-          <input type="tel" id="phone" name="phone" >
-        </div>
-
-        <div class="form-group">
-          <label for="address">Địa chỉ:</label>
-          <textarea id="address" name="address" ></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="paymentMethod">Phương thức thanh toán:</label>
-          <select id="paymentMethod" name="paymentMethod">
-            <option value="creditCard">Thẻ tín dụng</option>
-            <option value="bankTransfer">Chuyển khoản ngân hàng</option>
-            <!-- Thêm các phương thức thanh toán khác nếu cần -->
-          </select>
-        </div>
-
-        <button type="button" (click)="processPayment()">Xác nhận thanh toán</button>
-      </form>
-    </div>
-
-    <div class="cart-container">
-      <h2 class="cart-title">Danh sách sản phẩm thanh toán</h2>
-
-      <div *ngIf="cartDetails.length === 0" class="empty-cart">
-        <p>Không có sản phẩm nào để thanh toán.</p>
+          <div class="form-group">
+            <label for="paymentMethod">Phương thức thanh toán:</label>
+            <select id="paymentMethod" formControlName="paymentMethod" (change)="changeMethod($event)">
+              <option value="1">Thanh Toán Tiền Mặt</option>
+              <option value="2">VnPay</option>
+            </select>
+        
+          </div>
+        </form>
       </div>
 
-      <div *ngFor="let detail of cartDetails" class="payment-item">
-        <div class="item-info">
-          <img [src]="detail.product?.image" alt="{{ detail.product?.name }}" class="product-image">
-          <div class="product-details">
-            <p class="product-name">{{ detail.product?.name }}</p>
-            <p class="product-quantity">Số lượng: {{ detail.quantity }}</p>
-            <p class="total-cost">Tổng tiền: {{ detail.price * detail.quantity }}</p>
+      <div class="cart-container">
+        <h2 class="cart-title">Danh sách sản phẩm thanh toán</h2>
+
+        <div *ngIf="details?.length === 0" class="empty-cart">
+          <p>Không có sản phẩm nào trong giỏ hàng.</p>
+        </div>
+
+        <div *ngFor="let item of details" class="payment-item">
+          <div class="item-info">
+            <img [src]="item.product.image" alt="{{ item.product.name }}" class="product-image">
+            <div class="product-details">
+              <p class="product-name">{{ item.product.name }}</p>
+              <p class="product-quantity">Số lượng: {{ item.quantity }}</p>
+              <p class="total-cost">Tổng tiền: {{ item.product.price * item.quantity }}</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div *ngIf="cartDetails.length > 0" class="total-cost">
-        <p>Tổng tiền thanh toán: {{ getTotalCartCost() }}</p>
-        <button (click)="checkout()" class="checkout-button">Xác nhận thanh toán</button>
+
+      <!-- Hiển thị tổng tiền thanh toán -->
+      <div class="total-cost">
+        Tổng tiền thanh toán: {{ totalAmount }}
+        <button (click)="onCheckout()" class="checkout-button">Xác nhận thanh toán</button>
       </div>
     </div>
-  </div>
-
-  <div class="payment-options">
-    <h3>Các phương thức thanh toán khác nhau</h3>
-    <ul>
-      <li>Thẻ tín dụng</li>
-      <li>Chuyển khoản ngân hàng</li>
-      <!-- Thêm các phương thức thanh toán khác nếu cần -->
-    </ul>
-  </div>
-</div>

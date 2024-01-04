@@ -1,13 +1,18 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { CategoryService } from "../../../../service/Product/category.service";
-import { Category } from "../../../../model/Product/category";
-import { ProductService } from "src/app/service/Product/product.service";
-import { Product } from "src/app/model/Product/product";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { CartService } from "src/app/service/Cart/cart.service";
-import { CartDetail } from "src/app/model/Cart/cart-detail";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import Swal from "sweetalert2";
+
+import { Component, Input, OnInit } from '@angular/core';
+import { CategoryService } from '../../../../service/Product/category.service';
+import { Category } from '../../../../model/Product/category';
+import { ProductService } from 'src/app/service/Product/product.service';
+import { Product } from 'src/app/model/Product/product';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { CartService } from 'src/app/service/Cart/cart.service';
+import { CartDetail } from 'src/app/model/Cart/cart-detail';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
+import { WishlistService } from '../../../../service/wishlist/wishlist.service';
+import { favorite } from 'src/app/model/Product/favorite';
+import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
+
 
 @Component({
   selector: "app-shop",
@@ -35,17 +40,21 @@ export class ShopComponent implements OnInit {
   sortOrder: string = "";
   cartDetails: CartDetail[] = [];
 
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private category: CategoryService,
-              private cartService: CartService,
-              private product: ProductService) 
-    { }
+  constructor( private router: Router,
+               private activatedRoute : ActivatedRoute,
+               private category : CategoryService,
+               private cartService : CartService,
+               private product : ProductService,
+               private snackBar: MatSnackBar,
+               private route: ActivatedRoute,
+               private ProductService: ProductService,
+               private wishlistService: WishlistService,
+               private tokenStorageService: TokenStorageService
+               ) { }
 
   ngOnInit(): void {
     this.startSlideshow();
-    
-    this.category.getAll().subscribe((result) => {
+    this.category.getAll().subscribe((result) =>{
       this.categoryList = result;
       this.activatedRoute.params.subscribe(params => {
         const categoryName = params['categoryName'];
@@ -63,12 +72,22 @@ export class ShopComponent implements OnInit {
       }
     });
     if (flag) {
-      Swal.fire("Lưu ý", "Sản phẩm đã có trong giỏ", "info");
+
+      Swal.fire('Lưu ý', 'Sản phẩm đã có trong giỏ', 'info');
     } else {
-      this.cartService.addToCart(productId).subscribe((next) => {
-        Swal.fire("Thành công", "Đã thêm sản phẩm vào giỏ", "success");
+      this.cartService.addToCart(productId).subscribe(next => {
+
+        console.log('Cart Details after adding product:', this.cartDetails);
+        Swal.fire('Thành công', 'Đã thêm sản phẩm vào giỏ', 'success');
       });
     }
+  }
+  addProductToFavorite(productId: number){
+    this.wishlistService.addProductToFavorite(productId) .subscribe(next => {
+      Swal.fire('Thành công',
+            'Sanr phaamr ',
+            'success');
+    })
   }
   startSlideshow() {
     setInterval(() => {

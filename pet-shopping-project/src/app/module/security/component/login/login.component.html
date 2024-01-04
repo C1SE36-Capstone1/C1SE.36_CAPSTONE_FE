@@ -1,67 +1,37 @@
-<!-- <<<<<<< dev-tam
-<div class="login-container">
-	<div class="image-section"> -->
-	  <!-- Nội dung hình ảnh và văn bản có thể được thêm vào đây -->
-	  <!-- Các nút đăng nhập mạng xã hội có thể được thêm vào đây nếu cần -->
-<!-- 	</div>
-	<div class="form-section">
-	  <div class="form-wrapper">
-		<h2>Login</h2>
-		<form>
-		  <div class="form-group">
-			<label for="email">Email</label>
-			<input type="email" id="email"  formControlName="email" name="Email" required>
-		  </div>
-		  <div class="form-group">
-			<label for="password">Password</label>
-			<input type="password" id="password" formControlName="password" name="password" required>
-		  </div>
-		  <div class="form-group remember-me">
-			<input type="checkbox" id="rememberMe" name="rememberMe">
-			<label for="rememberMe">Remember me</label>
-		  </div>
-		  <div class="form-group">
-			<button type="submit" class="login-button">Login</button>
-		  </div>
-		  <div class="form-links">
-			<a href="#">Create Your Account</a>
-			<a href="#">forget password?</a>
-		  </div>
-		</form>
-	  </div>
-	</div>
-  </div>
-======= -->
 <div class="register-container">
-	<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
 
-	  <!-- Trường nhập email -->
-	  <div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" class="form-control" id="email" formControlName="email">
-		<div *ngIf="signinForm.get('email').invalid && signinForm.get('email').touched">
-		  <small class="form-text text-muted">Email không hợp lệ.</small>
-		</div>
-	  </div>
+    <!-- Trường nhập email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div *ngIf="signinForm.get('email').invalid && signinForm.get('email').touched">
+        <small class="form-text text-muted">Email không hợp lệ.</small>
+      </div>
+    </div>
 
-	  <!-- Trường nhập mật khẩu -->
-	  <div class="form-group">
-		<label for="password">Mật khẩu</label>
-		<input type="password" class="form-control" id="password" formControlName="password">
-		<div *ngIf="signinForm.get('password').invalid && signinForm.get('password').touched">
-		  <small class="form-text text-muted">Mật khẩu không đúng.</small>
-		</div>
-	  </div>
+    <!-- Trường nhập mật khẩu -->
+    <div class="form-group">
+      <label for="password">Mật khẩu</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div *ngIf="signinForm.get('password').invalid && signinForm.get('password').touched">
+        <small class="form-text text-muted">Mật khẩu không đúng.</small>
+      </div>
+    </div>
 
-	  <!-- Checkbox "Ghi nhớ đăng nhập" -->
-	  <!-- <div class="form-group form-check">
-		<input type="checkbox" class="form-check-input" id="rememberMe" formControlName="rememberMe">
-		<label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
-	  </div> -->
+    <!-- Checkbox "Ghi nhớ đăng nhập" -->
+    <!-- <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="rememberMe" formControlName="rememberMe">
+      <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+    </div> -->
 
-	  <!-- Nút đăng nhập -->
-	  <button type="submit" class="btn btn-primary" [disabled]="!signinForm.valid">Đăng nhập</button>
+    <!-- Nút đăng nhập -->
+    <button type="submit" class="btn btn-primary" [disabled]="!signinForm.valid">Đăng nhập</button>
 
-	</form>
+  </form>
+
+  <!-- Thêm phần "Bạn chưa có tài khoản? Đăng kí ngay!" và đường link tới trang đăng kí -->
+  <div class="registration-message">
+    <p>Bạn chưa có tài khoản? <a routerLink="/register">Đăng kí ngay!</a></p>
   </div>
-  
+</div>
