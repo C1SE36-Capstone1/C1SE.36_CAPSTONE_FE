@@ -6,7 +6,6 @@ import { Category } from "src/app/model/Product/category";
 import { CategoryService } from "src/app/service/Product/category.service";
 import { ProductService } from "src/app/service/Product/product.service";
 import { AngularFireStorage} from "@angular/fire/storage";
-import { finalize } from "rxjs/operators";
 
 
 @Component({
@@ -59,10 +58,18 @@ export class ProductCreateComponent implements OnInit {
 
   
 
-  onFileSelected(event : any) {
+  async onFileSelected(event : any) {
     this.uploadedAvatar = event.target.files[0];
-    return this.uploadedAvatar;
-    
+    // return this.uploadedAvatar;
+    try {
+      const path = `IMG_PRODUCT/${this.uploadedAvatar.name}`;
+      const uploadTask = await this.fireStorage.upload(path, this.uploadedAvatar);
+      const url = await uploadTask.ref.getDownloadURL();
+      this.addProduct.get('image').setValue(url);
+      console.log('Tải ảnh lên thành công. URL:', url);
+    } catch (error) {
+      console.error('Lỗi tải ảnh lên:', error);
+    }
   }
 
   reset() {
@@ -70,28 +77,6 @@ export class ProductCreateComponent implements OnInit {
   }
 
   async submitProduct() {    
-    // try {
-    //   const path = `IMG_PRODUCT/${this.uploadedAvatar.name}`;
-    //   const uploadTask = await this.fireStorage.upload(path, this.uploadedAvatar);
-    //   const url = await uploadTask.ref.getDownloadURL();
-  
-    //   this.addProduct.value.image = url;
-  
-    //   console.log('Tải ảnh lên thành công. URL:', url);
-    // } catch (error) {
-    //   console.error('Lỗi tải ảnh lên:', error);
-    // }
-    console.log(this.uploadedAvatar);
-    const avatarName = this.uploadedAvatar.name;
-      const fileRef = this.fireStorage.ref(avatarName);
-      this.fireStorage.upload(avatarName, this.uploadedAvatar).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe(url => {
-            console.log('url', url);
-            this.addProduct.value.image = url;
-            
-    
-    })}))
     console.log(this.addProduct.value)
     this.productService.addProduct(this.addProduct.value).subscribe(() => {
       console.log("successful:");

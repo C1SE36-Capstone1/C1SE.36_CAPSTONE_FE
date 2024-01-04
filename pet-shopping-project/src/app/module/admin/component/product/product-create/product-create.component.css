@@ -37,6 +37,12 @@
   color: #333;
 }
 
+.input-box img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
 .form :where(.input-box input) {
   position: relative;
   height: 50px;

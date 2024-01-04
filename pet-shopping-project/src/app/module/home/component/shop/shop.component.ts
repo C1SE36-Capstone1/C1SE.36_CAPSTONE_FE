@@ -40,7 +40,7 @@ export class ShopComponent implements OnInit {
               private category: CategoryService,
               private cartService: CartService,
               private product: ProductService) 
-    {  }
+    { }
 
   ngOnInit(): void {
     this.startSlideshow();
@@ -97,7 +97,7 @@ export class ShopComponent implements OnInit {
       
       if (category) {
         this.selectedCategoryId = category.categoryId;
-  
+        
         // Gọi phương thức getByCategory và cập nhật danh sách sản phẩm
         if (this.selectedCategoryId) {
           this.product.getByCategory(this.selectedCategoryId).subscribe(

@@ -6,34 +6,30 @@
                 (click)="selectImage(i)"></span>
         </div>
     </div>
-    <!-- <div class="breadcrumb"></div> -->
     <div class="product-container" style="display: flex;">
         <div class="filter">
             <div class="product-categories">
                 <h2>Categories</h2>
-                <ul id="category-list" >
+                <ul id="category-list">
                     <li>
-                        <a [routerLink]="['/shop','All']"
-                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-                            (click)="onCategoryClick('0')">
-                            <i class="fa fa-paw fa-rotate-90"></i>
-                            <span class="text">Tất cả</span>
-                        </a>
+                      <a [routerLink]="['/shop','All']" 
+                        (click)="onCategoryClick('')">
+                        <i class="fa fa-paw fa-rotate-90"></i>
+                        <span class="text">Tất cả</span>
+                      </a>
                     </li>
                     <li *ngFor="let item of categoryList?.slice(0,7)">
-                        <a [routerLink]="['/shop', item.categoryName]"
-                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-                            (click)="onCategoryClick(item.categoryName)">
-                            <i class="fa fa-paw fa-rotate-90"></i>
-                            <span class="text">{{item.categoryName}}</span>
-                        </a>
+                      <a [routerLink]="['/shop', item.categoryName]" 
+                        (click)="onCategoryClick(item.categoryName)">
+                        <i class="fa fa-paw fa-rotate-90"></i>
+                        <span class="text">{{item.categoryName}}</span>
+                      </a>
                     </li>
-                </ul>
+                  </ul>
                 <a *ngIf="categoryList?.length > 7 && show" (click)="showAllCategories()">Hiện thêm</a>
                 <ul id="category-list" *ngIf="showAll">
                     <li *ngFor="let item of categoryList?.slice(7)">
                         <a [routerLink]="['/shop', item.categoryName]"
-                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.categoryName)">
                             <i class="fa fa-paw fa-rotate-90"></i>
                             <span class="text">{{item.categoryName}}</span>
