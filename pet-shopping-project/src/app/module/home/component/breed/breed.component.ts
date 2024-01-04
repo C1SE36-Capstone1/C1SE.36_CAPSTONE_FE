@@ -3,7 +3,7 @@ import { BreedService } from 'src/app/service/Pet/breed.service';
 import { Breed } from '../../../../model/Pet/breed';
 import { Pet } from 'src/app/model/Pet/pet';
 import { PetService } from 'src/app/service/Pet/pet.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-breed',
@@ -33,18 +33,18 @@ export class BreedComponent implements OnInit {
 
   constructor(private router: Router,
               private breedService : BreedService,
-              private petService : PetService) { }
+              private petService : PetService,
+              private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.breedService.getAllBreed().subscribe((result) =>{
+    this.breedService.getAllBreed().subscribe((result) => {
       this.breedList = result;
+      this.activatedRoute.params.subscribe(params => {
+        const breedName = params['breedName'];
+        console.log(breedName);
+        this.onCategoryClick(breedName);
+      });
     });
-
-    this.petService.getAllPet().subscribe((data)=> {
-      this.petList = data
-      this.totalPet = this.petList.length;
-      this.displayedPet = this.getPetSlice();
-    })
 
     this.startSlideshow();
   }

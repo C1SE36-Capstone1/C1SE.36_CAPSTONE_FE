@@ -49,6 +49,10 @@ export class ProductService {
     return this.http.post<Product>(this._API_URL, product, { headers });
   }
 
+  editProduct(id: number, product: Product): Observable<Product> {
+    return this.http.put<Product>(this._API_URL, product);
+  }
+
   deleteProductAtId(id: number): Observable<void> {
     const favorites = this.favoritesSubject.value
   .filter((p): p is Product => p && p.id !== id);

@@ -12,7 +12,7 @@ import { CartWithDetail } from 'src/app/model/Cart/cart-with-detail';
   providedIn: 'root',
 })
 export class CartService {
-  private _API_URL = 'http://localhost:8080/api/cartDetail/';
+  private _API_URL = 'http://localhost:8080/api/cartDetail';
 
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService){}
@@ -28,7 +28,7 @@ export class CartService {
   addToCart(productId: number): Observable<CartDetail[]> {
     const token = this.tokenStorageService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<CartDetail[]>(`${this._API_URL}cart/add/${productId}`, {headers});
+    return this.http.get<CartDetail[]>(`${this._API_URL}/cart/add/${productId}`, {headers});
   }
 
 

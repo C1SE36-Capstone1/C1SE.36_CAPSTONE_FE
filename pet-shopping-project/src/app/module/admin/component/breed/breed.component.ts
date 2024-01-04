@@ -15,6 +15,7 @@ export class BreedComponent implements OnInit {
   showDeletePopup = false;
   deleteBreedId: number;
 
+  isEditMode: boolean = false;
   newBreed: Breed = {breedId : 0 , breedName: ''};
   show = false;
   breedId: number = 0;
@@ -37,15 +38,11 @@ export class BreedComponent implements OnInit {
   loadBreeds(): void {
     this.breedService.getAllBreed().subscribe((breeds) => {
       this.breedList = breeds;
-      //Sắp xếp category theo id giảm dần
+
       this.breedList.sort((a, b) => b.breedId - a.breedId);
       this.totalBreed = this.breedList.length;
       this.displayedBreeds = this.getBreedSlice();
     });
-  }
-
-  toggleForm(){
-    this.show = true;
   }
 
   closepopup(){
@@ -57,11 +54,11 @@ export class BreedComponent implements OnInit {
       (breed) => {
         this.loadBreeds();
         this.show = false
-        console.log('Category added successfully:', breed);
+        console.log('breed added successfully:', breed);
         // Thêm logic xử lý thành công ở đây nếu cần
       },
       (error) => {
-        console.error('Error adding category:', error);
+        console.error('Error adding breed:', error);
         // Thêm logic xử lý lỗi ở đây nếu cần
       }
     );
@@ -115,8 +112,8 @@ closeDeletePopup(): void {
     // Filter products based on the searchTerm
     // You can customize the filter logic based on your requirements
     // For example, you might want to make the search case-insensitive
-    this.breedList = this.breedList.filter(category => 
-      category.breedName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    this.breedList = this.breedList.filter(breed  => 
+      breed.breedName.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.totalBreed = this.breedList.length;
     this.displayedBreeds = this.getBreedSlice();
@@ -124,6 +121,44 @@ closeDeletePopup(): void {
 
   onEnter(){
     this.search();
+  }
+
+  openAddForm(): void {
+    this.isEditMode = false;
+    this.show = true;
+  }
+
+  openEditForm(breedId: number): void {
+    this.isEditMode = true;
+    this.breedService.getBreedById(breedId).subscribe(
+      (breed) => {
+        this.newBreed = { ...breed };
+        this.show = true;
+      },
+      (error) => {
+        console.error('Error fetching Breed:', error);
+      }
+    );
+  }
+
+  editBreed(): void {
+    this.breedService.updateBreed(this.newBreed.breedId, this.newBreed).subscribe(
+      (result) => {
+        console.log('Breed edited successfully:', result);
+        this.loadBreeds();
+        this.closepopup();
+      },
+      (error) => {
+        console.error('Error editing breed:', error);
+      }
+    );
+  }
+  handleSubmit(): void {
+    if (this.isEditMode) {
+      this.editBreed();
+    } else {
+      this.addBreed();
+    }
   }
 
 }

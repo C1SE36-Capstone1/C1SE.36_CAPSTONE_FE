@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+
   rf: FormGroup;
   cart?: Cart;
   details?: CartDetail[];
@@ -46,6 +47,7 @@ export class CartComponent implements OnInit {
 
 
   getCart() {
+
     this.cartService.getCart().subscribe(
       next => {
         this.cart = next.cart;

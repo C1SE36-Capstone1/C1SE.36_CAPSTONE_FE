@@ -4,7 +4,8 @@
   <form [formGroup]="addProduct" (ngSubmit)="submitProduct()" class="form">
     <div class="input-box">
       <label>Product Image</label>
-      <input type="file" formControlName="image" placeholder="Choose product image" required />
+      <input type="file" (change)="onFileSelected($event)"  placeholder="Choose product image" accept="image/*" required />
+      <img formControlName="image" [src]="addProduct.get('image').value">
     </div>
 
     <div class="input-box">

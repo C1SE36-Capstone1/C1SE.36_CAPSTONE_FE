@@ -8,13 +8,14 @@ import { User } from 'src/app/model/User/user';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-  private _API_URL = 'http://localhost:8080/api/auth/user';
+  private _API_URL = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient) { }
 
   register(signUpForm: SignUpForm): Observable<any> {
-    return this.http.post(`${this._API_URL}/create`, signUpForm);
+    return this.http.post(`${this._API_URL}/user/create`, signUpForm);
   }
+  
   getAllAcount() : Observable<User[]>{
     return this.http.get<User[]>(this._API_URL)
   }

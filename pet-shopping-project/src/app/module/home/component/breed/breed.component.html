@@ -14,7 +14,6 @@
                 <ul id="category-list">
                     <li>
                         <a [routerLink]="['/breed','All']" 
-                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick('0')">
                             <i class="fa fa-paw fa-rotate-90"></i> 
                             <span class="text">Tất cả</span>
@@ -22,7 +21,6 @@
                     </li>
                     <li *ngFor="let item of breedList?.slice(0,7)">
                         <a [routerLink]="['/breed', item.breedName]" 
-                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.breedName)">
                             <i class="fa fa-paw fa-rotate-90"></i> 
                             <span class="text">{{item.breedName}}</span>
@@ -33,7 +31,6 @@
                 <ul id="category-list" *ngIf="showAll">
                     <li *ngFor="let item of breedList?.slice(7)">
                         <a [routerLink]="['/breed', item.breedName]" 
-                            routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                             (click)="onCategoryClick(item.breedName)">
                             <i class="fa fa-paw fa-rotate-90"></i> 
                             <span class="text">{{item.breedName}}</span>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
+import { AuthService } from '../../../../service/Auth/auth.service';
+import { ShareService } from 'src/app/service/Auth/share.service';
 
 @Component({
   selector: 'app-header',
@@ -10,21 +12,28 @@ import { TokenStorageService } from 'src/app/service/Token/token-storage.service
 export class HeaderComponent implements OnInit {
 
   currentUser: any;
-  isLoggedIn : boolean;
   username: string;
   show = false;
-
+  isLogin : boolean
   showOptions: boolean = false;
+  role: string[];
   
   constructor(private router: Router,
-              private tokenStorageService: TokenStorageService){}            
+              private tokenStorageService: TokenStorageService,
+              shareService: ShareService){}            
 
   ngOnInit(): void {
-
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
     this.username = this.tokenStorageService.getUser();
-    this.currentUser = this.tokenStorageService.getUser();
-    console.log('Email user: ' +this.currentUser?.email)
+    this.isLogin = this.username != null;
+    console.log('Name: ' + this.username)
+  }
+
+  loadHeader(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.currentUser = this.tokenStorageService.getUser();
+      this.role = this.tokenStorageService.getRole();
+      this.username = this.tokenStorageService.getUser();
+    }
   }
 
   openpopup(){
@@ -40,15 +49,9 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToUserInfo() {
-    if (this.isLoggedIn) {
-      console.log('Token header 1 is: '+this.tokenStorageService.getToken());
-      console.log('Email user: '+ this.currentUser?.email);
-      
+    if(this.isLogin)
       this.router.navigate(['/user-info']);
-    } else if(this.tokenStorageService.getToken()==null) {
-      console.log('Token header 2 is: '+this.tokenStorageService.getToken());
-      
-      this.router.navigate(['/login']);
-    }
+    else
+      this.router.navigate(['/login'])
   }
 }

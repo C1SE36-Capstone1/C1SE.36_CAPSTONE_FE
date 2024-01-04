@@ -10,10 +10,8 @@
               <li><a (click)="changeTab('tab2')">Hạng hội viên</a></li>
               <li><a (click)="changeTab('tab3')">Lịch sử mua hàng</a></li>
               <li><a (click)="changeTab('tab4')">Địa chỉ giao hàng</a></li>
-              <li><a (click)="changeTab('tab5')">Danh sách cửa hàng</a></li>
-              <li><a (click)="changeTab('tab6')">Sản phẩm yêu thích</a></li>
               <li><a (click)="changeTab('tab7')">Ưu đãi của bạn</a></li>
-              <li><a (click)="changeTab('tab8')">Đăng Xuất</a></li>
+              <li><a (click)="signout()">Đăng Xuất</a></li>
           </ul>
       </div>
       <div class="right" [ngSwitch]="selectedTab">
@@ -73,18 +71,9 @@
           <div class="tab" *ngSwitchCase="'tab4'">
               <h4>Địa chỉ giao hàng</h4>
           </div>
-          <div class="tab" *ngSwitchCase="'tab5'">
-              <h4>Danh sách cửa hàng</h4>
-          </div>
-          <div class="tab" *ngSwitchCase="'tab6'">
-              <h4>Sản phẩm yêu thích</h4>
-          </div>
           <div class="tab" *ngSwitchCase="'tab7'">
               <h4>Ưu đãi của bạn</h4>
           </div>
-          <div class="tab" *ngSwitchCase="'tab8'">
-              <h4>Đăng xuất</h4><button (click)="signout()">Sign-out</button>
-            </div>
       </div>
   </div>
 </div>

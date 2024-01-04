@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/service/Token/token-storage.service';
 
+
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -11,23 +12,26 @@ export class UserInfoComponent implements OnInit {
 
   currentUser: any;
   selectedTab: string = 'tab1';
+  role : any;
 
   changeTab(tab: string) {
     this.selectedTab = tab;
   }
 
   constructor(private tokenStorageService: TokenStorageService,
-              private router: Router) {}
+              private router: Router,) {}
 
   ngOnInit(): void {
-    // Lấy thông tin người dùng từ TokenStorageService
     this.currentUser = this.tokenStorageService.getUser();
-    // Các thông tin khác cũng có thể được lấy tùy thuộc vào cách bạn lưu chúng trong TokenStorageService
+    this.role = this.tokenStorageService.getRole();
+    console.log(this.role);
   }
 
   signout(){
     this.tokenStorageService.signOut();
-    location.reload();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home']).then(() => {
+      window.location.reload();
+  });
+    
   }
 }

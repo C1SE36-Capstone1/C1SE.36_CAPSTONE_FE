@@ -26,6 +26,10 @@ export class CategoryService {
     return this.http.post<Category>(this._API_URL, category)
   }
 
+  editCategory(id: number, category: Category): Observable<Category> {
+    return this.http.put<Category>(this._API_URL +'/'+ id, category);
+  }
+
   deleteCategoryAtId(id: number): Observable<Category> {
     return this.http.delete<Category>(this._API_URL + '/' + id);
   }

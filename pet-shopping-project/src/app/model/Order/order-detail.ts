@@ -6,7 +6,6 @@ export interface OrderDetail {
     orderDetailId?: number;
     quantity?: number;
     price?: number;
-
     product?: Product;
     order?: Order;
     pet?: Pet;

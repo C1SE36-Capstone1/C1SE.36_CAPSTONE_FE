@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/model/Product/category';
 import { Product } from 'src/app/model/Product/product';
 import { CategoryService } from 'src/app/service/Product/category.service';
 import { ProductService } from 'src/app/service/Product/product.service';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { ProductEditComponent } from '../product-edit/product-edit.component';
 
 @Component({
   selector: 'app-product',
@@ -30,7 +33,8 @@ export class ProductComponent implements OnInit {
   searchTerm : string ='';
   
   constructor( private product : ProductService,
-               private category : CategoryService) { }
+               private category : CategoryService,
+               private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.category.getAll().subscribe((data) => {
@@ -119,5 +123,24 @@ export class ProductComponent implements OnInit {
 
   onEnter(){
     this.search();
+  }
+
+  openProductDetailModal(product: Product): void {
+    const modalRef = this.modalService.open(ProductDetailComponent, {
+      size: 'lg', 
+    });
+    modalRef.componentInstance.product = product; 
+  }
+
+  openProductEditModal(product: Product): void {
+    const modalRef = this.modalService.open(ProductEditComponent, {
+      size: 'lg',
+    });
+    modalRef.componentInstance.product = product;
+    modalRef.result.then((result) => {
+      console.log('Edit successful:', result);
+    }, (reason) => {
+      console.log('Fail to edit:', reason);
+    });
   }
 }
