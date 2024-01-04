@@ -52,17 +52,15 @@
             <div class="product-list" >
                 <!-- Sản phẩm  -->
                 <div class="product hover-effect" *ngFor="let item of displayedProducts">
-                    <div class="image">
-                        <img [src] = "item.image">
-                        <div class="action-btn">
-                            <button class="add-button" (click)="addToCart(item.productId)"><i class="fa fa-bag-shopping "></i></button>
-                            <button class="add-button" [routerLink]="['']"><i class="fa fa-heart "></i></button>
-                        </div>
-                        <a  routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="cursor: pointer;"></a>
-
+                  <div class="image">
+                    <img [src]="item.image">
+                    <div class="action-btn">
+                      <button class="add-button" (click)="addToCart(item.productId)"><i class="fa fa-bag-shopping"></i></button>
+                      <button class="add-button" (click)="addProductToFavorite(item.productId)"><i class="fa fa-heart"></i></button>
                     </div>
                     <p style="font-size: 14px;">{{item.price | currency:'VND'}}</p>
                     <h3><a routerLink="/detail" [queryParams]="{ type: 'product', id: item.productId }" style="text-decoration: none;">{{item.name}}</a></h3>
+                  </div>
                 </div>
             </div>
             <div *ngIf="totalProducts > productsPerPage">
