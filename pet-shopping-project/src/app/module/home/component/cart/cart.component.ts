@@ -44,6 +44,7 @@ export class CartComponent implements OnInit {
     });
   }
 
+
   getCart() {
     this.cartService.getCart().subscribe(
       next => {
@@ -65,6 +66,7 @@ export class CartComponent implements OnInit {
   private showError(message: string) {
     Swal.fire('Lỗi', message, 'error');
   }
+
 
   calculateTotal() {
     this.total = this.details.reduce((acc, detail) => acc + (detail.product.price * detail.quantity), 0);
@@ -113,8 +115,8 @@ export class CartComponent implements OnInit {
       return cartWithDetail;
     }
 
-
     goToPaymentPage() {
       this.router.navigate(['/payment']);
     }
 }
+

@@ -33,5 +33,4 @@ export class PaymentService {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.httpClient.get<any>(`${this._API_URL}/fail/${txnRef}`, {headers});
     }
-
   }

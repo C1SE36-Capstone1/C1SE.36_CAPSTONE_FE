@@ -1,7 +1,8 @@
 <div class="cart-container">
   <h2 class="cart-title">Danh sách giỏ hàng của bạn</h2>
 
-  <div *ngIf="!details || details.length === 0" class="empty-cart">
+  <div *ngIf="!details || details?.length === 0" class="empty-cart">
+
     <p>Giỏ hàng của bạn đang trống.</p>
   </div>
 
@@ -22,7 +23,6 @@
       <button (click)="deleteCartDetail(detail.cartDetailId)" class="remove-button">Xóa</button>
     </div>
   </div>
-
   <div class="total-cost" *ngIf="details?.length > 0">
     <p>Tổng tiền giỏ hàng: {{ total }}</p>
     <button (click)="goToPaymentPage()" class="checkout-button">Thanh toán</button>

@@ -264,3 +264,4 @@ export class PaymentComponent implements OnInit {
     this.paymentForm.get('paymentMethod').setValue(this.paymentMethod);
   }
 }
+
